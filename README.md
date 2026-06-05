@@ -1,4 +1,5 @@
 src/
+ ├─ Main.java
  ├─ view/
  │    ├─ LoginFrame.java
  │    ├─ DashboardFrame.java
@@ -8,7 +9,7 @@ src/
  │    │     ├─ BarChart.java
  │    │     ├─ GraphChart.java
  │    │     ├─ CardContainer.java
- │		│
+ │		  │
  │    ├─ receptionist/
  │    ├─ counselor/
  │
