@@ -1,25 +1,21 @@
-package main;
-
-
-
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-
+package view;
 
 /**
  *
  * @author Ivan Yong Pak Theng
  */
-public class Main extends javax.swing.JFrame {
+public class DashboardFrame extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Main.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(DashboardFrame.class.getName());
 
     /**
-     * Creates new form Main
+     * Creates new form DashboardFrame
      */
-    public Main() {
+    public DashboardFrame() {
         initComponents();
     }
 
@@ -70,7 +66,7 @@ public class Main extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new Main().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new DashboardFrame().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
