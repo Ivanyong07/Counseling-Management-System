@@ -1,13 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package model;
 
-/**
- *
- * @author Ivan Yong Pak Theng
- */
-public class Counselor {
-    
+
+public class Counselor extends User{
+    public Counselor(String firstname, String lastname, String username, String password, String email){
+        super(firstname, lastname, username, password, email);
+    }
 }

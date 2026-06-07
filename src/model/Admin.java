@@ -1,14 +1,10 @@
 package model;
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 
-/**
- *
- * @author Ivan Yong Pak Theng
- */
-public class Admin {
+public class Admin extends User{
+    
+        public Admin(String firstname, String lastname, String username, String password, String email){
+            super(firstname, lastname, username, password, email);
+    }
     
 }

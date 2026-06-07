@@ -1,13 +1,39 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package model;
 
-/**
- *
- * @author Ivan Yong Pak Theng
- */
+
 public class User {
     
+    private String firstname;
+    private String lastname;
+    private String username;
+    private String password;
+    private String email;
+    
+    public User(String firstname, String lastname,String username, String password, String email){
+        if (username==null||username.isEmpty()){
+            throw new IllegalArgumentException("Username cannot be empty");
+        }
+        
+        if (!username.matches("^[A-Za-z]+$" )){
+            throw new IllegalArgumentException("Username must in alphabet only");
+        }
+        
+        if (password.length() != 8){
+            throw new IllegalArgumentException("Password length must be 8 character");
+        }
+        
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+    }
+    
+    public String getUsername(){
+        return username;
+    }
+    
+    public String getPassword(){
+        return password;
+    }
 }
