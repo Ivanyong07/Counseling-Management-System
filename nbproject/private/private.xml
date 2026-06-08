@@ -3,25 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/main/Main.java</file>
-            <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/services/AuthService.java</file>
-            <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/services/ReportService.java</file>
-            <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/services/UserService.java</file>
-            <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/model/Admin.java</file>
-            <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/model/Receptionist.java</file>
-            <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/model/Student.java</file>
-            <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/model/Appointment.java</file>
-            <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/model/Counselor.java</file>
-            <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/view/LoginFrame.java</file>
-            <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/view/DashboardFrame.java</file>
-            <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/view/admin/AdminDashboard.java</file>
-            <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/view/admin/AccountPanel.java</file>
-            <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/view/admin/BarChart.java</file>
-            <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/view/admin/GraphChart.java</file>
-            <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/repository/UserRepository.java</file>
-            <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/repository/AppointmentRepository.java</file>
-            <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/model/StatusType.java</file>
             <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/model/User.java</file>
+            <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/services/AuthService.java</file>
+            <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/view/LoginFrame.java</file>
+            <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/main/Main.java</file>
+            <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/data/admin.txt</file>
+            <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/model/Admin.java</file>
         </group>
     </open-files>
 </project-private>
