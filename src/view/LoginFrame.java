@@ -22,18 +22,19 @@ public class LoginFrame extends javax.swing.JFrame {
                 passwordTextBox.setText("");
                 boolean error = false;
                 
+                
+                
                 if (username == null){
                     usernameTextBox.setText("Username cannot be empty");
+                    error = true;
                 } 
                 
                 if (password == null){
                     usernameTextBox.setText("Password cannot be empty");
-                } 
-                
+                    error = true;
+                }    
             }
-            
         });
-        
     }
     
     
