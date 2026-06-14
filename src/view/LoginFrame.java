@@ -1,7 +1,9 @@
 package view;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import model.User;
 import services.AuthService;
 
@@ -15,24 +17,46 @@ public class LoginFrame extends javax.swing.JFrame {
         LoginBtn.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
+                
+                System.out.println(new java.io.File(".data").getAbsolutePath());
+                
                 String username = usernameTextBox.getText().trim();
                 String password = new String(passwordTextBox.getPassword()).trim();
                 
-                usernameTextBox.setText("");
-                passwordTextBox.setText("");
                 boolean error = false;
                 
-                
-                
-                if (username == null){
-                    usernameTextBox.setText("Username cannot be empty");
+                if (username.isEmpty()){
+                    usernameErrorMsg.setText("Username cannot be empty");
+                    usernameTextBox.setText("");
+                    usernameErrorMsg.setForeground(Color.RED);
+                    
+                    System.out.println("Hi username");
                     error = true;
-                } 
+                } else{
+                    usernameErrorMsg.setText("");
+                }
                 
-                if (password == null){
-                    usernameTextBox.setText("Password cannot be empty");
+                if (password.isEmpty()){
+                    passwordErrorMsg.setText("Password cannot be empty");
+                    passwordErrorMsg.setForeground(Color.RED);
+                    passwordTextBox.setText("");
+                    
+                    System.out.println("hi passowrd");
                     error = true;
-                }    
+                } else {
+                    passwordErrorMsg.setText("");
+                }
+                
+                if (!error){
+                    try {
+                        User user = AuthService.login(username, password);
+                        if (user!= null){
+                            DashboardFrame dashboardFrame = new DashboardFrame();
+                        }
+                    } catch (IOException o){
+                        o.printStackTrace();
+                    }
+                }
             }
         });
     }

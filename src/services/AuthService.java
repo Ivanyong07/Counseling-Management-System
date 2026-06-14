@@ -28,7 +28,12 @@ public class AuthService {
     
     private static int loginAttempt = 3;
     public static User login(String username, String password) throws IOException{
-        String[] files = {"admin.txt", "receptionist.txt", "counselor.txt", "student.txt"}; 
+        
+        String fullPath = System.getProperty("user.dir");
+        String[] files = {fullPath + "/src/data/admin.txt", 
+                          fullPath + "/src/data/receptionist.txt", 
+                          fullPath + "/src/data/counselor.txt", 
+                          fullPath + "/src/data/student.txt"}; 
         
         if (loginAttempt == 0){
             System.out.println("System Locked Please try again later");
@@ -44,9 +49,9 @@ public class AuthService {
                 while ((line = br.readLine())!=null){
                     String[] data = line.split(",");
                     
-                    if (data.length >= 5){
-                        String fileUsername = data[2].trim();
-                        String filePassword = data[3].trim();
+                    if (data.length >= 6){
+                        String fileUsername = data[3].trim();
+                        String filePassword = data[4].trim();
                         
                         
                         if (fileUsername.equals(username) && filePassword.equals(password)){
@@ -63,6 +68,7 @@ public class AuthService {
             }
         } 
         System.out.println("Login Failed");
+        System.out.println("Login Attempt: " + loginAttempt);
         loginAttempt--;
         return null;
     }

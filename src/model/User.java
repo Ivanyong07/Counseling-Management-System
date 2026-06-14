@@ -15,7 +15,7 @@ public class User {
             throw new IllegalArgumentException("Username cannot be empty");
         }
         
-        if (!username.matches("^[A-Za-z]+$" )){
+        if (!username.matches("[a-zA-Z0-9]+" )){
             throw new IllegalArgumentException("Username must in alphabet only");
         }
         
