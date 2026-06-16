@@ -1,18 +1,19 @@
 package Test;
 
+import components.Animation;
 import java.awt.event.ActionEvent;
+import javax.swing.Timer;
 
 
 public class Test extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Test.class.getName());
+    int delay = 3000;
 
     public Test() {
         initComponents();
     }
     
-    
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -69,6 +70,16 @@ public class Test extends javax.swing.JFrame {
         notification1.setMessage("Login Successful");
         notification1.setVisible(true);
         
+        Animation.fadeIn(notification1, null);
+        Timer timer = new Timer(delay, null); // set after 3 seconds the notification box fadeout
+        // 3000 -> 3s
+        timer.addActionListener(e -> {
+            
+            Animation.fadeOut(notification1, null);
+        });
+        
+        timer.setRepeats(false); // run only one time
+        timer.start(); 
     }//GEN-LAST:event_testBtnActionPerformed
 
     /**

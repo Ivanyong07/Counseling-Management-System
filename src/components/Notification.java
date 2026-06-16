@@ -7,6 +7,7 @@ import java.awt.Graphics2D;
 
 public class Notification extends javax.swing.JPanel {
     
+    float alpha = 0f;
     private String title, message, status;
     
     public Notification() {
@@ -58,7 +59,7 @@ public class Notification extends javax.swing.JPanel {
         
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
-        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.85f)); // transparent
+        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha)); // transparent
         
         if (null != status)switch (status) {
             case "success" -> {
@@ -70,6 +71,7 @@ public class Notification extends javax.swing.JPanel {
                 
                 g2.setColor(Color.WHITE);
                 g2.drawString(message, 50, 30);
+                
             }
             case "failed" -> {
                 g2.setColor(new Color (200,0,0,200)); // red 
