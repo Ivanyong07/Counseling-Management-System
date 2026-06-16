@@ -7,17 +7,34 @@ import java.awt.Graphics2D;
 
 public class Notification extends javax.swing.JPanel {
     
-    private String status;
-    
-    
-    public void setStatus(String status){
-        this.status = status;
-        repaint();
-    }
+    private String title, message, status;
     
     public Notification() {
         initComponents();
         setOpaque(false);
+    }
+    
+    public Notification(String title, String message, String status) {
+        initComponents();
+        setOpaque(false);
+        this.title = title;
+        this.message = message;
+        this.status = status;
+    }
+    
+    public void setTitle(String title){
+        this.title = title;
+        repaint();
+    }
+    
+    public void setMessage(String message){
+        this.message = message;
+        repaint();
+    }
+    
+    public void setStatus(String status){
+        this.status = status;
+        repaint();
     }
     
     @SuppressWarnings("unchecked")
@@ -38,37 +55,44 @@ public class Notification extends javax.swing.JPanel {
 
     @Override
     protected void paintComponent(Graphics g) {
+        
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
-        
         g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.85f)); // transparent
         
-        if ("success".equals(status)){
-            
-            g2.setColor(new Color(32, 232, 80)); // green
-            g2.fillRoundRect(0, 0, getWidth(), getHeight(), 20, 20);
-            
-            
-            g2.setColor(Color.WHITE);
-            g2.drawString("Login Successful", 0,30);
-            
-        } else if ("failed".equals(status)){
-            
-            g2.setColor(new Color (200,0,0,200)); // red 
-            g2.fillRoundRect(0, 0, getWidth(), getHeight(), 20, 20);
-            
-            
-            g2.setColor(Color.WHITE);
-            g2.drawString("Failed", 0, 30);
-            
-        } else if ("locked".equals(status)) {
-            
-            g2.setColor(new Color (128, 124, 124)); // grey
-            g2.fillRoundRect(0, 0, getWidth(), getHeight(), 20, 20);
-            
-            
-            g2.setColor(Color.WHITE);
-            g2.drawString("Locked", getWidth(), getHeight());
+        if (null != status)switch (status) {
+            case "success" -> {
+                g2.setColor(new Color(32, 232, 80)); // green
+                g2.fillRoundRect(0, 0, getWidth(), getHeight(), 20, 20);
+                
+                g2.setColor(Color.WHITE);
+                g2.drawString(title, 0,30);
+                
+                g2.setColor(Color.WHITE);
+                g2.drawString(message, 50, 30);
+            }
+            case "failed" -> {
+                g2.setColor(new Color (200,0,0,200)); // red 
+                g2.fillRoundRect(0, 0, getWidth(), getHeight(), 20, 20);
+                
+                g2.setColor(Color.WHITE);
+                g2.drawString(title, 0, 30);
+                
+                g2.setColor(Color.WHITE);
+                g2.drawString(message, 10, 30);
+            }
+            case "locked" -> {
+                g2.setColor(new Color (128, 124, 124)); // grey
+                g2.fillRoundRect(0, 0, getWidth(), getHeight(), 20, 20);
+                
+                g2.setColor(Color.WHITE);
+                g2.drawString(title, 0,30);
+                
+                g2.setColor(Color.WHITE);
+                g2.drawString(message, 50, 30);
+            }
+            default -> {
+            }
         }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables

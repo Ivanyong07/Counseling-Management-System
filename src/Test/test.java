@@ -1,40 +1,39 @@
 package Test;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.swing.Timer;
 
-public class test extends javax.swing.JFrame {
+
+public class Test extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(test.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Test.class.getName());
 
-    public test() {
+    public Test() {
         initComponents();
-        notification1.setVisible(false);                
     }
-
+    
+    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        testNoti1 = new javax.swing.JButton();
+        testBtn = new javax.swing.JButton();
         notification1 = new components.Notification();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        testNoti1.setText("Click Me");
-        testNoti1.addActionListener(this::testNoti1ActionPerformed);
+        testBtn.setText("Click Me");
+        testBtn.addActionListener(this::testBtnActionPerformed);
 
         javax.swing.GroupLayout notification1Layout = new javax.swing.GroupLayout(notification1);
         notification1.setLayout(notification1Layout);
         notification1Layout.setHorizontalGroup(
             notification1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 401, Short.MAX_VALUE)
+            .addGap(0, 434, Short.MAX_VALUE)
         );
         notification1Layout.setVerticalGroup(
             notification1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 65, Short.MAX_VALUE)
+            .addGap(0, 100, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -42,40 +41,39 @@ public class test extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(374, 374, 374)
-                .addComponent(testNoti1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(238, Short.MAX_VALUE)
-                .addComponent(notification1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(213, 213, 213))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(378, 378, 378)
+                        .addComponent(testBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(206, 206, 206)
+                        .addComponent(notification1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(226, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addGap(30, 30, 30)
                 .addComponent(notification1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 123, Short.MAX_VALUE)
-                .addComponent(testNoti1)
-                .addGap(165, 165, 165))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+                .addComponent(testBtn)
+                .addGap(155, 155, 155))
         );
 
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void testNoti1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_testNoti1ActionPerformed
+    private void testBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_testBtnActionPerformed
         notification1.setStatus("success");
-                notification1.setVisible(true);
-                
-                Timer timer = new Timer(1000, ev -> {
-                    notification1.setVisible(false);
-                });
-                
-                timer.setRepeats(false);
-                timer.start();
-    }//GEN-LAST:event_testNoti1ActionPerformed
+        notification1.setTitle("Success");
+        notification1.setMessage("Login Successful");
+        notification1.setVisible(true);
+        
+    }//GEN-LAST:event_testBtnActionPerformed
 
+    /**
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -95,11 +93,11 @@ public class test extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new test().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new Test().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private components.Notification notification1;
-    private javax.swing.JButton testNoti1;
+    private javax.swing.JButton testBtn;
     // End of variables declaration//GEN-END:variables
 }

@@ -30,10 +30,7 @@ public class AuthService {
     public static User login(String username, String password) throws IOException{
         
         String fullPath = System.getProperty("user.dir");
-        String[] files = {fullPath + "/src/data/admin.txt", 
-                          fullPath + "/src/data/receptionist.txt", 
-                          fullPath + "/src/data/counselor.txt", 
-                          fullPath + "/src/data/student.txt"}; 
+        String[] files = {fullPath + "/src/data/users.txt"};
         
         if (loginAttempt == 0){
             System.out.println("System Locked Please try again later");
