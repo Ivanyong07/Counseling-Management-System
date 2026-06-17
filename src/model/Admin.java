@@ -17,7 +17,7 @@ public class Admin extends User{ // inherit
         
         @Override
         public String toString(){
-            return "Admin" + userID;
+            return "Admin: " + userID;
         }
     
 }

@@ -23,26 +23,37 @@ public class TestLogic {
     public static ArrayList<User> userList = new ArrayList<>();
     public static ArrayList<Admin> adminList = new ArrayList<>();
     
-    public static void LoadInformation(){
+    public static void LoadInformation(String userID){
         try (BufferedReader readerUser = new BufferedReader(new FileReader(fileUser))){
             String userLine;
+            
             while ((userLine = readerUser.readLine()) != null){
-                String[] userData = userLine.trim().split("\\|");
-                if (userData[0].startsWith("ADM")){
-                    System.out.println("Admin account found");
+                String[] userData = userLine.split("\\|"); // first split having space
+                // trim() only working on string
+                for (int i = 0; i < userData.length; i++){
+                    userData[i] = userData[i].trim(); 
+                } // use for loop for trim()
+                
+                if (userData[0].equals(userID)){
+                    System.out.println("Current Admin account found");
                     try (BufferedReader readerAdm = new BufferedReader(new FileReader(fileAdmin));){
                         String admLine;
                         while ((admLine = readerAdm.readLine()) != null){
                             String[] admData = admLine.trim().split("\\|");
+                            
+                            for (int i = 0; i < admData.length; i++){
+                                admData[i] = admData[i].trim();
+                            }
+                            
                             if (userData[0].equals(admData[0])){
-                                System.out.println("Admin ID: " + userData[0]);
+                                System.out.println("User ID match Role ID: " + userData[0]);
                                 System.out.println("ID Match...");
                                 Admin admin = new Admin(userData[0], userData[1], userData[2], userData[3], 
                                         userData[4], userData[5], userData[6], admData[7], admData[8]);
                                 adminList.add(admin);
                                 
                                 for (Admin m: adminList){
-                                    System.out.println("Gather information successfull");
+                                    System.out.println("Gather information successfull...");
                                     System.out.println(m);
                                 }
                                 
@@ -68,7 +79,7 @@ public class TestLogic {
     }
     
     public static void main(String args[]) {
-        LoadInformation();
+        LoadInformation("ADM001");
         
         // change one line only method
         // if match to the id featch the line that match to the array
