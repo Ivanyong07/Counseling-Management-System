@@ -35,7 +35,7 @@ public class TestLogic {
                 } // use for loop for trim()
                 
                 if (userData[0].equals(userID)){
-                    System.out.println("Current Admin account found");
+                    System.out.println("Current Role account found...");
                     try (BufferedReader readerAdm = new BufferedReader(new FileReader(fileAdmin));){
                         String admLine;
                         while ((admLine = readerAdm.readLine()) != null){
@@ -47,7 +47,7 @@ public class TestLogic {
                             
                             if (userData[0].equals(admData[0])){
                                 System.out.println("User ID match Role ID: " + userData[0]);
-                                System.out.println("ID Match...");
+                                System.out.println("ID Matching...");
                                 Admin admin = new Admin(userData[0], userData[1], userData[2], userData[3], 
                                         userData[4], userData[5], userData[6], admData[7], admData[8]);
                                 adminList.add(admin);
@@ -58,12 +58,12 @@ public class TestLogic {
                                 }
                                 
                             } else {
-                                System.out.println("ID Not Found...Please register new account for admin...");
+                                System.out.println("ID Not Found...Please register new account for the role...");
                             }
                         }
                     } 
                     catch (FileNotFoundException e){
-                        System.out.println("---File Not Found---");
+                        System.out.println("File Not Found");
                     }
                     
                     catch (IOException e){
@@ -79,7 +79,8 @@ public class TestLogic {
     }
     
     public static void main(String args[]) {
-        LoadInformation("ADM001");
+        LoadInformation("ADM001"); // testing
+        LoadInformation("REP001");
         
         // change one line only method
         // if match to the id featch the line that match to the array
