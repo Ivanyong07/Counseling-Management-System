@@ -2,15 +2,18 @@ package Test;
 
 import components.Animation;
 import java.awt.event.ActionEvent;
+import java.io.FileNotFoundException;
 import javax.swing.Timer;
+import java.io.FileWriter;
+import java.io.IOException;
 
 
-public class Test extends javax.swing.JFrame {
+public class TestUI extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Test.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(TestUI.class.getName());
     int delay = 3000;
 
-    public Test() {
+    public TestUI() {
         initComponents();
     }
     
@@ -65,11 +68,11 @@ public class Test extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void testBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_testBtnActionPerformed
+        
         notification1.setStatus("success");
         notification1.setTitle("Success");
         notification1.setMessage("Login Successful");
         notification1.setVisible(true);
-        
         Animation.fadeIn(notification1, null);
         Timer timer = new Timer(delay, null); // set after 3 seconds the notification box fadeout
         // 3000 -> 3s
@@ -77,9 +80,8 @@ public class Test extends javax.swing.JFrame {
             
             Animation.fadeOut(notification1, null);
         });
-        
         timer.setRepeats(false); // run only one time
-        timer.start(); 
+        timer.start();
     }//GEN-LAST:event_testBtnActionPerformed
 
     /**
@@ -104,7 +106,7 @@ public class Test extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new Test().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new TestUI().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
