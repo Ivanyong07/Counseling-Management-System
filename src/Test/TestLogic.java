@@ -26,7 +26,7 @@ public class TestLogic {
     public static void LoadInformation(String userID){
         try (BufferedReader readerUser = new BufferedReader(new FileReader(fileUser))){
             String userLine;
-            
+            // add condition for searching the correct file based on the userID
             while ((userLine = readerUser.readLine()) != null){
                 String[] userData = userLine.split("\\|"); // first split having space
                 // trim() only working on string
@@ -79,8 +79,9 @@ public class TestLogic {
     }
     
     public static void main(String args[]) {
-        LoadInformation("ADM001"); // testing
-        LoadInformation("REP001");
+        LoadInformation("ADM001"); // testing 1 (done)
+        System.out.println("");
+        LoadInformation("REP001"); // testing 2 (not done)
         
         // change one line only method
         // if match to the id featch the line that match to the array
