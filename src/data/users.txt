@@ -1,1 +1,2 @@
 AD001,ivan,yong,admin1,12345678,ivan@gmail.com
+REP001,lewen,ng,rep1,12345678,lewen@gmail.com

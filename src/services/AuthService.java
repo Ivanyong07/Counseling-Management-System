@@ -54,7 +54,6 @@ public class AuthService {
                         if (fileUsername.equals(username) && filePassword.equals(password)){
                             System.out.println("Login Successfull");
                             Boolean login = true;
-                            return new User(data[0], data[1], data[2], data[3], data[4], data[5]);
                         }
                     }
                 }  
