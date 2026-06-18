@@ -21,7 +21,9 @@ package services;
 //dispose LoginFrame
 
 import java.io.IOException;
+import model.Admin;
 import model.User;
+import services.FileHandling;
 
 public class AuthService {
     
@@ -44,18 +46,29 @@ public class AuthService {
                 
                 String line;
                 while ((line = br.readLine())!=null){
-                    String[] data = line.split(",");
+                    String[] data = line.split("\\|");
                     
-                    if (data.length >= 6){
+                    
+                        for (int i = 0; i < data.length; i++){
+                            data[i] = data[i].trim();
+                        }
                         String fileUsername = data[3].trim();
                         String filePassword = data[4].trim();
+                        String userID = data[0].trim();
+                        
+                        System.out.println("file username" + fileUsername +"name");
                         
                         
                         if (fileUsername.equals(username) && filePassword.equals(password)){
                             System.out.println("Login Successfull");
-                            Boolean login = true;
+                            User currentRole = FileHandling.LoadInformation(userID);
+                            
+                            if (currentRole instanceof Admin ){
+                                Admin admin = (Admin) currentRole;
+                                System.out.println("Username: " + admin.getUsername());
+                                
+                            }
                         }
-                    }
                 }  
             }catch (java.io.FileNotFoundException e){
                 System.out.println("File not found: " + file);
