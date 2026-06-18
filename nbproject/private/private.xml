@@ -3,12 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/components/Notification.java</file>
-            <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/Test/Test.java</file>
-            <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/components/Animation.java</file>
+            <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/Test/TestLogic.java</file>
+            <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/data/users.txt</file>
+            <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/model/User.java</file>
             <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/services/AuthService.java</file>
-            <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/repository/AppointmentRepository.java</file>
-            <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/repository/UserRepository.java</file>
+            <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/data/admin.txt</file>
+            <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/view/LoginFrame.java</file>
+            <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/model/Receptionist.java</file>
+            <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/model/Student.java</file>
+            <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/model/Admin.java</file>
+            <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/model/Counselor.java</file>
         </group>
     </open-files>
 </project-private>
