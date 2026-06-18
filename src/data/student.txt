@@ -1,1 +1,1 @@
-
+STU001 | le | wen | student001 | 12345678 | lewen@gmail.com | active | engineering | 012345678 
