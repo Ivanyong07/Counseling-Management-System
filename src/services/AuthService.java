@@ -1,4 +1,3 @@
-
 package services;
 
 // Functions: login(), logout()
@@ -21,9 +20,12 @@ package services;
 //dispose LoginFrame
 
 import java.io.IOException;
+
+import services.FileHandling;
+
 import model.Admin;
 import model.User;
-import services.FileHandling;
+import view.DashboardFrame;
 
 public class AuthService {
     
@@ -52,21 +54,29 @@ public class AuthService {
                         for (int i = 0; i < data.length; i++){
                             data[i] = data[i].trim();
                         }
-                        String fileUsername = data[3].trim();
-                        String filePassword = data[4].trim();
-                        String userID = data[0].trim();
+                        String fileUsername = data[3];
+                        String filePassword = data[4];
+
+                      
                         
-                        System.out.println("file username" + fileUsername +"name");
-                        
-                        
-                        if (fileUsername.equals(username) && filePassword.equals(password)){
+                        if (username.equals(fileUsername) && password.equals(filePassword)){
+                            String userID = data[0];
+                            System.out.println("'" + userID + "'" ); // debug
+                            
                             System.out.println("Login Successfull");
+                            
                             User currentRole = FileHandling.LoadInformation(userID);
                             
-                            if (currentRole instanceof Admin ){
+                            System.out.println("Run Load Information done"); /// debug
+                            
+                            if (currentRole instanceof Admin){
                                 Admin admin = (Admin) currentRole;
-                                System.out.println("Username: " + admin.getUsername());
+                                System.out.println("Username: " + admin.getUsername()); // debug
                                 
+                                
+                            } else {
+                                System.out.println("Not found");
+                                return null;
                             }
                         }
                 }  

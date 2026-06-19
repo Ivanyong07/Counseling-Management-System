@@ -15,13 +15,13 @@ import model.User;
 
 
 public class FileHandling {
+        
+    private static final String fileUser = System.getProperty("user.dir") + "/src/data/users.txt";
     
-    private static final String fileUser = "src/data/user.txt";
-    
-    private static final String fileAdmin = "src/data/admin.txt";
-    private static final String fileCounselor = "src/data/admin.txt";
-    private static final String fileReceptionist = "src/data/admin.txt";
-    private static final String fileStudent = "src/data/admin.txt";
+    private static final String fileAdmin = System.getProperty("user.dir") + "/src/data/admin.txt";
+    private static final String fileCounselor = "/src/data/admin.txt";
+    private static final String fileReceptionist = "/src/data/admin.txt";
+    private static final String fileStudent = "/src/data/admin.txt";
     
     public static ArrayList<User> userList = new ArrayList<>();
     public static ArrayList<Admin> adminList = new ArrayList<>();
@@ -184,7 +184,7 @@ public class FileHandling {
                 }
             }
         } catch (FileNotFoundException e){
-            System.out.println("File not found");
+            System.out.println("File not found and cannot read: " + e);
         } catch (IOException e){
             System.out.println("File could not read");
         }

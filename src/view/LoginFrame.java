@@ -50,9 +50,7 @@ public class LoginFrame extends javax.swing.JFrame {
                 if (!error){
                     try {
                         User user = AuthService.login(username, password);
-                        if (user!= null){
-                            DashboardFrame dashboardFrame = new DashboardFrame();
-                        }
+
                     } catch (IOException o){
                         o.printStackTrace();
                     }
