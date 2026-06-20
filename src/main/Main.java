@@ -2,6 +2,7 @@ package main;
 
 import components.Header;
 import view.LoginFrame;
+import view.admin.AdminDashboardFrame;
 
 
 public class Main extends javax.swing.JFrame {
@@ -10,7 +11,6 @@ public class Main extends javax.swing.JFrame {
 
     public Main() {
         initComponents();
-
     }
 
 
@@ -24,11 +24,11 @@ public class Main extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 777, Short.MAX_VALUE)
+            .addGap(0, 858, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 346, Short.MAX_VALUE)
+            .addGap(0, 486, Short.MAX_VALUE)
         );
 
         pack();
@@ -48,7 +48,7 @@ public class Main extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new LoginFrame().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new AdminDashboardFrame().setVisible(true));
     }
     
 

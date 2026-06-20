@@ -1,5 +1,6 @@
 package model;
 
+// menu structure for menu
 public class MenuModel {
     
     private String name;

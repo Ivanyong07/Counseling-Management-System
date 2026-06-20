@@ -6,7 +6,7 @@ import services.FileHandling;
 
 import model.Admin;
 import model.User;
-import view.DashboardFrame;
+import view.admin.AdminDashboardFrame;
 
 public class AuthService {
     
