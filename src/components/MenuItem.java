@@ -46,8 +46,10 @@ public class MenuItem extends javax.swing.JPanel {
 
         setOpaque(false);
 
+        menuIcon.setForeground(new java.awt.Color(255, 255, 255));
         menuIcon.setText("JIcon");
 
+        menuName.setForeground(new java.awt.Color(255, 255, 255));
         menuName.setText("jName");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

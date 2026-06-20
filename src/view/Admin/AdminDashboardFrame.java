@@ -1,12 +1,15 @@
 
 package view.admin;
 
+import components.Animation;
 public class AdminDashboardFrame extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(AdminDashboardFrame.class.getName());
 
 
     public AdminDashboardFrame() {
+        // notification UI
+//        Animation.slideIn(menu1, TOP_ALIGNMENT, TOP_ALIGNMENT, onFinish); // not done yet
         initComponents();
     }
 
