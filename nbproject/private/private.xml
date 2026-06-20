@@ -3,14 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/data/users.txt</file>
-            <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/data/receptionist.txt</file>
-            <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/Test/TestLogic.java</file>
-            <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/model/Student.java</file>
-            <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/data/student.txt</file>
-            <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/services/FileHandling.java</file>
-            <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/view/LoginFrame.java</file>
-            <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/services/AuthService.java</file>
+            <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/components/ListMenu.java</file>
+            <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/Test/TestUI.java</file>
         </group>
     </open-files>
 </project-private>

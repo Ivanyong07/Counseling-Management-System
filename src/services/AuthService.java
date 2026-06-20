@@ -1,24 +1,5 @@
 package services;
 
-// Functions: login(), logout()
-//Login Button
-//      ↓
-//AuthService
-//      ↓
-//Loop through 4 files in login frame
-//      ↓
-//Find matching account with array data[2] and data[3]
-//      ↓
-//Create correct role object 
-//      ↓
-//Return User
-//      ↓
-//LoginFrame checks type
-//      ↓
-//Open corresponding dashboard
-//      ↓
-//dispose LoginFrame
-
 import java.io.IOException;
 
 import services.FileHandling;
@@ -65,19 +46,8 @@ public class AuthService {
                             
                             System.out.println("Login Successfull");
                             
-                            User currentRole = FileHandling.LoadInformation(userID);
-                            
-                            System.out.println("Run Load Information done"); /// debug
-                            
-                            if (currentRole instanceof Admin){
-                                Admin admin = (Admin) currentRole;
-                                System.out.println("Username: " + admin.getUsername()); // debug
-                                
-                                
-                            } else {
-                                System.out.println("Not found");
-                                return null;
-                            }
+                            return FileHandling.LoadInformation(userID);
+//                            System.out.println("Run Load Information done"); /// debug
                         }
                 }  
             }catch (java.io.FileNotFoundException e){

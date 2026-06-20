@@ -4,8 +4,11 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-import model.User;
 import services.AuthService;
+
+import model.User;
+import model.Admin;
+import view.admin.AdminDashboardFrame;
 
 
 public class LoginFrame extends javax.swing.JFrame {
@@ -14,54 +17,8 @@ public class LoginFrame extends javax.swing.JFrame {
 
     public LoginFrame() {
         initComponents();
-        LoginBtn.addActionListener(new ActionListener(){
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                
-                System.out.println(new java.io.File(".data").getAbsolutePath());
-                
-                String username = usernameTextBox.getText().trim();
-                String password = new String(passwordTextBox.getPassword()).trim();
-                
-                boolean error = false;
-                
-                if (username.isEmpty()){
-                    usernameErrorMsg.setText("Username cannot be empty");
-                    usernameTextBox.setText("");
-                    usernameErrorMsg.setForeground(Color.RED);
-                    
-                    System.out.println("Hi username");
-                    error = true;
-                } else{
-                    usernameErrorMsg.setText("");
-                }
-                
-                if (password.isEmpty()){
-                    passwordErrorMsg.setText("Password cannot be empty");
-                    passwordErrorMsg.setForeground(Color.RED);
-                    passwordTextBox.setText("");
-                    
-                    System.out.println("hi passowrd");
-                    error = true;
-                } else {
-                    passwordErrorMsg.setText("");
-                }
-                
-                if (!error){
-                    try {
-                        User user = AuthService.login(username, password);
-
-                    } catch (IOException o){
-                        o.printStackTrace();
-                    }
-                }
-            }
-        });
     }
     
-    
-
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -134,15 +91,54 @@ public class LoginFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_usernameTextBoxActionPerformed
 
     private void LoginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginBtnActionPerformed
-        // TODO add your handling code here:
+        System.out.println(new java.io.File(".data").getAbsolutePath());
+                
+        String username = usernameTextBox.getText().trim();
+        String password = new String(passwordTextBox.getPassword()).trim();
+
+        boolean error = false;
+
+        if (username.isEmpty()){
+            usernameErrorMsg.setText("Username cannot be empty");
+            usernameTextBox.setText("");
+            usernameErrorMsg.setForeground(Color.RED);
+
+            System.out.println("Hi username");
+            error = true;
+        } else{
+            usernameErrorMsg.setText("");
+        }
+
+        if (password.isEmpty()){
+            passwordErrorMsg.setText("Password cannot be empty");
+            passwordErrorMsg.setForeground(Color.RED);
+            passwordTextBox.setText("");
+
+            System.out.println("hi passowrd");
+            error = true;
+        } else {
+            passwordErrorMsg.setText("");
+        }
+
+        if (!error){
+            try{
+                User currentUser = AuthService.login(username, password);
+
+                if (currentUser instanceof Admin){
+                    
+                    System.out.println(currentUser.getUserID());
+                    AdminDashboardFrame admDashboard = new AdminDashboardFrame();
+                    admDashboard.setVisible(true);
+                    dispose();
+                }
+
+            } catch (IOException o){
+                o.printStackTrace();
+            }
+        }
     }//GEN-LAST:event_LoginBtnActionPerformed
 
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
