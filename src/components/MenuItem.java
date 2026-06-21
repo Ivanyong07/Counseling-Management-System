@@ -18,9 +18,9 @@ public class MenuItem extends javax.swing.JPanel {
         initComponents();
         if (data.getType() == MenuModel.MenuType.MENU){
             menuName.setText(data.getName());
+//            menuIcon.setIcon(data.toIcon());
         } else if (data.getType()==MenuModel.MenuType.TITLE){
             menuName.setText(data.getName());
-
         } else {
             menuName.setText("");
             menuIcon.setText("");
@@ -46,7 +46,7 @@ public class MenuItem extends javax.swing.JPanel {
 
         setOpaque(false);
 
-        menuIcon.setForeground(new java.awt.Color(255, 255, 255));
+        menuIcon.setForeground(new java.awt.Color(0, 0, 0));
         menuIcon.setText("JIcon");
 
         menuName.setForeground(new java.awt.Color(255, 255, 255));

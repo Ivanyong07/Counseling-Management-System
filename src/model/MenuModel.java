@@ -1,6 +1,10 @@
 package model;
 
 // menu structure for menu
+
+import javax.swing.ImageIcon;
+import javax.swing.Icon;
+
 public class MenuModel {
     
     private String name;
@@ -36,6 +40,12 @@ public class MenuModel {
     public void setType(){
         this.type = type;
     }
+    
+    
+    public Icon toIcon() {
+        return new ImageIcon(getClass().getResource("C:\\NetBeansProjects\\Counseling-Management-System\\src\\Public\\" + icon + ".png"));
+    }
+
     
     public static enum MenuType{
         TITLE, MENU, EMPTY

@@ -11,6 +11,7 @@ public class Main extends javax.swing.JFrame {
 
     public Main() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
 
