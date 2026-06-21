@@ -1,17 +1,24 @@
 
 package services;
 
+// ListCellRenderer  = one renderer for whole LIST row
+// TableCellRenderer = one renderer for each TABLE cell
+// DefaultTableModel = whole table header
+// DefaultListTableModel = 1 column only
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
 
 import model.Admin;
 import model.Counselor;
 import model.Receptionist;
 import model.Student;
 import model.User;
+import components.TablePanelAction;
 
 
 public class FileHandling {
@@ -19,15 +26,18 @@ public class FileHandling {
     private static final String fileUser = System.getProperty("user.dir") + "/src/data/users.txt";
     
     private static final String fileAdmin = System.getProperty("user.dir") + "/src/data/admin.txt";
-    private static final String fileCounselor = "/src/data/admin.txt";
-    private static final String fileReceptionist = "/src/data/admin.txt";
-    private static final String fileStudent = "/src/data/admin.txt";
+    private static final String fileCounselor = System.getProperty("user.dir") + "/src/data/admin.txt";
+    private static final String fileReceptionist = System.getProperty("user.dir") + "/src/data/admin.txt";
+    private static final String fileStudent = System.getProperty("user.dir") + "/src/data/admin.txt";
     
     public static ArrayList<User> userList = new ArrayList<>();
     public static ArrayList<Admin> adminList = new ArrayList<>();
     public static ArrayList<Receptionist> receptionistList = new ArrayList<>();
     public static ArrayList<Counselor> counselorList = new ArrayList<>();
     public static ArrayList<Student> studentList = new ArrayList<>();
+    
+    private static DefaultTableModel model;
+    private static final String[] columns = {"ID", "Email", "Status", "Action"};
     
     public static User LoadInformation(String userID){
         boolean found = false;
@@ -190,5 +200,37 @@ public class FileHandling {
         }
         System.out.println("ID Not Found");
         return null;
+    }
+    
+    public static DefaultTableModel loadTableInformation(){
+        model = new DefaultTableModel(columns, 0);
+
+        try (BufferedReader tblDataRead = new BufferedReader(new FileReader(fileUser))){
+
+            String tblLine;
+
+            while ((tblLine = tblDataRead.readLine()) != null){
+                String[] tblData = tblLine.split("\\|");
+                for (int i = 0; i < tblData.length; i++){
+                    tblData[i] = tblData[i].trim();
+                }
+                
+                if (tblData.length < 7){
+                    continue;
+                }
+
+                if (tblData[0].startsWith("ADM")){
+                    continue; // skip
+                }
+
+                Object[] row = {tblData[0], tblData[5], tblData[6], new TablePanelAction()};
+                model.addRow(row);
+            }
+        } catch (FileNotFoundException e){
+            System.out.println("File Not Found");
+        } catch (IOException e){
+            System.out.println("Error: " + e);
+        }
+        return model;
     }
 }

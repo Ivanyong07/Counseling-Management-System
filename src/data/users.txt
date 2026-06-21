@@ -2,3 +2,9 @@ ADM001 | ivan | yong | admin1 | 12345678 | ivan@gmail.com | active
 REP001 | yew | chneg | reptionist1 | 12345678 | yewcheng@gmail.com | active
 CSL001 | mun | chong | counselor1 | 12345678 | femboy@gmail.com | active
 STU001 | le | wen | student001 | 12345678 | lewen@gmail.com | active
+STU002 | lee | wei | student002 | 12345678 | leewei@gmail.com | unactive
+CSL002 | mun | kit | counselor2 | 12345678 | munkit@gmail.com | active
+CSL002 | kok | wei | counselor3 | 12345678 | kokwei@gmail.com | unactive
+REP002 | tan | guang | reptionist2 | 12345678 | tanguang@gmail.com | active
+REP003 | tan | cheng | reptionist3 | 12345678 | tancheng@gmail.com | active
+REP004 | jo | xing | reptionist4 | 12345678 | joxing@gmail.com | active
