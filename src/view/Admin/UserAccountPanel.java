@@ -1,6 +1,7 @@
 
 package view.admin;
 
+import components.TableEditorAction;
 import components.TablePanelAction;
 import java.awt.Color;
 import java.awt.Component;
@@ -13,7 +14,11 @@ public class UserAccountPanel extends javax.swing.JPanel {
 
     public UserAccountPanel() {
         initComponents();
-        tblUser.setModel(FileHandling.loadTableInformation());
+        refreshTable();
+    }
+    
+    public void refreshTable(){
+        tblUser.setModel(FileHandling.loadTableInformation(this));
         setStatusColor();
         setImageIcon();
     }
@@ -21,7 +26,7 @@ public class UserAccountPanel extends javax.swing.JPanel {
     public void setStatusColor(){
         tblUser.getColumnModel().getColumn(2).setCellRenderer(new TableCellRenderer() {
                 public Component getTableCellRendererComponent(JTable table, Object value, boolean selected, boolean focus, int row, int column){
-
+                if (value == null) return new JLabel("");
                 JLabel label = new JLabel(value.toString());
 
                 label.setOpaque(true);
@@ -39,7 +44,10 @@ public class UserAccountPanel extends javax.swing.JPanel {
     }
     
     public void setImageIcon(){
-        tblUser.getColumnModel().getColumn(3).setCellRenderer(new TableCellRenderer () {
+        
+        tblUser.getColumnModel().getColumn(3).setCellEditor(new TableEditorAction()); // set it to clickable
+        
+        tblUser.getColumnModel().getColumn(3).setCellRenderer(new TableCellRenderer () { // show image
             public Component getTableCellRendererComponent(JTable table, Object value, boolean selected, boolean focus, int row, int column){
                 
                 if (value instanceof TablePanelAction){
@@ -60,23 +68,12 @@ public class UserAccountPanel extends javax.swing.JPanel {
 
         tblUser.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false
-            };
 
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
             }
-        });
+        ));
         tblUser.setRowHeight(40);
         jScrollPane1.setViewportView(tblUser);
 

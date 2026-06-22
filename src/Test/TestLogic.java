@@ -14,6 +14,7 @@ import model.Admin;
 import model.Counselor;
 import model.Receptionist;
 import model.Student;
+import services.FileHandling;
 
 
 
@@ -195,13 +196,13 @@ public class TestLogic {
 //    }
     
     public static void main(String args[]) {
-//        LoadInformation("ADM001"); // testing 1 (done)
+//        FileHandling.LoadInformation("STU001"); // testing 1 (done)
 //        System.out.println("");
 //        LoadInformation("REP001"); // testing 2 (done)
 //        System.out.println("");
 //        LoadInformation("CSL001"); // testing 3 (done)
 //        System.out.println("");
-//        LoadInformation("STU001"); // testing 4 (done)
+//        FileHandling.LoadInformation("STU001"); // testing 4 (done)
 
 //        User currentUser = TestLogic.LoadInformation(userID);
 //

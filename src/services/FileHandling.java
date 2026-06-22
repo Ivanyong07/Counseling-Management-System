@@ -1,4 +1,3 @@
-
 package services;
 
 // ListCellRenderer  = one renderer for whole LIST row
@@ -19,6 +18,9 @@ import model.Receptionist;
 import model.Student;
 import model.User;
 import components.TablePanelAction;
+import java.awt.Panel;
+import java.io.FileWriter;
+import view.admin.UserAccountPanel;
 
 
 public class FileHandling {
@@ -26,15 +28,17 @@ public class FileHandling {
     private static final String fileUser = System.getProperty("user.dir") + "/src/data/users.txt";
     
     private static final String fileAdmin = System.getProperty("user.dir") + "/src/data/admin.txt";
-    private static final String fileCounselor = System.getProperty("user.dir") + "/src/data/admin.txt";
-    private static final String fileReceptionist = System.getProperty("user.dir") + "/src/data/admin.txt";
-    private static final String fileStudent = System.getProperty("user.dir") + "/src/data/admin.txt";
+    private static final String fileCounselor = System.getProperty("user.dir") + "/src/data/counselor.txt";
+    private static final String fileReceptionist = System.getProperty("user.dir") + "/src/data/receptionist.txt";
+    private static final String fileStudent = System.getProperty("user.dir") + "/src/data/student.txt";
     
+    // ArrayList can add, array cannot 
     public static ArrayList<User> userList = new ArrayList<>();
     public static ArrayList<Admin> adminList = new ArrayList<>();
     public static ArrayList<Receptionist> receptionistList = new ArrayList<>();
     public static ArrayList<Counselor> counselorList = new ArrayList<>();
     public static ArrayList<Student> studentList = new ArrayList<>();
+
     
     private static DefaultTableModel model;
     private static final String[] columns = {"ID", "Email", "Status", "Action"};
@@ -173,6 +177,9 @@ public class FileHandling {
                                 stuData[i] = stuData[i].trim();
                             }
                             
+                            System.out.println("Checking ID: [" + stuData[0] + "]");
+                            System.out.println("Input ID: [" + userID + "]");
+                            
                             if (userData[0].equals(stuData[0])){
                                 found = true;
 
@@ -202,8 +209,13 @@ public class FileHandling {
         return null;
     }
     
-    public static DefaultTableModel loadTableInformation(){
-        model = new DefaultTableModel(columns, 0);
+    public static DefaultTableModel loadTableInformation(UserAccountPanel panel){
+        model = new DefaultTableModel(columns, 0) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return column == 3;
+            }
+        };
 
         try (BufferedReader tblDataRead = new BufferedReader(new FileReader(fileUser))){
 
@@ -214,6 +226,7 @@ public class FileHandling {
                 for (int i = 0; i < tblData.length; i++){
                     tblData[i] = tblData[i].trim();
                 }
+
                 
                 if (tblData.length < 7){
                     continue;
@@ -223,7 +236,7 @@ public class FileHandling {
                     continue; // skip
                 }
 
-                Object[] row = {tblData[0], tblData[5], tblData[6], new TablePanelAction()};
+                Object[] row = {tblData[0], tblData[5], tblData[6], new TablePanelAction(tblData[0], panel)};
                 model.addRow(row);
             }
         } catch (FileNotFoundException e){
@@ -233,4 +246,76 @@ public class FileHandling {
         }
         return model;
     }
+    
+    public static void deleteUser(String userID){
+        ArrayList<String> oriUserData = new ArrayList<>(); // declare locally as it will duplicate data
+        
+        try (BufferedReader dltDataRead = new BufferedReader(new FileReader(fileUser))){
+            String dltLine;
+            while ((dltLine = dltDataRead.readLine()) != null){
+                String[] dltData = dltLine.split("\\|");
+                for (int i = 0; i < dltData.length; i++){
+                    dltData[i]=dltData[i].trim();
+                }
+                
+                if (dltData[0].equals(userID)){
+                    continue;
+                } else {
+                    oriUserData.add(dltLine);
+                }
+            }
+            
+        } catch (FileNotFoundException e){
+            System.out.println("File Not Found");
+        } catch (IOException e){
+            System.out.println("Error: " + e);
+        }
+        
+        try (FileWriter writer = new FileWriter(fileUser)){
+                    
+            for (String d : oriUserData){
+                writer.write(d + "\n");
+            }
+        } catch (FileNotFoundException e){
+            System.out.println("File not found");
+        } catch (IOException e){
+            System.out.println("Error: " + e);
+        }
+    }
+    
+//    public static User updateUser(String userID){
+//        ArrayList<String> oriUserData = new ArrayList<>(); // declare locally as it will duplicate data
+//        
+//        try (BufferedReader dltDataRead = new BufferedReader(new FileReader(fileUser))){
+//            String dltLine;
+//            while ((dltLine = dltDataRead.readLine()) != null){
+//                String[] dltData = dltLine.split("\\|");
+//                for (int i = 0; i < dltData.length; i++){
+//                    dltData[i]=dltData[i].trim();
+//                }
+//                
+//                if (dltData[0].equals(userID)){
+//                    continue;
+//                } else {
+//                    oriUserData.add(dltLine);
+//                }
+//            }
+//            
+//        } catch (FileNotFoundException e){
+//            System.out.println("File Not Found");
+//        } catch (IOException e){
+//            System.out.println("Error: " + e);
+//        }
+//        
+//        try (FileWriter writer = new FileWriter(fileUser)){
+//                    
+//            for (String d : oriUserData){
+//                writer.write(d + "\n");
+//            }
+//        } catch (FileNotFoundException e){
+//            System.out.println("File not found");
+//        } catch (IOException e){
+//            System.out.println("Error: " + e);
+//        }
+//    }
 }
