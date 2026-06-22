@@ -5,12 +5,16 @@ import components.TableEditorAction;
 import components.TablePanelAction;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.TableCellRenderer;
 import services.FileHandling;
 
 public class UserAccountPanel extends javax.swing.JPanel {
+    
+    private static String fileUser = System.getProperty("user.dir") + "/src/data/users.txt";
 
     public UserAccountPanel() {
         initComponents();
@@ -18,7 +22,12 @@ public class UserAccountPanel extends javax.swing.JPanel {
     }
     
     public void refreshTable(){
-        tblUser.setModel(FileHandling.loadTableInformation(this));
+        tblUser.setModel(FileHandling.loadTableInformation(
+                () -> refreshTable(),  
+                new String[]{"ID", "Email", "Status", "Action"},
+                new int[]{0, 5, 6},
+                fileUser,
+                "ADM"));
         setStatusColor();
         setImageIcon();
     }
@@ -66,14 +75,6 @@ public class UserAccountPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblUser = new javax.swing.JTable();
 
-        tblUser.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-
-            }
-        ));
         tblUser.setRowHeight(40);
         jScrollPane1.setViewportView(tblUser);
 

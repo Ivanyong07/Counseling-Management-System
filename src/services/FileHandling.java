@@ -18,9 +18,7 @@ import model.Receptionist;
 import model.Student;
 import model.User;
 import components.TablePanelAction;
-import java.awt.Panel;
 import java.io.FileWriter;
-import view.admin.UserAccountPanel;
 
 
 public class FileHandling {
@@ -209,15 +207,10 @@ public class FileHandling {
         return null;
     }
     
-    public static DefaultTableModel loadTableInformation(UserAccountPanel panel){
-        model = new DefaultTableModel(columns, 0) {
-            @Override
-            public boolean isCellEditable(int row, int column) {
-                return column == 3;
-            }
-        };
+    public static DefaultTableModel loadTableInformation(Runnable onRun, String[] columns, int[] indexes, String filePath, String skipPrefix){
+        model = new DefaultTableModel(columns, 0);
 
-        try (BufferedReader tblDataRead = new BufferedReader(new FileReader(fileUser))){
+        try (BufferedReader tblDataRead = new BufferedReader(new FileReader(filePath))){
 
             String tblLine;
 
@@ -232,11 +225,15 @@ public class FileHandling {
                     continue;
                 }
 
-                if (tblData[0].startsWith("ADM")){
+                if (tblData[0].startsWith(skipPrefix)){
                     continue; // skip
                 }
 
-                Object[] row = {tblData[0], tblData[5], tblData[6], new TablePanelAction(tblData[0], panel)};
+                Object[] row = new Object[indexes.length + 1];
+                for (int i = 0; i < indexes.length; i++){
+                    row[i] = tblData[indexes[i]];
+                }
+                row[indexes.length] = new TablePanelAction(tblData[0], onRun);
                 model.addRow(row);
             }
         } catch (FileNotFoundException e){
