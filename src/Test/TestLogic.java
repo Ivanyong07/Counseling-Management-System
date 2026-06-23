@@ -202,7 +202,7 @@ public class TestLogic {
 //        System.out.println("");
 //        LoadInformation("CSL001"); // testing 3 (done)
 //        System.out.println("");
-//        FileHandling.LoadInformation("STU001"); // testing 4 (done)
+//        FileHandling.LoadInformation("REP003"); // testing 4 (done)
 
 //        User currentUser = TestLogic.LoadInformation(userID);
 //

@@ -45,6 +45,8 @@ public class FileHandling {
         boolean found = false;
         try (BufferedReader readerUser = new BufferedReader(new FileReader(fileUser))){
             String userLine;
+
+            System.out.println("Input ID: [" + userID + "]");
             
             
             // add condition for searching the correct file based on the userID
@@ -94,6 +96,7 @@ public class FileHandling {
                 
                 // Reptionist Load Information 
                 if (userID.startsWith("REP") && userData[0].equals(userID)){
+                    
 
                     try(BufferedReader repReader = new BufferedReader(new FileReader(fileReceptionist))){
                         String repLine;
@@ -135,6 +138,7 @@ public class FileHandling {
                         String rslLine;
                     while ((rslLine = rslReader.readLine()) !=null){
                         String[] cslData = rslLine.split("\\|");
+                        
                         // debug
 //                        System.out.println("cslData[0] = '" + cslData[0].trim() + "'");
 //                        System.out.println("userData[0] = '" + userData[0] + "'");
@@ -246,6 +250,7 @@ public class FileHandling {
     
     public static void deleteUser(String userID){
         ArrayList<String> oriUserData = new ArrayList<>(); // declare locally as it will duplicate data
+        ArrayList<String> oriRoleData = new ArrayList<>(); // for role file
         
         try (BufferedReader dltDataRead = new BufferedReader(new FileReader(fileUser))){
             String dltLine;
@@ -259,6 +264,17 @@ public class FileHandling {
                     continue;
                 } else {
                     oriUserData.add(dltLine);
+                }
+                
+                if (userID.equals("REP")){
+                    
+                    try (BufferedReader repData = new BufferedReader(new FileReader(fileReceptionist))){
+                        
+                    } catch (FileNotFoundException e){
+                        System.out.println("File not found");
+                    } catch (IOException e){
+                        System.out.println("Error: " + e);
+                    }
                 }
             }
             
