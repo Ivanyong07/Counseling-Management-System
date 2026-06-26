@@ -262,18 +262,75 @@ public class FileHandling {
                 
                 if (dltData[0].equals(userID)){
                     continue;
+                    
                 } else {
                     oriUserData.add(dltLine);
                 }
                 
+                // delete rep file in rep.txt
                 if (userID.equals("REP")){
-                    
-                    try (BufferedReader repData = new BufferedReader(new FileReader(fileReceptionist))){
+                    try (BufferedReader dltrepData = new BufferedReader(new FileReader(fileReceptionist))){
                         
+                        String repLine;
+                        while ((repLine = dltrepData.readLine()) != null){
+                            String[] repData = repLine.split("\\|");
+                            for (int i = 0; i < repData.length; i++){
+                                repData[i] = repData[i].trim();
+                            }
+                            
+                            if (repData[0].equals(userID)){
+                                continue;
+                            } else {
+                                oriRoleData.add(repLine);
+                            }
+                        }
                     } catch (FileNotFoundException e){
                         System.out.println("File not found");
                     } catch (IOException e){
                         System.out.println("Error: " + e);
+                    }
+                }
+                
+                if (userID.equals("CSL")){
+                    try (BufferedReader dltcslData = new BufferedReader(new FileReader(fileCounselor))){
+                        String cslLine;
+                        while ((cslLine = dltcslData.readLine()) != null){
+                            String[] cslData = cslLine.split("\\|");
+                            for (int i = 0; i < cslData.length; i++){
+                                cslData[i] = cslData[i].trim();
+                            }
+                            
+                            if (cslData[0].equals(userID)){
+                                continue;
+                            } else {
+                                oriRoleData.add(cslLine);
+                            }
+                        }
+                    } catch (FileNotFoundException e){
+                        System.out.println("File not found");
+                    } catch (IOException e){
+                        System.out.println("Error: " + e);
+                    }
+                }
+                
+                if (userID.equals("STU")){
+                    try (BufferedReader dltStuData = new BufferedReader(new FileReader(fileStudent))){
+                        String stuLine;
+                        while ((stuLine = dltStuData.readLine()) != null){
+                            String[] stuData = stuLine.split("\\|");
+                            for (int i = 0; i < stuData.length; i++){
+                                stuData[i] = stuData[i].trim();
+                            }
+                            if (stuData[0].equals(userID)){
+                                continue;
+                            } else {
+                                oriRoleData.add(stuLine);
+                            }
+                        }
+                    } catch (FileNotFoundException e){
+                        System.out.println("File not found");
+                    } catch (IOException e){
+                        System.out.println("Error" + e);
                     }
                 }
             }
@@ -285,7 +342,6 @@ public class FileHandling {
         }
         
         try (FileWriter writer = new FileWriter(fileUser)){
-                    
             for (String d : oriUserData){
                 writer.write(d + "\n");
             }
