@@ -352,39 +352,39 @@ public class FileHandling {
         }
     }
     
-//    public static User updateUser(String userID){
-//        ArrayList<String> oriUserData = new ArrayList<>(); // declare locally as it will duplicate data
-//        
-//        try (BufferedReader dltDataRead = new BufferedReader(new FileReader(fileUser))){
-//            String dltLine;
-//            while ((dltLine = dltDataRead.readLine()) != null){
-//                String[] dltData = dltLine.split("\\|");
-//                for (int i = 0; i < dltData.length; i++){
-//                    dltData[i]=dltData[i].trim();
-//                }
-//                
-//                if (dltData[0].equals(userID)){
-//                    continue;
-//                } else {
-//                    oriUserData.add(dltLine);
-//                }
-//            }
-//            
-//        } catch (FileNotFoundException e){
-//            System.out.println("File Not Found");
-//        } catch (IOException e){
-//            System.out.println("Error: " + e);
-//        }
-//        
-//        try (FileWriter writer = new FileWriter(fileUser)){
-//                    
-//            for (String d : oriUserData){
-//                writer.write(d + "\n");
-//            }
-//        } catch (FileNotFoundException e){
-//            System.out.println("File not found");
-//        } catch (IOException e){
-//            System.out.println("Error: " + e);
-//        }
-//    }
+    public static User updateUser(String userID){
+        ArrayList<String> oriUserData = new ArrayList<>(); // declare locally as it will duplicate data
+        
+        try (BufferedReader dltDataRead = new BufferedReader(new FileReader(fileUser))){
+            String dltLine;
+            while ((dltLine = dltDataRead.readLine()) != null){
+                String[] dltData = dltLine.split("\\|");
+                for (int i = 0; i < dltData.length; i++){
+                    dltData[i]=dltData[i].trim();
+                }
+                
+                if (dltData[0].equals(userID)){
+                    continue;
+                } else {
+                    oriUserData.add(dltLine);
+                }
+            }
+            
+        } catch (FileNotFoundException e){
+            System.out.println("File Not Found");
+        } catch (IOException e){
+            System.out.println("Error: " + e);
+        }
+        
+        try (FileWriter writer = new FileWriter(fileUser)){
+                    
+            for (String d : oriUserData){
+                writer.write(d + "\n");
+            }
+        } catch (FileNotFoundException e){
+            System.out.println("File not found");
+        } catch (IOException e){
+            System.out.println("Error: " + e);
+        }
+    }
 }

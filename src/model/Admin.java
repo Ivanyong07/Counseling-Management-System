@@ -18,5 +18,4 @@ public class Admin extends User{ // inherit
         public String toString(){
             return "Admin: " + userID + username;
         }
-    
 }

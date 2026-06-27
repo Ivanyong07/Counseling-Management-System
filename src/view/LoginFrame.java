@@ -8,6 +8,7 @@ import services.AuthService;
 
 import model.User;
 import model.Admin;
+import services.FileHandling;
 import view.admin.AdminDashboardFrame;
 
 
@@ -123,6 +124,7 @@ public class LoginFrame extends javax.swing.JFrame {
         if (!error){
             try{
                 User currentUser = AuthService.login(username, password);
+                currentUser = FileHandling.LoadInformation(currentUser.getUserID());
 
                 if (currentUser instanceof Admin){
                     
