@@ -27,7 +27,7 @@ public class Student extends User{
         this.contactNumber = contactNumber;
     }
     
-    public String getContactnumber(){
+    public String getContactNumber(){
         return contactNumber;
     }
     

@@ -1,10 +1,12 @@
-package view.admin;
+package view;
 
+import javax.swing.JOptionPane;
 import model.Admin;
 import model.Counselor;
 import model.Receptionist;
 import model.User;
 import model.Student;
+import view.EditProfileDialog;
 
 
 public class Profile extends javax.swing.JPanel {
@@ -72,7 +74,7 @@ public class Profile extends javax.swing.JPanel {
             textDetails1.setText(student.getCourse());
             labelDetails1.setText("Course:");
             
-            textDetails2.setText(student.getContactnumber());
+            textDetails2.setText(student.getContactNumber());
             labelDetails2.setText("Contact Number:");
         }
         
@@ -102,6 +104,8 @@ public class Profile extends javax.swing.JPanel {
         labelStatus = new javax.swing.JLabel();
         labelDetails2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        btnChangePassword = new javax.swing.JButton();
+        btnChangeProfile = new javax.swing.JButton();
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Black", 1, 24)); // NOI18N
         jLabel2.setText("User Details:");
@@ -152,6 +156,11 @@ public class Profile extends javax.swing.JPanel {
 
         jLabel1.setText("(Read Only)");
 
+        btnChangePassword.setText("Edit Password");
+
+        btnChangeProfile.setText("Edit Profile");
+        btnChangeProfile.addActionListener(this::btnChangeProfileActionPerformed);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -174,18 +183,21 @@ public class Profile extends javax.swing.JPanel {
                             .addComponent(textFieldUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(textFieldFirstname, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(textFieldLastname, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(textFieldUserID, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
-                                        .addComponent(jLabel1)))
-                                .addGap(64, 64, 64)
+                                        .addComponent(jLabel1))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(textFieldFirstname, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(btnChangePassword)))
+                                .addGap(50, 50, 50)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(labelDetails1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(labelStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(labelDetails2, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(textFieldStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(textDetails1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -194,6 +206,10 @@ public class Profile extends javax.swing.JPanel {
                         .addContainerGap()
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(80, 80, 80))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btnChangeProfile)
+                .addGap(15, 15, 15))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -210,7 +226,8 @@ public class Profile extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(textFieldFirstname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labelFirstname))
+                            .addComponent(labelFirstname)
+                            .addComponent(btnChangePassword))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(textFieldLastname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -239,7 +256,9 @@ public class Profile extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(textFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelEmail))
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnChangeProfile)
+                .addContainerGap(10, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -275,8 +294,19 @@ public class Profile extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_textDetails2ActionPerformed
 
+    private void btnChangeProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangeProfileActionPerformed
+        
+        java.awt.Window window = javax.swing.SwingUtilities.getWindowAncestor(this);
+        EditProfileDialog dialog = new EditProfileDialog((java.awt.Frame) window, true, currentUser);
+        
+        dialog.setLocationRelativeTo(window);
+        dialog.setVisible(true);
+    }//GEN-LAST:event_btnChangeProfileActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnChangePassword;
+    private javax.swing.JButton btnChangeProfile;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel labelDetails1;

@@ -1,6 +1,7 @@
 
 package view.admin;
 
+import view.Profile;
 import Event.EventMenuSelected;
 import components.Animation;
 import components.Notification;

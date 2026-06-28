@@ -35,21 +35,25 @@
                           <Component id="textFieldUsername" alignment="0" min="-2" pref="112" max="-2" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="textFieldFirstname" alignment="0" min="-2" pref="112" max="-2" attributes="0"/>
                                   <Component id="textFieldLastname" alignment="0" min="-2" pref="112" max="-2" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="textFieldUserID" min="-2" pref="112" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                                   </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="textFieldFirstname" min="-2" pref="112" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="btnChangePassword" min="-2" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
-                              <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="labelDetails1" min="-2" pref="97" max="-2" attributes="0"/>
                                   <Component id="labelStatus" min="-2" pref="71" max="-2" attributes="0"/>
                                   <Component id="labelDetails2" min="-2" pref="97" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="8" max="32767" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="textFieldStatus" alignment="0" min="-2" pref="112" max="-2" attributes="0"/>
                                   <Component id="textDetails1" alignment="0" min="-2" pref="112" max="-2" attributes="0"/>
@@ -64,6 +68,11 @@
                   </Group>
               </Group>
               <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              <Component id="btnChangeProfile" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -84,6 +93,7 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="textFieldFirstname" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="labelFirstname" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnChangePassword" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -123,7 +133,9 @@
                   <Component id="textFieldEmail" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="labelEmail" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="44" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="btnChangeProfile" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="10" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -255,6 +267,19 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="(Read Only)"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnChangePassword">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Edit Password"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnChangeProfile">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Edit Profile"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnChangeProfileActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
