@@ -6,7 +6,7 @@ public class Admin extends User{ // inherit
         private String office;
         private String contactNumber;
         
-        public Admin(String userID,String firstname, String lastname, 
+    public Admin(String userID,String firstname, String lastname, 
                 String username,String password, String email, String status, String office, String contactNumber){
             
             super(userID, firstname, lastname, username, password, email, status);
@@ -14,8 +14,24 @@ public class Admin extends User{ // inherit
             this.office = office;
             this.contactNumber = contactNumber;
     }
-        @Override
-        public String toString(){
-            return "Admin: " + userID + username;
-        }
+    
+    public void setOffice(String office){
+        this.office = office;
+    }
+    public String getOffice(){
+        return office;
+    }
+    
+    public void setContactNumber(String contectNumber){
+        this.contactNumber = contactNumber;
+    }
+    
+    public String getContactNumber(){
+        return contactNumber;
+    }
+    
+    @Override
+    public String toString(){
+        return "Admin: " + userID + username;
+    }
 }

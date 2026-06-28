@@ -15,6 +15,22 @@ public class Student extends User{
         this.contactNumber = contactNumber;
     }
     
+    public void setCourse(String course){
+        this.course = course;
+    }
+    
+    public String getCourse(){
+        return course;
+    }
+    
+    public void setContactNumber(String contactNumber){
+        this.contactNumber = contactNumber;
+    }
+    
+    public String getContactnumber(){
+        return contactNumber;
+    }
+    
     @Override
     public String toString(){
         return "Student: " + userID;
