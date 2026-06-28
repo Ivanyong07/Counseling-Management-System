@@ -352,21 +352,32 @@ public class FileHandling {
         }
     }
     
-    public static User updateUser(String userID){
+    public static void updateUser(User user){
         ArrayList<String> oriUserData = new ArrayList<>(); // declare locally as it will duplicate data
         
         try (BufferedReader dltDataRead = new BufferedReader(new FileReader(fileUser))){
-            String dltLine;
-            while ((dltLine = dltDataRead.readLine()) != null){
-                String[] dltData = dltLine.split("\\|");
-                for (int i = 0; i < dltData.length; i++){
-                    dltData[i]=dltData[i].trim();
+            String oriLine;
+            while ((oriLine = dltDataRead.readLine()) != null){
+                String[] oriData = oriLine.split("\\|");
+                for (int i = 0; i < oriData.length; i++){
+                    oriData[i]=oriData[i].trim();
                 }
                 
-                if (dltData[0].equals(userID)){
-                    continue;
+                if (oriData[0].equals(user.getUserID())){
+                    
+                    String updateLine = 
+                            user.getUserID() + "|" +
+                            user.getFirstname() + "|" +
+                            user.getLastname() + "|" +
+                            user.getUsername() + "|" +
+                            user.getPassword() + "|" +
+                            user.getEmail() + "|" +
+                            user.getStatus();
+                    
+                    oriUserData.add(updateLine);
+                    
                 } else {
-                    oriUserData.add(dltLine);
+                    oriUserData.add(oriLine);
                 }
             }
             

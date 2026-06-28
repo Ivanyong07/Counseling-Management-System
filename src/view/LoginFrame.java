@@ -129,7 +129,7 @@ public class LoginFrame extends javax.swing.JFrame {
                 if (currentUser instanceof Admin){
                     
                     System.out.println(currentUser.getUserID());
-                    AdminDashboardFrame admDashboard = new AdminDashboardFrame();
+                    AdminDashboardFrame admDashboard = new AdminDashboardFrame((Admin) currentUser);
                     admDashboard.setVisible(true);
                     dispose();
                 }

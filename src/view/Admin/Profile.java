@@ -1,9 +1,12 @@
 package view.admin;
 
+import model.User;
+
 
 public class Profile extends javax.swing.JPanel {
+    
 
-    public Profile() {
+    public Profile(User currenUser) {
         initComponents();
     }
 

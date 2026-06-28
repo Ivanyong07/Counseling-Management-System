@@ -6,6 +6,7 @@ import components.Animation;
 import components.Notification;
 import javax.swing.JPanel;
 import javax.swing.Timer;
+import model.Admin;
 
 public class AdminDashboardFrame extends javax.swing.JFrame {
     
@@ -16,12 +17,14 @@ public class AdminDashboardFrame extends javax.swing.JFrame {
     private GenerateReports generateReports;
     private StaffRosterSchedules staffRosterSchedules;
     private Profile profile;
+    private Admin currentAdmin;
 
     private int delay = 3000;
     
-    public AdminDashboardFrame() {
+    public AdminDashboardFrame(Admin currentAdmin) {
             
 //            Animation.slideIn(, TOP_ALIGNMENT, TOP_ALIGNMENT, onFinish); // not done yet
+            this.currentAdmin = currentAdmin; 
             initComponents();
             menu.setTheme("#bdc3c7", "#2c3e50");
 
@@ -29,7 +32,7 @@ public class AdminDashboardFrame extends javax.swing.JFrame {
             appointmentStatistics = new AppointmentStatistics();
             generateReports = new GenerateReports();
             staffRosterSchedules = new StaffRosterSchedules();
-            profile = new Profile();
+            profile = new Profile(currentAdmin);
 
             setPanel(userAccountPanel); // initial panel
             
