@@ -1,5 +1,8 @@
 package view;
 
+import components.Animation;
+import components.Notification;
+import javax.swing.Timer;
 import model.Admin;
 import model.Receptionist;
 import model.Student;
@@ -12,6 +15,8 @@ public class EditProfileDialog extends javax.swing.JDialog {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(EditProfileDialog.class.getName());
     
     private User currentUser;
+    private Notification notification;
+    private int delay = 2000;
     
     public EditProfileDialog(java.awt.Frame parent, boolean modal, User currentUser) {
         super(parent, modal);
@@ -123,6 +128,7 @@ public class EditProfileDialog extends javax.swing.JDialog {
         textFieldDetails2.addActionListener(this::textFieldDetails2ActionPerformed);
 
         jButton1.setText("Edit");
+        jButton1.addActionListener(this::jButton1ActionPerformed);
 
         jButton2.setBackground(new java.awt.Color(255, 51, 51));
         jButton2.setForeground(new java.awt.Color(0, 0, 0));
@@ -325,6 +331,30 @@ public class EditProfileDialog extends javax.swing.JDialog {
     private void textFieldOTPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldOTPActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_textFieldOTPActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
+        String password = new String(textFieldPasswordCheck.getPassword());
+        
+        if (!password.equals(currentUser.getPassword())){
+            notification.setStatus("success");
+            notification.setTitle("Success");
+            notification.setMessage("Login Successful");
+            notification.setVisible(true);
+            Animation.fadeIn(notification, null);
+            Timer timer = new Timer(delay, null); // set after 3 seconds the notification box fadeout
+            // 3000 -> 3s
+            timer.addActionListener(e -> {
+                Animation.fadeOut(notification, null);
+            });
+                timer.setRepeats(false); // run only one time
+                timer.start();
+            return;
+        }
+        
+        // Update user info
+        currentUser.setFirstname(textFieldFirstname.getText().trim());
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
