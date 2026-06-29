@@ -2,6 +2,7 @@ package view;
 
 import components.Animation;
 import components.Notification;
+import javax.swing.JOptionPane;
 import javax.swing.Timer;
 import model.Admin;
 import model.Receptionist;
@@ -29,7 +30,7 @@ public class EditProfileDialog extends javax.swing.JDialog {
         
         labelUserID.setText(currentUser.getUserID());
         
-        textFieldFirstname.setText(currentUser.getUsername());
+        textFieldFirstname.setText(currentUser.getFirstname());
         textFieldLastname.setText(currentUser.getLastname());
         textFieldUsername.setText(currentUser.getUsername());
         textFieldEmail.setText(currentUser.getEmail());
@@ -337,10 +338,7 @@ public class EditProfileDialog extends javax.swing.JDialog {
         String password = new String(textFieldPasswordCheck.getPassword());
         
         if (!password.equals(currentUser.getPassword())){
-            notification.setStatus("success");
-            notification.setTitle("Success");
-            notification.setMessage("Login Successful");
-            notification.setVisible(true);
+            notification = new Notification("Failed", "Incorrect Password", "failed");
             Animation.fadeIn(notification, null);
             Timer timer = new Timer(delay, null); // set after 3 seconds the notification box fadeout
             // 3000 -> 3s
@@ -365,22 +363,34 @@ public class EditProfileDialog extends javax.swing.JDialog {
             
             admin.setOffice(textFieldDetails1.getText().trim());
             admin.setContactNumber(textFieldDetails2.getText().trim());
+            FileHandling.updateAdmin(admin);
+            
         } else if (currentUser instanceof Receptionist){
             Receptionist receptionist = (Receptionist) currentUser;
             
             receptionist.setCounter(textFieldDetails1.getText().trim());
             receptionist.setContactNumber(textFieldDetails2.getText().trim());
+            FileHandling.updateReceptionist(receptionist);
+            
         } else if (currentUser instanceof Counselor){
             Counselor counselor = (Counselor) currentUser;
             
             counselor.setSpecialist(textFieldDetails1.getText().trim());
             counselor.setContactNumber(textFieldDetails2.getText().trim());
+            FileHandling.updateCounselor(counselor);
         } else if (currentUser instanceof Student){
             Student student = (Student) currentUser;
             
             student.setCourse(textFieldDetails1.getText().trim());
             student.setContactNumber(textFieldDetails2.getText().trim());
+            FileHandling.updateStudent(student);
         }
+        FileHandling.updateUser(currentUser);
+        JOptionPane.showMessageDialog(
+            this,
+            "Profile updated successfully."
+        );
+        dispose();
             
     }//GEN-LAST:event_jButton1ActionPerformed
 

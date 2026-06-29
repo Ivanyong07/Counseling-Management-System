@@ -355,9 +355,9 @@ public class FileHandling {
     public static void updateUser(User user){
         ArrayList<String> oriUserData = new ArrayList<>(); // declare locally as it will duplicate data
         
-        try (BufferedReader dltDataRead = new BufferedReader(new FileReader(fileUser))){
+        try (BufferedReader uptDataRead = new BufferedReader(new FileReader(fileUser))){
             String oriLine;
-            while ((oriLine = dltDataRead.readLine()) != null){
+            while ((oriLine = uptDataRead.readLine()) != null){
                 String[] oriData = oriLine.split("\\|");
                 for (int i = 0; i < oriData.length; i++){
                     oriData[i]=oriData[i].trim();
@@ -400,18 +400,149 @@ public class FileHandling {
     }
     
     public static void updateAdmin(Admin admin){
+        ArrayList<Admin> oriAdminList = new ArrayList<>();
         
+        try (BufferedReader uptDataRead = new BufferedReader(new FileReader(fileAdmin))){
+            String oriLine;
+            
+            while ((oriLine = uptDataRead.readLine()) != null){
+                String[] adminData = oriLine.split("\\|");
+                for (int i = 0; i < adminData.length; i++){
+                    adminData[i] = adminData[i].trim();
+                }
+                    Admin a = new Admin(
+                            adminData[0],
+                            adminData[1],
+                            adminData[2],
+                            adminData[3],
+                            adminData[4],
+                            adminData[5],
+                            adminData[6],
+                            adminData[7],
+                            adminData[8]
+                    );
+                if(a.getUserID().equals(admin.getUserID())){
+                    oriAdminList.add(admin);
+                } else {
+                    oriAdminList.add(a);
+                }
+            }
+        } catch(FileNotFoundException e){
+            System.out.println("File Not Found");
+        } catch (IOException e){
+            System.out.println("Error: " + e);
+        }
     }
     
     public static void updateReceptionist(Receptionist receptionist) {
+        ArrayList<Receptionist> oriRepList = new ArrayList<>();
         
+        try (BufferedReader uptDataRead = new BufferedReader(new FileReader(fileReceptionist))){
+            String oriLine;
+            
+            while ((oriLine = uptDataRead.readLine()) != null){
+                String[] repData = oriLine.split("\\|");
+                for (int i = 0; i < repData.length; i++){
+                    repData[i] = repData[i].trim();
+                }   
+                    Receptionist r = new Receptionist(
+                            repData[0],
+                            repData[1],
+                            repData[2],
+                            repData[3],
+                            repData[4],
+                            repData[5],
+                            repData[6],
+                            repData[7],
+                            repData[8]
+                    );
+                if(r.getUserID().equals(receptionist.getUserID())){
+                    oriRepList.add(receptionist);
+                } else {
+                    oriRepList.add(r);
+                }
+            }
+        } catch(FileNotFoundException e){
+            System.out.println("File Not Found");
+        } catch (IOException e){
+            System.out.println("Error: " + e);
+        }
     }
     
     public static void updateCounselor(Counselor counselor){
+        ArrayList<Counselor> oriCslList = new ArrayList<>();
+        
+        try (BufferedReader uptDataRead = new BufferedReader(new FileReader(fileCounselor))){
+            String oriLine;
+            
+            while ((oriLine = uptDataRead.readLine()) != null){
+                String[] cslData = oriLine.split("\\|");
+                for (int i = 0; i < cslData.length; i++){
+                    cslData[i] = cslData[i].trim();
+                }
+                
+
+                    
+                    Counselor c = new Counselor(
+                            cslData[0],
+                            cslData[1],
+                            cslData[2],
+                            cslData[3],
+                            cslData[4],
+                            cslData[5],
+                            cslData[6],
+                            cslData[7],
+                            cslData[8]
+                    );
+                if(c.getUserID().equals(counselor.getUserID())){
+                    oriCslList.add(counselor);
+                } else {
+                    oriCslList.add(c);
+                }
+            }
+        } catch(FileNotFoundException e){
+            System.out.println("File Not Found");
+        } catch (IOException e){
+            System.out.println("Error: " + e);
+        }
         
     }
     
     public static void updateStudent(Student student){
+        ArrayList<Student> oriStdList = new ArrayList<>();
         
+        try (BufferedReader uptDataRead = new BufferedReader(new FileReader(fileStudent))){
+            String oriLine;
+            
+            while ((oriLine = uptDataRead.readLine()) != null){
+                String[] stdData = oriLine.split("\\|");
+                for (int i = 0; i < stdData.length; i++){
+                    stdData[i] = stdData[i].trim();
+                }
+                
+
+                    
+                    Student s = new Student(
+                            stdData[0],
+                            stdData[1],
+                            stdData[2],
+                            stdData[3],
+                            stdData[4],
+                            stdData[5],
+                            stdData[6],
+                            stdData[7],
+                            stdData[8]
+                    );
+                if(s.getUserID().equals(student.getUserID())){
+                    oriStdList.add(student);
+                } else {
+                    oriStdList.add(s);
+                }
+            }
+        } catch(FileNotFoundException e){
+            System.out.println("File Not Found");
+        } catch (IOException e){
+            System.out.println("Error: " + e);
+        }
     }
 }

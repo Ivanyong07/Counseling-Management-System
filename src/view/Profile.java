@@ -19,8 +19,7 @@ public class Profile extends javax.swing.JPanel {
         this.currentUser = currentUser;
         
         // load information
-        loadRoleInfo();
-        loadRoleDetails();
+        refresh();
     }
     
     private void loadRoleInfo(){
@@ -77,7 +76,11 @@ public class Profile extends javax.swing.JPanel {
             textDetails2.setText(student.getContactNumber());
             labelDetails2.setText("Contact Number:");
         }
-        
+    }
+    
+    public void refresh(){
+        loadRoleInfo();
+        loadRoleDetails();
     }
 
     @SuppressWarnings("unchecked")
