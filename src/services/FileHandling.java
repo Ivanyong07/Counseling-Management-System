@@ -398,4 +398,20 @@ public class FileHandling {
             System.out.println("Error: " + e);
         }
     }
+    
+    public static void updateAdmin(Admin admin){
+        
+    }
+    
+    public static void updateReceptionist(Receptionist receptionist) {
+        
+    }
+    
+    public static void updateCounselor(Counselor counselor){
+        
+    }
+    
+    public static void updateStudent(Student student){
+        
+    }
 }

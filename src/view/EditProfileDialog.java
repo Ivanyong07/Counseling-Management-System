@@ -42,7 +42,7 @@ public class EditProfileDialog extends javax.swing.JDialog {
             labelDetails1.setText("Office Number:");
             
             textFieldDetails2.setText(admin.getContactNumber());
-            labelDetails2.setText("Contact Number");
+            labelDetails2.setText("Contact Number:");
         } else if (currentUser instanceof Receptionist){
             Receptionist receptionist = (Receptionist) currentUser;
             
@@ -50,7 +50,7 @@ public class EditProfileDialog extends javax.swing.JDialog {
             labelDetails1.setText("Counter Number:");
             
             textFieldDetails2.setText(receptionist.getContactNumber());
-            labelDetails2.setText("Contact Number");
+            labelDetails2.setText("Contact Number:");
         } else if (currentUser instanceof Counselor){
             Counselor counselor = (Counselor) currentUser;
             
@@ -58,7 +58,7 @@ public class EditProfileDialog extends javax.swing.JDialog {
             labelDetails1.setText("Specialist:");
             
             textFieldDetails2.setText(counselor.getContactNumber());
-            labelDetails2.setText("Contact Number");
+            labelDetails2.setText("Contact Number:");
             
         } else if (currentUser instanceof Student){
             Student student = (Student) currentUser;
@@ -67,7 +67,7 @@ public class EditProfileDialog extends javax.swing.JDialog {
             labelDetails1.setText("Specialist:");
             
             textFieldDetails2.setText(student.getContactNumber());
-            labelDetails2.setText("Contact Number");
+            labelDetails2.setText("Contact Number:");
         }
     }
 
@@ -135,16 +135,16 @@ public class EditProfileDialog extends javax.swing.JDialog {
         jButton2.setText("Cancel");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel2.setText("Firstname");
+        jLabel2.setText("Firstname:");
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel3.setText("Email");
+        jLabel3.setText("Email:");
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel4.setText("Lastname");
+        jLabel4.setText("Lastname:");
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel5.setText("Username");
+        jLabel5.setText("Username:");
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel6.setText("User ID:");
@@ -156,7 +156,7 @@ public class EditProfileDialog extends javax.swing.JDialog {
         labelDetails1.setText("Details1");
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel8.setText("Status");
+        jLabel8.setText("Status:");
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 51, 51));
@@ -192,13 +192,10 @@ public class EditProfileDialog extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -213,19 +210,22 @@ public class EditProfileDialog extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(98, 98, 98)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labelDetails1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labelDetails2, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(55, 55, 55)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(textFieldUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textFieldFirstname, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textFieldLastname, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(55, 55, 55)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(textFieldUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(textFieldFirstname, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(textFieldLastname, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(textFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(labelDetails1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
+                                .addComponent(labelDetails2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                 .addContainerGap(24, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
@@ -354,6 +354,34 @@ public class EditProfileDialog extends javax.swing.JDialog {
         
         // Update user info
         currentUser.setFirstname(textFieldFirstname.getText().trim());
+        currentUser .setLastname(textFieldLastname.getText().trim());
+        currentUser.setUsername(textFieldUsername.getText().trim());
+        currentUser.setEmail(textFieldEmail.getText().trim());
+        currentUser.setStatus(textFieldStatus.getText().trim());
+        
+        
+        if (currentUser instanceof Admin){
+            Admin admin = (Admin) currentUser;
+            
+            admin.setOffice(textFieldDetails1.getText().trim());
+            admin.setContactNumber(textFieldDetails2.getText().trim());
+        } else if (currentUser instanceof Receptionist){
+            Receptionist receptionist = (Receptionist) currentUser;
+            
+            receptionist.setCounter(textFieldDetails1.getText().trim());
+            receptionist.setContactNumber(textFieldDetails2.getText().trim());
+        } else if (currentUser instanceof Counselor){
+            Counselor counselor = (Counselor) currentUser;
+            
+            counselor.setSpecialist(textFieldDetails1.getText().trim());
+            counselor.setContactNumber(textFieldDetails2.getText().trim());
+        } else if (currentUser instanceof Student){
+            Student student = (Student) currentUser;
+            
+            student.setCourse(textFieldDetails1.getText().trim());
+            student.setContactNumber(textFieldDetails2.getText().trim());
+        }
+            
     }//GEN-LAST:event_jButton1ActionPerformed
 
     public static void main(String args[]) {

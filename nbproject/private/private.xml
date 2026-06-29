@@ -5,13 +5,16 @@
         <group>
             <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/view/admin/UserAccountPanel.java</file>
             <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/services/FileHandling.java</file>
-            <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/data/users.txt</file>
-            <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/Test/TestLogic.java</file>
-            <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/data/receptionist.txt</file>
             <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/view/admin/AdminDashboardFrame.java</file>
             <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/data/appointments.txt</file>
             <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/model/User.java</file>
             <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/view/LoginFrame.java</file>
+            <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/view/EditProfileDialog.java</file>
+            <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/view/ChangePasswordDialog.java</file>
+            <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/data/admin.txt</file>
+            <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/model/Student.java</file>
+            <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/view/Profile.java</file>
+            <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/components/Notification.java</file>
         </group>
     </open-files>
 </project-private>
