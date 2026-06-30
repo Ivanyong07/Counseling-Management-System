@@ -6,6 +6,7 @@ package services;
 // DefaultListTableModel = 1 column only
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -42,6 +43,7 @@ public class FileHandling {
     private static final String[] columns = {"ID", "Email", "Status", "Action"};
     
     public static User LoadInformation(String userID){
+        
         boolean found = false;
         try (BufferedReader readerUser = new BufferedReader(new FileReader(fileUser))){
             String userLine;
@@ -366,12 +368,12 @@ public class FileHandling {
                 if (oriData[0].equals(user.getUserID())){
                     
                     String updateLine = 
-                            user.getUserID() + "|" +
-                            user.getFirstname() + "|" +
-                            user.getLastname() + "|" +
-                            user.getUsername() + "|" +
-                            user.getPassword() + "|" +
-                            user.getEmail() + "|" +
+                            user.getUserID() + " | " +
+                            user.getFirstname() + " | " +
+                            user.getLastname() + " | " +
+                            user.getUsername() + " | " +
+                            user.getPassword() + " | " +
+                            user.getEmail() + " | " +
                             user.getStatus();
                     
                     oriUserData.add(updateLine);
@@ -387,10 +389,11 @@ public class FileHandling {
             System.out.println("Error: " + e);
         }
         
-        try (FileWriter writer = new FileWriter(fileUser)){
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileUser))){
                     
             for (String d : oriUserData){
-                writer.write(d + "\n");
+                writer.write(d);
+                writer.newLine();
             }
         } catch (FileNotFoundException e){
             System.out.println("File not found");
@@ -432,6 +435,29 @@ public class FileHandling {
         } catch (IOException e){
             System.out.println("Error: " + e);
         }
+        
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileAdmin))){
+            
+            for (Admin a: oriAdminList){
+                writer.write(
+                        a.getUserID() + " | " +
+                        a.getFirstname() + " | " +
+                        a.getLastname() + " | " +
+                        a.getUsername() + " | " +
+                        a.getPassword() + " | " +
+                        a.getEmail() + " | " +
+                        a.getStatus() + " | " +
+                        a.getOffice() + " | " +
+                        a.getContactNumber()       
+                );
+                writer.newLine();
+            }
+            
+        } catch (FileNotFoundException e){
+            System.out.println("File Not Found");
+        } catch (IOException e){
+            System.out.println("Error: " + e);
+        }
     }
     
     public static void updateReceptionist(Receptionist receptionist) {
@@ -467,6 +493,27 @@ public class FileHandling {
         } catch (IOException e){
             System.out.println("Error: " + e);
         }
+        
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileReceptionist))){
+            for (Receptionist r: oriRepList){
+                writer.write(
+                        r.getUserID() + " | " +
+                        r.getFirstname() + " | " +
+                        r.getLastname() + " | " +
+                        r.getUsername() + " | " +
+                        r.getPassword() + " | " +
+                        r.getEmail() + " | " +
+                        r.getStatus() + " | " +
+                        r.getCounter() + " | " +
+                        r.getContactNumber()
+                );
+                writer.newLine();
+            }
+        } catch (FileNotFoundException e){
+            System.out.println("File Not Found");
+        } catch (IOException e){
+            System.out.println("Error: " + e);
+        }
     }
     
     public static void updateCounselor(Counselor counselor){
@@ -480,9 +527,6 @@ public class FileHandling {
                 for (int i = 0; i < cslData.length; i++){
                     cslData[i] = cslData[i].trim();
                 }
-                
-
-                    
                     Counselor c = new Counselor(
                             cslData[0],
                             cslData[1],
@@ -506,6 +550,28 @@ public class FileHandling {
             System.out.println("Error: " + e);
         }
         
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileCounselor))){
+            
+            for (Counselor c: oriCslList) {
+                writer.write(
+                        c.getUserID() + " | " +
+                        c.getFirstname() + " | " +
+                        c.getLastname() + " | " +
+                        c.getUsername() + " | " +
+                        c.getPassword() + " | " +
+                        c.getEmail() + " | " +
+                        c.getStatus() + " | " +
+                        c.getSpecialist() + " | " +
+                        c.getContactNumber()
+                );
+            }
+                    
+        } catch (FileNotFoundException e){
+            System.out.println("File Not Found");
+        } catch (IOException e){
+            System.out.println("Error: " + e);
+        }
+        
     }
     
     public static void updateStudent(Student student){
@@ -519,9 +585,6 @@ public class FileHandling {
                 for (int i = 0; i < stdData.length; i++){
                     stdData[i] = stdData[i].trim();
                 }
-                
-
-                    
                     Student s = new Student(
                             stdData[0],
                             stdData[1],
@@ -541,6 +604,27 @@ public class FileHandling {
             }
         } catch(FileNotFoundException e){
             System.out.println("File Not Found");
+        } catch (IOException e){
+            System.out.println("Error: " + e);
+        }
+        
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileStudent))){
+            
+            for (Student s: oriStdList){
+                writer.write(
+                        s.getUserID() + " | " +
+                        s.getFirstname() + " | " +
+                        s.getLastname() + " | " +
+                        s.getUsername() + " | " +
+                        s.getPassword() + " | " +
+                        s.getEmail() + " | " +
+                        s.getStatus() + " | " +
+                        s.getCourse() + " | " +
+                        s.getContactNumber() 
+                );
+            }
+        } catch (FileNotFoundException e){
+            System.out.println("File not found");
         } catch (IOException e){
             System.out.println("Error: " + e);
         }

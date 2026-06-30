@@ -2,6 +2,7 @@ package view;
 
 import components.Animation;
 import components.Notification;
+import java.awt.Color;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
 import model.Admin;
@@ -17,7 +18,9 @@ public class EditProfileDialog extends javax.swing.JDialog {
     
     private User currentUser;
     private Notification notification;
-    private int delay = 2000;
+    private final int delay = 2000;
+    private boolean needVerification = true;
+    private Color color;
     
     public EditProfileDialog(java.awt.Frame parent, boolean modal, User currentUser) {
         super(parent, modal);
@@ -71,6 +74,80 @@ public class EditProfileDialog extends javax.swing.JDialog {
             labelDetails2.setText("Contact Number:");
         }
     }
+    
+    public void setEditable(boolean required){
+        textFieldFirstname.setEditable(required);
+        textFieldLastname.setEditable(required);
+        textFieldUsername.setEditable(required);
+        textFieldEmail.setEditable(required);
+        textFieldStatus.setEditable(required);
+        textFieldDetails1.setEditable(required);
+        textFieldDetails2.setEditable(required);
+    }
+    
+    public void setVerification(boolean required){
+        
+        this.needVerification = required;
+        textFieldPasswordCheck.setVisible(required);
+        textFieldOTP.setVisible(required);
+        
+        labelWarningPassword.setVisible(required);
+        labelWarningOTP.setVisible(required);
+        labelWarningEmail.setVisible(required);
+        
+        btnSendOTP.setVisible(required);
+    }
+    
+    public void setEditButton(boolean show){
+        btnEdit.setVisible(show);
+    }
+    
+    public void setCancelButton(String text){
+        btnCancel.setText(text);
+        
+        if (btnCancel.getText().equals("Done")){
+            btnCancel.setBackground(Color.WHITE);
+        } else {
+            btnCancel.setBackground(Color.RED);
+        }
+    }
+    
+    private boolean checkPassword(){
+        String password = new String(textFieldPasswordCheck.getPassword());
+        
+        if (!password.equals(currentUser.getPassword())){
+            notification = new Notification("Failed", "Incorrect Password", "failed");
+            Animation.fadeIn(notification, null);
+            Timer timer = new Timer(delay, null); // set after 3 seconds the notification box fadeout
+            // 3000 -> 3s
+            timer.addActionListener(e -> {
+                Animation.fadeOut(notification, null);
+            });
+                timer.setRepeats(false); // run only one time
+                timer.start();
+            return false;
+        }
+        return true;
+    }
+    
+    private boolean checkOTP(){
+        
+        String otpNumber = textFieldOTP.getText();
+        
+        if (!otpNumber.equals("123")){ // need to change
+            notification = new Notification("Failed", "Incorrect OTP number", "failed");
+            Animation.fadeIn(notification, null);
+            Timer timer = new Timer(delay, null); // set after 3 seconds the notification box fadeout
+            // 3000 -> 3s
+            timer.addActionListener(e -> {
+                Animation.fadeOut(notification, null);
+            });
+                timer.setRepeats(false); // run only one time
+                timer.start();
+            return false;
+        }
+        return true;
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -84,8 +161,8 @@ public class EditProfileDialog extends javax.swing.JDialog {
         textFieldStatus = new javax.swing.JTextField();
         textFieldDetails1 = new javax.swing.JTextField();
         textFieldDetails2 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnEdit = new javax.swing.JButton();
+        btnCancel = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -94,13 +171,13 @@ public class EditProfileDialog extends javax.swing.JDialog {
         labelUserID = new javax.swing.JLabel();
         labelDetails1 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
+        labelWarningPassword = new javax.swing.JLabel();
         textFieldPasswordCheck = new javax.swing.JPasswordField();
         labelDetails2 = new javax.swing.JLabel();
         textFieldOTP = new javax.swing.JTextField();
         btnSendOTP = new javax.swing.JButton();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
+        labelWarningOTP = new javax.swing.JLabel();
+        labelWarningEmail = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -128,12 +205,13 @@ public class EditProfileDialog extends javax.swing.JDialog {
         textFieldDetails2.setText("jTextField1");
         textFieldDetails2.addActionListener(this::textFieldDetails2ActionPerformed);
 
-        jButton1.setText("Edit");
-        jButton1.addActionListener(this::jButton1ActionPerformed);
+        btnEdit.setText("Edit");
+        btnEdit.addActionListener(this::btnEditActionPerformed);
 
-        jButton2.setBackground(new java.awt.Color(255, 51, 51));
-        jButton2.setForeground(new java.awt.Color(0, 0, 0));
-        jButton2.setText("Cancel");
+        btnCancel.setBackground(new java.awt.Color(255, 51, 51));
+        btnCancel.setForeground(new java.awt.Color(0, 0, 0));
+        btnCancel.setText("Cancel");
+        btnCancel.addActionListener(this::btnCancelActionPerformed);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setText("Firstname:");
@@ -159,9 +237,9 @@ public class EditProfileDialog extends javax.swing.JDialog {
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel8.setText("Status:");
 
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(255, 51, 51));
-        jLabel9.setText("Please enter password to save");
+        labelWarningPassword.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        labelWarningPassword.setForeground(new java.awt.Color(255, 51, 51));
+        labelWarningPassword.setText("Please enter password to save");
 
         textFieldPasswordCheck.setText("jPasswordField1");
 
@@ -173,13 +251,13 @@ public class EditProfileDialog extends javax.swing.JDialog {
 
         btnSendOTP.setText("Send OTP");
 
-        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(255, 51, 51));
-        jLabel11.setText("Please enter OTP number to save");
+        labelWarningOTP.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        labelWarningOTP.setForeground(new java.awt.Color(255, 51, 51));
+        labelWarningOTP.setText("Please enter OTP number to save");
 
-        jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(255, 51, 51));
-        jLabel12.setText("Please make sure your email is valid for receive OTP number");
+        labelWarningEmail.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
+        labelWarningEmail.setForeground(new java.awt.Color(255, 51, 51));
+        labelWarningEmail.setText("Please make sure your email is valid for receive OTP number");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -189,14 +267,14 @@ public class EditProfileDialog extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(151, 151, 151)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(labelWarningOTP, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelWarningPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -238,7 +316,7 @@ public class EditProfileDialog extends javax.swing.JDialog {
                 .addGap(24, 24, 24))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel12)
+                .addComponent(labelWarningEmail)
                 .addGap(65, 65, 65))
         );
         layout.setVerticalGroup(
@@ -266,7 +344,7 @@ public class EditProfileDialog extends javax.swing.JDialog {
                     .addComponent(jLabel3)
                     .addComponent(textFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel12)
+                .addComponent(labelWarningEmail)
                 .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel8)
@@ -282,16 +360,16 @@ public class EditProfileDialog extends javax.swing.JDialog {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(textFieldPasswordCheck, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel9))
+                            .addComponent(labelWarningPassword))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(textFieldOTP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnSendOTP)
-                            .addComponent(jLabel11))
+                            .addComponent(labelWarningOTP))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1)
-                            .addComponent(jButton2))
+                            .addComponent(btnEdit)
+                            .addComponent(btnCancel))
                         .addGap(16, 16, 16))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(labelDetails2)
@@ -333,21 +411,11 @@ public class EditProfileDialog extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_textFieldOTPActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
         
-        String password = new String(textFieldPasswordCheck.getPassword());
-        
-        if (!password.equals(currentUser.getPassword())){
-            notification = new Notification("Failed", "Incorrect Password", "failed");
-            Animation.fadeIn(notification, null);
-            Timer timer = new Timer(delay, null); // set after 3 seconds the notification box fadeout
-            // 3000 -> 3s
-            timer.addActionListener(e -> {
-                Animation.fadeOut(notification, null);
-            });
-                timer.setRepeats(false); // run only one time
-                timer.start();
-            return;
+        if (needVerification){
+            if (!checkPassword()) return;
+            if (!checkOTP()) return;
         }
         
         // Update user info
@@ -392,7 +460,11 @@ public class EditProfileDialog extends javax.swing.JDialog {
         );
         dispose();
             
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnEditActionPerformed
+
+    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
+        dispose();
+    }//GEN-LAST:event_btnCancelActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -429,22 +501,22 @@ public class EditProfileDialog extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCancel;
+    private javax.swing.JButton btnEdit;
     private javax.swing.JButton btnSendOTP;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel labelDetails1;
     private javax.swing.JLabel labelDetails2;
     private javax.swing.JLabel labelUserID;
+    private javax.swing.JLabel labelWarningEmail;
+    private javax.swing.JLabel labelWarningOTP;
+    private javax.swing.JLabel labelWarningPassword;
     private javax.swing.JTextField textFieldDetails1;
     private javax.swing.JTextField textFieldDetails2;
     private javax.swing.JTextField textFieldEmail;

@@ -1,17 +1,14 @@
 package services;
 
 import java.io.IOException;
-
-import services.FileHandling;
-
-import model.Admin;
 import model.User;
-import view.admin.AdminDashboardFrame;
 
 public class AuthService {
     
     
     private static int loginAttempt = 3;
+    private User currentUser;
+    
     public static User login(String username, String password) throws IOException{
         
         String fullPath = System.getProperty("user.dir");
@@ -42,7 +39,7 @@ public class AuthService {
                         
                         if (username.equals(fileUsername) && password.equals(filePassword)){
                             String userID = data[0];
-                            System.out.println("'" + userID + "'" ); // debug
+//                            System.out.println("'" + userID + "'" ); // debug
                             
                             System.out.println("Login Successfull");
                             

@@ -2,12 +2,14 @@ package components;
 
 import java.util.ServiceLoader;
 import services.FileHandling;
+import view.EditProfileDialog;
 import view.admin.UserAccountPanel;
+import model.User;
 
 public class TablePanelAction extends javax.swing.JPanel {
 
-    private String userID;
     public Runnable onRefresh;
+    private String userID;
     
     public TablePanelAction() {
         initComponents();
@@ -41,9 +43,17 @@ public class TablePanelAction extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
-        System.out.println("View Button Clicked");
-        System.out.println("User ID: " + userID);
-        FileHandling.LoadInformation(userID);
+        java.awt.Frame frame = (java.awt.Frame) javax.swing.SwingUtilities.getWindowAncestor(this);
+
+
+        User user = FileHandling.LoadInformation(userID);
+        
+        EditProfileDialog dialog = new EditProfileDialog(frame, true, user);
+        dialog.setEditable(false);
+        dialog.setVerification(false);
+        dialog.setEditButton(false);
+        dialog.setCancelButton("Done");
+        dialog.setVisible(true);
     }//GEN-LAST:event_btnViewActionPerformed
 
     private void btnDltActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDltActionPerformed
@@ -54,7 +64,16 @@ public class TablePanelAction extends javax.swing.JPanel {
     }//GEN-LAST:event_btnDltActionPerformed
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
-        // TODO add your handling code here:
+        java.awt.Frame frame = (java.awt.Frame) javax.swing.SwingUtilities.getWindowAncestor(this);
+        
+        User user = FileHandling.LoadInformation(userID);
+        
+        EditProfileDialog dialog = new EditProfileDialog(frame, true, user);
+        dialog.setEditable(true);
+        dialog.setVerification(false);
+        dialog.setEditButton(true);
+        dialog.setCancelButton("Cancel");
+        dialog.setVisible(true);
     }//GEN-LAST:event_btnEditActionPerformed
 
 

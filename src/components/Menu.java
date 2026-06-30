@@ -14,7 +14,8 @@ import javax.swing.ImageIcon;
 public class Menu extends javax.swing.JPanel {
     
     private EventMenuSelected event;
-    private String color1, color2;
+    private String color1 = "#000000";
+    private String color2 = "#000000";
     
     String userIcon = "src/Public/user.png";
     

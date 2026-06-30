@@ -14,6 +14,7 @@ import view.admin.AdminDashboardFrame;
 
 public class LoginFrame extends javax.swing.JFrame {
     
+    
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(LoginFrame.class.getName());
 
     public LoginFrame() {
@@ -24,6 +25,7 @@ public class LoginFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jTabbedPane1 = new javax.swing.JTabbedPane();
         usernameTextBox = new javax.swing.JTextField();
         LoginBtn = new javax.swing.JButton();
         passwordErrorMsg = new javax.swing.JLabel();
@@ -160,6 +162,7 @@ public class LoginFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton LoginBtn;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel passwordErrorMsg;
     private javax.swing.JPasswordField passwordTextBox;
     private javax.swing.JLabel usernameErrorMsg;
