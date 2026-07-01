@@ -16,6 +16,11 @@
             <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/view/Profile.java</file>
             <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/Test/TestLogic.java</file>
             <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/services/FileHandling.java</file>
+            <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/data/appointments.txt</file>
+            <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/data/users.txt</file>
+            <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/model/Appointment.java</file>
+            <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/model/User.java</file>
+            <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/model/Student.java</file>
         </group>
     </open-files>
 </project-private>

@@ -639,25 +639,25 @@ public class FileHandling {
         }
     }
     
-    public static User createUser(User user){
-        
-        try (BufferedReader userLine = new BufferedReader(new FileReader(fileUser))){
-            
-            String dataLine;
-            while ((dataLine = userLine.readLine()) != null){
-                String[] data = dataLine.split("\\|");
-                for (int i =0; i < data.length; i++){
-                    data[i] = data[i].trim();
-                }
-                if (data[0].equals(user.getUserID())){
-                    return null;
-                }
-            }
-            
-            
-        } catch (FileNotFoundException e){
-            System.out.println("File Not Found");
-        } catch (IOException e){
-            System.out.println("Error: " + e);
-    }
+//    public static User createUser(User user){
+//        
+//        try (BufferedReader userLine = new BufferedReader(new FileReader(fileUser))){
+//            
+//            String dataLine;
+//            while ((dataLine = userLine.readLine()) != null){
+//                String[] data = dataLine.split("\\|");
+//                for (int i =0; i < data.length; i++){
+//                    data[i] = data[i].trim();
+//                }
+//                if (data[0].equals(user.getUserID())){
+//                    return null;
+//                }
+//            }
+//            
+//            
+//        } catch (FileNotFoundException e){
+//            System.out.println("File Not Found");
+//        } catch (IOException e){
+//            System.out.println("Error: " + e);
+//    }
 }
