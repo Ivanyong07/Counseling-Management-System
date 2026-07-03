@@ -639,25 +639,165 @@ public class FileHandling {
         }
     }
     
-//    public static User createUser(User user){
-//        
-//        try (BufferedReader userLine = new BufferedReader(new FileReader(fileUser))){
-//            
-//            String dataLine;
-//            while ((dataLine = userLine.readLine()) != null){
-//                String[] data = dataLine.split("\\|");
-//                for (int i =0; i < data.length; i++){
-//                    data[i] = data[i].trim();
-//                }
-//                if (data[0].equals(user.getUserID())){
-//                    return null;
-//                }
-//            }
-//            
-//            
-//        } catch (FileNotFoundException e){
-//            System.out.println("File Not Found");
-//        } catch (IOException e){
-//            System.out.println("Error: " + e);
-//    }
+    public static User createUser(User user){
+        
+        try (BufferedReader userLine = new BufferedReader(new FileReader(fileUser))){
+            
+            String dataLine;
+            while ((dataLine = userLine.readLine()) != null){
+                String[] data = dataLine.split("\\|");
+                for (int i =0; i < data.length; i++){
+                    data[i] = data[i].trim();
+                }
+                if (data[0].equals(user.getUserID())){
+                    return null;
+                }
+            }
+        } catch (FileNotFoundException e){
+            System.out.println("File Not Found");
+        } catch (IOException e){
+            System.out.println("Error: " + e);
+        }
+        
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileUser, true))){
+            writer.write(
+                    user.getUserID() + " | " +
+                    user.getFirstname() + " | " +
+                    user.getLastname() + " | " +
+                    user.getUsername() + " | " +
+                    user.getPassword() + " | " +
+                    user.getEmail() + " | " +
+                    user.getStatus()
+            );
+            writer.newLine();
+            return user;
+        } catch (FileNotFoundException e){
+            System.out.println("File Not Found");
+        } catch (IOException e){
+            System.out.println("Error: " + e);
+        }
+        return null;
+    }
+    
+    public static Receptionist createReceptionist(Receptionist receptionist){
+        try (BufferedReader userLine = new BufferedReader(new FileReader(fileReceptionist))){
+            
+            String dataLine;
+            while ((dataLine = userLine.readLine()) != null){
+                String[] data = dataLine.split("\\|");
+                for (int i =0; i < data.length; i++){
+                    data[i] = data[i].trim();
+                }
+                if (data[0].equals(receptionist.getUserID())){
+                    return null;
+                }
+            }
+        } catch (FileNotFoundException e){
+            System.out.println("File Not Found");
+        } catch (IOException e){
+            System.out.println("Error: " + e);
+        }
+        
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileReceptionist, true))){
+            writer.write(
+                    receptionist.getUserID() + " | " +
+                    receptionist.getFirstname() + " | " +
+                    receptionist.getLastname() + " | " +
+                    receptionist.getUsername() + " | " +
+                    receptionist.getPassword() + " | " +
+                    receptionist.getEmail() + " | " +
+                    receptionist.getStatus() + " | " +
+                    receptionist.getCounter() + " | " +
+                    receptionist.getContactNumber()
+            );
+            writer.newLine();
+            return receptionist;
+        } catch (FileNotFoundException e){
+            System.out.println("File Not Found");
+        } catch (IOException e){
+            System.out.println("Error: " + e);
+        }
+        return null;
+    }
+    
+        public static Counselor createCounselor(Counselor counselor){
+        try (BufferedReader userLine = new BufferedReader(new FileReader(fileCounselor))){
+            
+            String dataLine;
+            while ((dataLine = userLine.readLine()) != null){
+                String[] data = dataLine.split("\\|");
+                for (int i =0; i < data.length; i++){
+                    data[i] = data[i].trim();
+                }
+                if (data[0].equals(counselor.getUserID())){
+                    return null;
+                }
+            }
+        } catch (FileNotFoundException e){
+            System.out.println("File Not Found");
+        } catch (IOException e){
+            System.out.println("Error: " + e);
+        }
+        
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileCounselor, true))){
+            writer.write(
+                    counselor.getUserID() + " | " +
+                    counselor.getFirstname() + " | " +
+                    counselor.getLastname() + " | " +
+                    counselor.getUsername() + " | " +
+                    counselor.getPassword() + " | " +
+                    counselor.getEmail() + " | " +
+                    counselor.getStatus() + " | " +
+                    counselor.getSpecialist()+ " | " +
+                    counselor.getContactNumber()
+            );
+            writer.newLine();
+            return counselor;
+        } catch (FileNotFoundException e){
+            System.out.println("File Not Found");
+        } catch (IOException e){
+            System.out.println("Error: " + e);
+        }
+        return null;
+    }
+            public static Student createStudent(Student student){
+        try (BufferedReader userLine = new BufferedReader(new FileReader(fileStudent))){
+            
+            String dataLine;
+            while ((dataLine = userLine.readLine()) != null){
+                String[] data = dataLine.split("\\|");
+                for (int i =0; i < data.length; i++){
+                    data[i] = data[i].trim();
+                }
+                if (data[0].equals(student.getUserID())){
+                    return null;
+                }
+            }
+        } catch (FileNotFoundException e){
+            System.out.println("File Not Found");
+        } catch (IOException e){
+            System.out.println("Error: " + e);
+        }
+        
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileStudent, true))){
+            writer.write(
+                    student.getUserID() + " | " +
+                    student.getFirstname() + " | " +
+                    student.getLastname() + " | " +
+                    student.getUsername() + " | " +
+                    student.getPassword() + " | " +
+                    student.getEmail() + " | " +
+                    student.getStatus() + " | " +
+                    student.getCourse()+ " | " +
+                    student.getContactNumber()
+            );
+            writer.newLine();
+            return student;
+        } catch (FileNotFoundException e){
+            System.out.println("File Not Found");
+        } catch (IOException e){
+            System.out.println("Error: " + e);
+        }
+        return null;
+    }
 }

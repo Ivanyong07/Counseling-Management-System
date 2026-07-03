@@ -303,6 +303,12 @@ public class Profile extends javax.swing.JPanel {
         EditProfileDialog dialog = new EditProfileDialog((java.awt.Frame) window, true, currentUser);
         
         dialog.setLocationRelativeTo(window);
+        
+        dialog.setEditable(true);
+        dialog.setVerification(true);
+        dialog.setEditButton(true);
+        dialog.setCancelButton("Cancel");
+        
         dialog.setVisible(true);
     }//GEN-LAST:event_btnChangeProfileActionPerformed
 
