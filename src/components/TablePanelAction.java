@@ -5,6 +5,7 @@ import services.FileHandling;
 import view.EditProfileDialog;
 import view.admin.UserAccountPanel;
 import model.User;
+import services.UserService;
 
 public class TablePanelAction extends javax.swing.JPanel {
 
@@ -59,7 +60,7 @@ public class TablePanelAction extends javax.swing.JPanel {
     private void btnDltActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDltActionPerformed
         System.out.println("DELETE CLICKED");
         System.out.println("Delete ID = " + userID);
-        FileHandling.deleteUser(userID);
+        UserService.deleteUser(userID);
         onRefresh.run();
     }//GEN-LAST:event_btnDltActionPerformed
 

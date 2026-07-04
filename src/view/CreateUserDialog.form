@@ -53,16 +53,16 @@
                       <Component id="jLabel2" min="-2" pref="37" max="-2" attributes="0"/>
                       <EmptySpace pref="66" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jComboBox2" min="-2" max="-2" attributes="0"/>
+                          <Component id="textFieldStatus" min="-2" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="textFieldFirstname" pref="115" max="32767" attributes="0"/>
                               <Component id="textFieldUserID" max="32767" attributes="0"/>
-                              <Component id="jTextField3" alignment="0" pref="115" max="32767" attributes="0"/>
-                              <Component id="jTextField4" alignment="0" pref="115" max="32767" attributes="0"/>
-                              <Component id="jTextField6" alignment="0" pref="115" max="32767" attributes="0"/>
-                              <Component id="jTextField8" alignment="0" pref="115" max="32767" attributes="0"/>
-                              <Component id="jTextField9" alignment="0" pref="115" max="32767" attributes="0"/>
-                              <Component id="jPasswordField1" alignment="0" max="32767" attributes="0"/>
+                              <Component id="textFieldLastname" alignment="0" pref="115" max="32767" attributes="0"/>
+                              <Component id="textFieldUsername" alignment="0" pref="115" max="32767" attributes="0"/>
+                              <Component id="textFieldEmail" alignment="0" pref="115" max="32767" attributes="0"/>
+                              <Component id="textFieldDetails1" alignment="0" pref="115" max="32767" attributes="0"/>
+                              <Component id="textFieldDetails2" alignment="0" pref="115" max="32767" attributes="0"/>
+                              <Component id="textFieldPassword" alignment="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -89,37 +89,37 @@
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jTextField3" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="textFieldLastname" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="labelLastname" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jTextField4" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="textFieldUsername" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="labelUsername" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="labelPassword" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPasswordField1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="textFieldPassword" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jTextField6" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="textFieldEmail" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="labelEmail" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="labelStatus" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jComboBox2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="textFieldStatus" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jTextField8" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="textFieldDetails1" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="labelDetails1" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jTextField9" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="textFieldDetails2" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="labelDetails2" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="38" max="32767" attributes="0"/>
@@ -152,18 +152,18 @@
     </Component>
     <Component class="javax.swing.JTextField" name="textFieldFirstname">
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField3">
+    <Component class="javax.swing.JTextField" name="textFieldLastname">
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField4">
+    <Component class="javax.swing.JTextField" name="textFieldUsername">
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField6">
+    <Component class="javax.swing.JTextField" name="textFieldEmail">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField6ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textFieldEmailActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField8">
+    <Component class="javax.swing.JTextField" name="textFieldDetails1">
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField9">
+    <Component class="javax.swing.JTextField" name="textFieldDetails2">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
     </Component>
@@ -207,7 +207,7 @@
         <Property name="text" type="java.lang.String" value="Password:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JPasswordField" name="jPasswordField1">
+    <Component class="javax.swing.JPasswordField" name="textFieldPassword">
     </Component>
     <Component class="javax.swing.JLabel" name="labelEmail">
       <Properties>
@@ -251,6 +251,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Cancel"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCancelActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButton1">
       <Properties>
@@ -260,12 +263,12 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JComboBox" name="jComboBox2">
+    <Component class="javax.swing.JComboBox" name="textFieldStatus">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="2">
-            <StringItem index="0" value="Activae"/>
-            <StringItem index="1" value="Unactivae"/>
+            <StringItem index="0" value="Active"/>
+            <StringItem index="1" value="Inactive"/>
           </StringArray>
         </Property>
       </Properties>

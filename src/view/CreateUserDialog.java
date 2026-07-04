@@ -1,6 +1,12 @@
 
 package view;
 
+import model.Counselor;
+import model.Receptionist;
+import model.Student;
+import model.User;
+import services.UserService;
+
 public class CreateUserDialog extends javax.swing.JDialog {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(CreateUserDialog.class.getName());
@@ -10,7 +16,22 @@ public class CreateUserDialog extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         if (role.equals("Receptionist")){
+            
+            textFieldUserID.setText(UserService.generateUserID("Receptionist"));
             labelDetails1.setText("Counter Number: ");
+            labelDetails2.setText("Contact Number: ");
+            
+        } else if (role.equals("Counselor")){
+            
+            textFieldUserID.setText(UserService.generateUserID("Counselor"));
+            labelDetails1.setText("Specialist: ");
+            labelDetails2.setText("Contact Number: ");
+            
+        } else if (role.equals("Student")){
+            
+            textFieldUserID.setText(UserService.generateUserID("Student"));
+            labelDetails1.setText("Course: ");
+            labelDetails2.setText("Contact Number: ");
         }
     }
     
@@ -21,25 +42,25 @@ public class CreateUserDialog extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         textFieldUserID = new javax.swing.JTextField();
         textFieldFirstname = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField8 = new javax.swing.JTextField();
-        jTextField9 = new javax.swing.JTextField();
+        textFieldLastname = new javax.swing.JTextField();
+        textFieldUsername = new javax.swing.JTextField();
+        textFieldEmail = new javax.swing.JTextField();
+        textFieldDetails1 = new javax.swing.JTextField();
+        textFieldDetails2 = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         labelUserID = new javax.swing.JLabel();
         labelFirstname = new javax.swing.JLabel();
         labelLastname = new javax.swing.JLabel();
         labelUsername = new javax.swing.JLabel();
         labelPassword = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        textFieldPassword = new javax.swing.JPasswordField();
         labelEmail = new javax.swing.JLabel();
         labelStatus = new javax.swing.JLabel();
         labelDetails1 = new javax.swing.JLabel();
         labelDetails2 = new javax.swing.JLabel();
         btnCancel = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        textFieldStatus = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -50,7 +71,7 @@ public class CreateUserDialog extends javax.swing.JDialog {
         textFieldUserID.setText("jTextField1");
         textFieldUserID.addActionListener(this::textFieldUserIDActionPerformed);
 
-        jTextField6.addActionListener(this::jTextField6ActionPerformed);
+        textFieldEmail.addActionListener(this::textFieldEmailActionPerformed);
 
         labelUserID.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         labelUserID.setText("User ID:");
@@ -82,11 +103,12 @@ public class CreateUserDialog extends javax.swing.JDialog {
         btnCancel.setBackground(new java.awt.Color(255, 51, 51));
         btnCancel.setForeground(new java.awt.Color(0, 0, 0));
         btnCancel.setText("Cancel");
+        btnCancel.addActionListener(this::btnCancelActionPerformed);
 
         jButton1.setText("Create");
         jButton1.addActionListener(this::jButton1ActionPerformed);
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Activae", "Unactivae" }));
+        textFieldStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Active", "Inactive" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -119,16 +141,16 @@ public class CreateUserDialog extends javax.swing.JDialog {
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textFieldStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(textFieldFirstname, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
                                 .addComponent(textFieldUserID)
-                                .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
-                                .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
-                                .addComponent(jTextField6, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
-                                .addComponent(jTextField8, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
-                                .addComponent(jTextField9, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
-                                .addComponent(jPasswordField1)))))
+                                .addComponent(textFieldLastname, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
+                                .addComponent(textFieldUsername, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
+                                .addComponent(textFieldEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
+                                .addComponent(textFieldDetails1, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
+                                .addComponent(textFieldDetails2, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
+                                .addComponent(textFieldPassword)))))
                 .addGap(37, 37, 37))
         );
         layout.setVerticalGroup(
@@ -147,31 +169,31 @@ public class CreateUserDialog extends javax.swing.JDialog {
                     .addComponent(labelFirstname))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textFieldLastname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelLastname))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textFieldUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelUsername))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelPassword)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(textFieldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelEmail))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelStatus)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(textFieldStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textFieldDetails1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelDetails1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textFieldDetails2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelDetails2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -184,16 +206,87 @@ public class CreateUserDialog extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        String userID = textFieldUserID.getText();
+        String firstname = textFieldFirstname.getText();
+        String lastname = textFieldLastname.getText();
+        String username = textFieldUsername.getText();
+        String password = new String(textFieldPassword.getPassword());
+        String email = textFieldEmail.getText();
+        String status = textFieldStatus.getSelectedItem().toString();
+        
+        String detail1 = textFieldDetails1.getText();
+        String detail2 = textFieldDetails2.getText();
+        
+        if (firstname.isEmpty() || lastname.isEmpty() || username.isEmpty() || status.isEmpty() || detail1.isEmpty() || detail2.isEmpty()){
+            javax.swing.JOptionPane.showMessageDialog(this, "Please fill in all required fields!!");
+            return;
+        }
+        
+        if (!password.isEmpty()){
+            if (password.length() < 8){
+                javax.swing.JOptionPane.showMessageDialog(this,"Password length must be more than 8!!");
+                return;
+            }
+        } else{
+            javax.swing.JOptionPane.showMessageDialog(this, "You must enter password!!");
+        }
+        
+        try {
+                boolean isSucces = false;
+                
+                if(this.role.equals("Receptionist")){
+                    Receptionist newRep = new Receptionist(userID, firstname, lastname, username, password, email, status,detail1, detail2);
+                    
+                    if (UserService.createUser(newRep)!=null){
+                        UserService.createReceptionist(newRep);
+                        isSucces = true;
+                    }
+                } else if (this.role.equals("Counselor")){
+                    Counselor newCsl = new Counselor(userID, firstname, lastname, username, password, email, status, detail1, detail2);
+                    
+                    if (UserService.createUser(newCsl)!=null){
+                        UserService.createCounselor(newCsl);
+                        isSucces = true;
+                    }
+                } else if (this.role.equals("Student")){
+                    Student newStu = new Student(userID, firstname, lastname, username, password, email, status, detail1, detail2);
+                    
+                    if (UserService.createUser(newStu)!= null){
+                        UserService.createStudent(newStu);
+                        isSucces = true;
+                    }
+                }
+                
+                if (isSucces){
+                    javax.swing.JOptionPane.showMessageDialog(this, this.role + " created successfully!");
+                    this.dispose();
+                } else {
+                    javax.swing.JOptionPane.showMessageDialog(this, 
+                            "Failed to create user. The User ID might already exist.", 
+                            "Creation Failed", 
+                            javax.swing.JOptionPane.ERROR_MESSAGE);
+                }
+            
+            
+        } catch (Exception e){
+            javax.swing.JOptionPane.showMessageDialog(this, 
+                "Error creating " + this.role + ": " + e.getMessage(), 
+                "Error", 
+                javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void textFieldUserIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldUserIDActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_textFieldUserIDActionPerformed
 
-    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
+    private void textFieldEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldEmailActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField6ActionPerformed
+    }//GEN-LAST:event_textFieldEmailActionPerformed
+
+    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
+        dispose();
+    }//GEN-LAST:event_btnCancelActionPerformed
 
     public static void main(String args[]) {
         try {
@@ -212,7 +305,7 @@ public class CreateUserDialog extends javax.swing.JDialog {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                CreateUserDialog dialog = new CreateUserDialog(new javax.swing.JFrame(), true, null);
+                CreateUserDialog dialog = new CreateUserDialog(new javax.swing.JFrame(), true, "Student");
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -228,15 +321,8 @@ public class CreateUserDialog extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
     private javax.swing.JLabel labelDetails1;
     private javax.swing.JLabel labelDetails2;
     private javax.swing.JLabel labelEmail;
@@ -246,7 +332,14 @@ public class CreateUserDialog extends javax.swing.JDialog {
     private javax.swing.JLabel labelStatus;
     private javax.swing.JLabel labelUserID;
     private javax.swing.JLabel labelUsername;
+    private javax.swing.JTextField textFieldDetails1;
+    private javax.swing.JTextField textFieldDetails2;
+    private javax.swing.JTextField textFieldEmail;
     private javax.swing.JTextField textFieldFirstname;
+    private javax.swing.JTextField textFieldLastname;
+    private javax.swing.JPasswordField textFieldPassword;
+    private javax.swing.JComboBox<String> textFieldStatus;
     private javax.swing.JTextField textFieldUserID;
+    private javax.swing.JTextField textFieldUsername;
     // End of variables declaration//GEN-END:variables
 }

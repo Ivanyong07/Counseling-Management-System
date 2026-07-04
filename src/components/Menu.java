@@ -16,6 +16,7 @@ public class Menu extends javax.swing.JPanel {
     private EventMenuSelected event;
     private String color1 = "#000000";
     private String color2 = "#000000";
+    private String currentRole;
     
     String userIcon = "src/Public/user.png";
     
@@ -31,25 +32,84 @@ public class Menu extends javax.swing.JPanel {
         jScrollPane.setOpaque(false);
         jScrollPane.getViewport().setOpaque(false);
         jScrollPane.setViewportBorder(null);
+    }
+    
+    public Menu(String currentRole) {
+        initComponents();
+        setOpaque(false);
+        
+        jScrollPane.setOpaque(false);
+        jScrollPane.getViewport().setOpaque(false);
+        jScrollPane.setViewportBorder(null);
+        this.currentRole = currentRole;
         init();
     }
     
     private void init(){
         
-        listMenu.addItem(new MenuModel("User Accounts", "user", MenuModel.MenuType.MENU));
-        listMenu.addItem(new MenuModel("Staff Roster and Schedules", "UI Elements", MenuModel.MenuType.MENU));
-        listMenu.addItem(new MenuModel("Appointment Statistics", "Appointment Statistics", MenuModel.MenuType.MENU));
+        if (this.currentRole == null){
+            this.currentRole = "Admin";
+        }
         
-        listMenu.addItem(new MenuModel("", " ", MenuModel.MenuType.EMPTY));
-        
-        listMenu.addItem(new MenuModel("Generate Reports", "Date Table", MenuModel.MenuType.MENU));
-        listMenu.addItem(new MenuModel("Profile", "Date Table", MenuModel.MenuType.MENU));
-        listMenu.addItem(new MenuModel("Settings", "setting", MenuModel.MenuType.MENU));
+        if (this.currentRole.equals("Admin")){
+            
+            listMenu.addItem(new MenuModel("User Accounts", "user", MenuModel.MenuType.MENU));
+            listMenu.addItem(new MenuModel("Staff Roster and Schedules", "UI Elements", MenuModel.MenuType.MENU));
+            listMenu.addItem(new MenuModel("Appointment Statistics", "Appointment Statistics", MenuModel.MenuType.MENU));
+
+            listMenu.addItem(new MenuModel("", " ", MenuModel.MenuType.EMPTY));
+
+            listMenu.addItem(new MenuModel("Generate Reports", "Date Table", MenuModel.MenuType.MENU));
+            listMenu.addItem(new MenuModel("Profile", "Date Table", MenuModel.MenuType.MENU));
+            listMenu.addItem(new MenuModel("Settings", "setting", MenuModel.MenuType.MENU));
+            
+        } else if (this.currentRole.equals("Counselor")){
+            
+            listMenu.addItem(new MenuModel("Personal Roster", "user", MenuModel.MenuType.MENU));
+            listMenu.addItem(new MenuModel("Assigned Appointments", "UI Elements", MenuModel.MenuType.MENU));
+            listMenu.addItem(new MenuModel("Student Consultation Records", "Appointment Statistics", MenuModel.MenuType.MENU));
+            
+            listMenu.addItem(new MenuModel("", " ", MenuModel.MenuType.EMPTY));
+            
+            listMenu.addItem(new MenuModel("Consultation Notes and Recommendations", "user", MenuModel.MenuType.MENU));
+            listMenu.addItem(new MenuModel("Profile", "Date Table", MenuModel.MenuType.MENU));
+            listMenu.addItem(new MenuModel("Settings", "setting", MenuModel.MenuType.MENU));
+            
+        } else if (this.currentRole.equals("Receptionist")){
+            
+            listMenu.addItem(new MenuModel("Manage Student Accounts", "user", MenuModel.MenuType.MENU));
+            listMenu.addItem(new MenuModel("Manage Appointments", "UI Elements", MenuModel.MenuType.MENU));
+            listMenu.addItem(new MenuModel("Assign Appointments", "Appointment Statistics", MenuModel.MenuType.MENU));
+            
+            listMenu.addItem(new MenuModel("", " ", MenuModel.MenuType.EMPTY));
+            
+            listMenu.addItem(new MenuModel("Profile", "Date Table", MenuModel.MenuType.MENU));
+            listMenu.addItem(new MenuModel("Settings", "setting", MenuModel.MenuType.MENU));
+            
+        } else if (this.currentRole.equals("Student")){
+            
+            listMenu.addItem(new MenuModel("Queue Number", "user", MenuModel.MenuType.MENU));
+            listMenu.addItem(new MenuModel("Counseling Appointments", "UI Elements", MenuModel.MenuType.MENU));
+            listMenu.addItem(new MenuModel("Appointment History", "Appointment Statistics", MenuModel.MenuType.MENU));
+            
+            listMenu.addItem(new MenuModel("", " ", MenuModel.MenuType.EMPTY));
+            
+            listMenu.addItem(new MenuModel("Counselor Profiles", "Appointment Statistics", MenuModel.MenuType.MENU));
+            listMenu.addItem(new MenuModel("Profile", "Date Table", MenuModel.MenuType.MENU));
+            listMenu.addItem(new MenuModel("Settings", "setting", MenuModel.MenuType.MENU));
+            
+        }
     }
     
     public void setTheme(String color1, String color2){
         this.color1 = color1;
         this.color2 = color2;
+    }
+    
+    public void setCurrentRole(String currentRole){
+        this.currentRole = currentRole;
+        listMenu.clearItem();
+        init();
     }
 
     @SuppressWarnings("unchecked")

@@ -10,7 +10,7 @@ import model.Receptionist;
 import model.Student;
 import model.Counselor;
 import model.User;
-import services.FileHandling;
+import services.UserService;
 
 public class EditProfileDialog extends javax.swing.JDialog {
     
@@ -438,29 +438,29 @@ public class EditProfileDialog extends javax.swing.JDialog {
             
             admin.setOffice(textFieldDetails1.getText().trim());
             admin.setContactNumber(textFieldDetails2.getText().trim());
-            FileHandling.updateAdmin(admin);
+            UserService.updateAdmin(admin);
             
         } else if (currentUser instanceof Receptionist){
             Receptionist receptionist = (Receptionist) currentUser;
             
             receptionist.setCounter(textFieldDetails1.getText().trim());
             receptionist.setContactNumber(textFieldDetails2.getText().trim());
-            FileHandling.updateReceptionist(receptionist);
+            UserService.updateReceptionist(receptionist);
             
         } else if (currentUser instanceof Counselor){
             Counselor counselor = (Counselor) currentUser;
             
             counselor.setSpecialist(textFieldDetails1.getText().trim());
             counselor.setContactNumber(textFieldDetails2.getText().trim());
-            FileHandling.updateCounselor(counselor);
+            UserService.updateCounselor(counselor);
         } else if (currentUser instanceof Student){
             Student student = (Student) currentUser;
             
             student.setCourse(textFieldDetails1.getText().trim());
             student.setContactNumber(textFieldDetails2.getText().trim());
-            FileHandling.updateStudent(student);
+            UserService.updateStudent(student);
         }
-        FileHandling.updateUser(currentUser);
+        UserService.updateUser(currentUser);
         JOptionPane.showMessageDialog(
             this,
             "Profile updated successfully."

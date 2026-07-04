@@ -101,4 +101,8 @@ public class ListMenu<E extends Object> extends JList<E>{
     public void addItem(MenuModel data){
         model.addElement(data);
     }
+    
+    public void clearItem(){
+        model.clear();
+    }
 }

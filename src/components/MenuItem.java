@@ -18,7 +18,8 @@ public class MenuItem extends javax.swing.JPanel {
         initComponents();
         if (data.getType() == MenuModel.MenuType.MENU){
             menuName.setText(data.getName());
-//            menuIcon.setIcon(data.toIcon());
+            menuIcon.setText("");
+            menuIcon.setIcon(data.toIcon());
         } else if (data.getType()==MenuModel.MenuType.TITLE){
             menuName.setText(data.getName());
         } else {
@@ -46,7 +47,7 @@ public class MenuItem extends javax.swing.JPanel {
 
         setOpaque(false);
 
-        menuIcon.setForeground(new java.awt.Color(0, 0, 0));
+        menuIcon.setForeground(new java.awt.Color(255, 255, 255));
         menuIcon.setText("JIcon");
 
         menuName.setForeground(new java.awt.Color(255, 255, 255));
@@ -57,11 +58,11 @@ public class MenuItem extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(menuIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addComponent(menuIcon)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(menuName, javax.swing.GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(31, 31, 31))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

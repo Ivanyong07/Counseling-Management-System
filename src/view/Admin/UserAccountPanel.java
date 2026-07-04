@@ -11,11 +11,12 @@ import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.TableCellRenderer;
 import services.FileHandling;
-import view.EditProfileDialog;
+import view.CreateUserDialog;
 
 public class UserAccountPanel extends javax.swing.JPanel {
     
     private static String fileUser = System.getProperty("user.dir") + "/src/data/users.txt";
+    java.awt.Frame frame = (java.awt.Frame) javax.swing.SwingUtilities.getWindowAncestor(this);
 
     public UserAccountPanel() {
         initComponents();
@@ -117,12 +118,15 @@ public class UserAccountPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddReceptionistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddReceptionistActionPerformed
-        java.awt.Frame frame = (java.awt.Frame) javax.swing.SwingUtilities.getWindowAncestor(this);
-        EditProfileDialog dialog = new EditProfileDialog(new javax.swing.JFrame(), true, null);
+
+        CreateUserDialog dialog = new CreateUserDialog(frame, true, "Receptionist");
+        dialog.setVisible(true);
     }//GEN-LAST:event_btnAddReceptionistActionPerformed
 
     private void btnAddCounselorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddCounselorActionPerformed
-        // TODO add your handling code here:
+        
+        CreateUserDialog dialog = new CreateUserDialog(frame, true, "Counselor");
+        dialog.setVisible(true);
     }//GEN-LAST:event_btnAddCounselorActionPerformed
 
 

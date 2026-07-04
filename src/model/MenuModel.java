@@ -43,7 +43,15 @@ public class MenuModel {
     
     
     public Icon toIcon() {
-        return new ImageIcon(getClass().getResource("C:\\NetBeansProjects\\Counseling-Management-System\\src\\Public\\" + icon + ".png"));
+        
+        java.net.URL imageUrl = getClass().getResource("/Public/" + icon + ".png");
+        
+        if (imageUrl != null){
+            return new ImageIcon(imageUrl);
+        } else {
+            System.out.println("Could not find image" + icon + ".png");
+            return null;
+        }
     }
 
     
