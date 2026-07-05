@@ -3,7 +3,7 @@ package components;
 import java.util.ServiceLoader;
 import services.FileHandling;
 import view.EditProfileDialog;
-import view.admin.UserAccountPanel;
+import view.admin.UserAccount;
 import model.User;
 import services.UserService;
 

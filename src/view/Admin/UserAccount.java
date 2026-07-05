@@ -12,15 +12,42 @@ import javax.swing.JTable;
 import javax.swing.table.TableCellRenderer;
 import services.FileHandling;
 import view.CreateUserDialog;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.JTableHeader;
+import java.awt.Font;
 
-public class UserAccountPanel extends javax.swing.JPanel {
+public class UserAccount extends javax.swing.JPanel {
     
     private static String fileUser = System.getProperty("user.dir") + "/src/data/users.txt";
     java.awt.Frame frame = (java.awt.Frame) javax.swing.SwingUtilities.getWindowAncestor(this);
 
-    public UserAccountPanel() {
+    public UserAccount() {
         initComponents();
         refreshTable();
+        
+        JTableHeader header = tblUser.getTableHeader();
+        header.setDefaultRenderer(new DefaultTableCellRenderer(){ // header
+            @Override
+            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column){
+                super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+                setBackground(new Color(130, 129, 129));
+                setForeground(Color.WHITE);
+                setFont(new Font("Segoe UI", Font.BOLD, 14));
+                setBorder(javax.swing.BorderFactory.createEmptyBorder(10,5,10,0));
+                return this;
+            }
+        });
+        
+        tblUser.setBackground(new Color(36, 36, 36));
+        tblUser.setForeground(Color.WHITE);
+        tblUser.setGridColor(new Color(80, 80, 80));
+        tblUser.setSelectionBackground(new Color(255, 87, 87)); // Modern red highlight
+        tblUser.setSelectionForeground(Color.WHITE);       // Text stays white when clicked
+        tblUser.setShowVerticalLines(false);
+        
+        jScrollPane1.getViewport().setBackground(new Color(36, 36, 36)); 
+        jScrollPane1.setBorder(javax.swing.BorderFactory.createEmptyBorder()); // Remove ugly borders
+        
     }
     
     public void refreshTable(){
@@ -42,11 +69,11 @@ public class UserAccountPanel extends javax.swing.JPanel {
 
                 label.setOpaque(true);
 
-                if (value.equals("active")){
-                    label.setBackground(new Color(55, 255, 96));
+                if (value.equals("ACTIVE")){
+                    label.setBackground(new Color(205,231,202));
                     label.setForeground(Color.BLACK);
                 } else {
-                    label.setBackground(new Color(255, 55, 55));
+                    label.setBackground(new Color(153,3,3));
                     label.setForeground(Color.WHITE);
                 }
                 return label;
@@ -79,6 +106,19 @@ public class UserAccountPanel extends javax.swing.JPanel {
         btnAddReceptionist = new javax.swing.JButton();
         btnAddCounselor = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(51, 51, 51));
+        setForeground(new java.awt.Color(51, 51, 51));
+
+        tblUser.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        tblUser.setForeground(new java.awt.Color(51, 51, 51));
+        tblUser.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
         tblUser.setRowHeight(40);
         jScrollPane1.setViewportView(tblUser);
 
@@ -94,26 +134,24 @@ public class UserAccountPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 717, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnAddReceptionist, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnAddCounselor, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 475, Short.MAX_VALUE)))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 723, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(8, 8, 8)
+                .addComponent(btnAddReceptionist, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnAddCounselor, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 199, Short.MAX_VALUE)
+                .addGap(0, 143, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAddReceptionist)
-                    .addComponent(btnAddCounselor))
+                    .addComponent(btnAddCounselor)
+                    .addComponent(btnAddReceptionist))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

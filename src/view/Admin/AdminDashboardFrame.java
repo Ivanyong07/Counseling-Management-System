@@ -4,37 +4,43 @@ package view.admin;
 import view.Profile;
 import Event.EventMenuSelected;
 import components.Animation;
-import components.Notification;
+import java.awt.Color;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 import model.Admin;
+import view.Settings;
 
 public class AdminDashboardFrame extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(AdminDashboardFrame.class.getName());
     
-    private UserAccountPanel userAccountPanel;
+    private UserAccount userAccountPanel;
     private AppointmentStatistics appointmentStatistics;
     private GenerateReports generateReports;
     private StaffRosterSchedules staffRosterSchedules;
     private Profile profile;
+    private Settings settings;
     private Admin currentAdmin;
 
     private int delay = 3000;
     
     public AdminDashboardFrame(Admin currentAdmin) {
+            setUndecorated(true);
             
 //            Animation.slideIn(, TOP_ALIGNMENT, TOP_ALIGNMENT, onFinish); // not done yet
             initComponents();
+            getContentPane().setBackground(new Color(51, 51, 51));
+            setLocationRelativeTo(null);
             menu.setCurrentRole("Admin");
             this.currentAdmin = currentAdmin; 
-            menu.setTheme("#FD99FF", "#FD99FF");
+            menu.setTheme("#3D3D3D", "#4D4C4C");
             
-            userAccountPanel = new UserAccountPanel();
+            userAccountPanel = new UserAccount();
             appointmentStatistics = new AppointmentStatistics();
             generateReports = new GenerateReports();
             staffRosterSchedules = new StaffRosterSchedules();
             profile = new Profile(currentAdmin);
+            settings = new Settings();
 
             setPanel(userAccountPanel); // initial panel
             
@@ -55,7 +61,6 @@ public class AdminDashboardFrame extends javax.swing.JFrame {
             menu.addEventMenuSelected(new EventMenuSelected() {
             @Override
             public void selected(int index){
-                System.out.println("Index: " + index);
                 if (index == 0){
                     setPanel(userAccountPanel);
                 } else if (index == 1){
@@ -66,6 +71,8 @@ public class AdminDashboardFrame extends javax.swing.JFrame {
                     setPanel(generateReports);
                 } else if (index ==5){
                     setPanel(profile);
+                } else if (index == 6){
+                    setPanel(settings);
                 }
             }
         });
@@ -90,9 +97,10 @@ public class AdminDashboardFrame extends javax.swing.JFrame {
         menu = new components.Menu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(51, 51, 51));
 
-        mainPanel.setBackground(java.awt.SystemColor.controlDkShadow);
-        mainPanel.setForeground(new java.awt.Color(55, 77, 76));
+        mainPanel.setBackground(new java.awt.Color(36, 36, 36));
+        mainPanel.setForeground(new java.awt.Color(36, 36, 36));
 
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
@@ -102,7 +110,7 @@ public class AdminDashboardFrame extends javax.swing.JFrame {
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 592, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout notificationLayout = new javax.swing.GroupLayout(notification);
@@ -113,7 +121,7 @@ public class AdminDashboardFrame extends javax.swing.JFrame {
         );
         notificationLayout.setVerticalGroup(
             notificationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 44, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -122,22 +130,25 @@ public class AdminDashboardFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(menu, javax.swing.GroupLayout.DEFAULT_SIZE, 282, Short.MAX_VALUE)
+                .addGap(0, 0, 0)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(63, 63, 63)
                         .addComponent(notification, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, 0)
-                        .addComponent(mainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(mainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(notification, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(menu, javax.swing.GroupLayout.DEFAULT_SIZE, 620, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(notification, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(mainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(menu, javax.swing.GroupLayout.DEFAULT_SIZE, 642, Short.MAX_VALUE))
+                .addGap(0, 0, 0))
         );
 
         pack();

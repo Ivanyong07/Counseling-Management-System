@@ -53,18 +53,20 @@ public class Menu extends javax.swing.JPanel {
         
         if (this.currentRole.equals("Admin")){
             
+            labelWelcomeRole.setText("Welcome back, Admin");
             listMenu.addItem(new MenuModel("User Accounts", "user", MenuModel.MenuType.MENU));
-            listMenu.addItem(new MenuModel("Staff Roster and Schedules", "UI Elements", MenuModel.MenuType.MENU));
-            listMenu.addItem(new MenuModel("Appointment Statistics", "Appointment Statistics", MenuModel.MenuType.MENU));
+            listMenu.addItem(new MenuModel("Staff Roster and Schedules", "schedule", MenuModel.MenuType.MENU));
+            listMenu.addItem(new MenuModel("Appointment Statistics", "statistics", MenuModel.MenuType.MENU));
 
             listMenu.addItem(new MenuModel("", " ", MenuModel.MenuType.EMPTY));
 
-            listMenu.addItem(new MenuModel("Generate Reports", "Date Table", MenuModel.MenuType.MENU));
-            listMenu.addItem(new MenuModel("Profile", "Date Table", MenuModel.MenuType.MENU));
+            listMenu.addItem(new MenuModel("Generate Reports", "report", MenuModel.MenuType.MENU));
+            listMenu.addItem(new MenuModel("Profile", "profile", MenuModel.MenuType.MENU));
             listMenu.addItem(new MenuModel("Settings", "setting", MenuModel.MenuType.MENU));
             
         } else if (this.currentRole.equals("Counselor")){
             
+            labelWelcomeRole.setText("Welcome back, Counselor");
             listMenu.addItem(new MenuModel("Personal Roster", "user", MenuModel.MenuType.MENU));
             listMenu.addItem(new MenuModel("Assigned Appointments", "UI Elements", MenuModel.MenuType.MENU));
             listMenu.addItem(new MenuModel("Student Consultation Records", "Appointment Statistics", MenuModel.MenuType.MENU));
@@ -77,6 +79,7 @@ public class Menu extends javax.swing.JPanel {
             
         } else if (this.currentRole.equals("Receptionist")){
             
+            labelWelcomeRole.setText("Welcome back, Receptionist");
             listMenu.addItem(new MenuModel("Manage Student Accounts", "user", MenuModel.MenuType.MENU));
             listMenu.addItem(new MenuModel("Manage Appointments", "UI Elements", MenuModel.MenuType.MENU));
             listMenu.addItem(new MenuModel("Assign Appointments", "Appointment Statistics", MenuModel.MenuType.MENU));
@@ -88,6 +91,7 @@ public class Menu extends javax.swing.JPanel {
             
         } else if (this.currentRole.equals("Student")){
             
+            labelWelcomeRole.setText("Welcome back, Student");
             listMenu.addItem(new MenuModel("Queue Number", "user", MenuModel.MenuType.MENU));
             listMenu.addItem(new MenuModel("Counseling Appointments", "UI Elements", MenuModel.MenuType.MENU));
             listMenu.addItem(new MenuModel("Appointment History", "Appointment Statistics", MenuModel.MenuType.MENU));
@@ -117,31 +121,31 @@ public class Menu extends javax.swing.JPanel {
     private void initComponents() {
 
         panelMoving = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        labelWelcomeRole = new javax.swing.JLabel();
         jScrollPane = new javax.swing.JScrollPane();
         listMenu = new components.ListMenu<>();
+        logoutBtn1 = new view.LogoutBtn();
 
         panelMoving.setOpaque(false);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Dashboard");
+        labelWelcomeRole.setBackground(new java.awt.Color(255, 255, 255));
+        labelWelcomeRole.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        labelWelcomeRole.setForeground(new java.awt.Color(255, 255, 255));
+        labelWelcomeRole.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelWelcomeRole.setText("Welcome back, username");
 
         javax.swing.GroupLayout panelMovingLayout = new javax.swing.GroupLayout(panelMoving);
         panelMoving.setLayout(panelMovingLayout);
         panelMovingLayout.setHorizontalGroup(
             panelMovingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelMovingLayout.createSequentialGroup()
-                .addGap(59, 59, 59)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(76, Short.MAX_VALUE))
+            .addComponent(labelWelcomeRole, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE)
         );
         panelMovingLayout.setVerticalGroup(
             panelMovingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelMovingLayout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addGap(60, 60, 60)
+                .addComponent(labelWelcomeRole, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(131, Short.MAX_VALUE))
         );
 
         jScrollPane.setBorder(null);
@@ -155,14 +159,21 @@ public class Menu extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(panelMoving, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(logoutBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jScrollPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(panelMoving, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(panelMoving, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE))
+                .addComponent(jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(logoutBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
     private static final System.Logger LOG = System.getLogger(Menu.class.getName());
@@ -179,9 +190,10 @@ public class Menu extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane;
+    private javax.swing.JLabel labelWelcomeRole;
     private components.ListMenu<String> listMenu;
+    private view.LogoutBtn logoutBtn1;
     private javax.swing.JPanel panelMoving;
     // End of variables declaration//GEN-END:variables
 }
