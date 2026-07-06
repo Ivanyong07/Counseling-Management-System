@@ -1,1 +1,1 @@
-REP001 | yew | cheng | reptionist1 | 12345678 | yewcheng@gmail.com | active | COUNTER001 | 012345678
+REP001 | yew | cheng | reptionist1 | 12345678 | yewcheng@gmail.com | ACTIVE | COUNTER001 | 012345678

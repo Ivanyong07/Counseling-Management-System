@@ -1,1 +1,1 @@
-CSL001 | mun | chong | counselor1 | 12345678 | femboy@gmail.com | active | c | 012345678
+CSL001 | mun | chong | counselor1 | 12345678 | femboy@gmail.com | ACTIVE | c | 012345678

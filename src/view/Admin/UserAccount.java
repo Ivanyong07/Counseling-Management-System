@@ -1,4 +1,3 @@
-
 package view.admin;
 
 import components.TableEditorAction;
@@ -15,17 +14,33 @@ import view.CreateUserDialog;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.JTableHeader;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 
 public class UserAccount extends javax.swing.JPanel {
     
     private static String fileUser = System.getProperty("user.dir") + "/src/data/users.txt";
+    private static String fileReceptionist = System.getProperty("user.dir") + "/src/data/receptionist.txt";
+    private static String fileCounselor = System.getProperty("user.dir") + "/src/data/counselor.txt";
+    
     java.awt.Frame frame = (java.awt.Frame) javax.swing.SwingUtilities.getWindowAncestor(this);
+    private int hoverIndex = -1;
+    private int cornerRadius = 30;
 
     public UserAccount() {
-        initComponents();
-        refreshTable();
+        initComponents();  
+        setOpaque(false);
         
+        tblUser.setRowHeight(40);
+        refreshTable();
+        jScrollPane.setBorder(javax.swing.BorderFactory.createEmptyBorder());
+        jScrollPane.setBorder(javax.swing.BorderFactory.createLineBorder(new Color(80, 80, 80), 1));
+        jScrollPane.getViewport().setBackground(new Color(36, 36, 36));
+
         JTableHeader header = tblUser.getTableHeader();
+        
         header.setDefaultRenderer(new DefaultTableCellRenderer(){ // header
             @Override
             public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column){
@@ -38,16 +53,57 @@ public class UserAccount extends javax.swing.JPanel {
             }
         });
         
-        tblUser.setBackground(new Color(36, 36, 36));
+        tblUser.setOpaque(false);
+        tblUser.setBackground(Color.GRAY);
         tblUser.setForeground(Color.WHITE);
         tblUser.setGridColor(new Color(80, 80, 80));
-        tblUser.setSelectionBackground(new Color(255, 87, 87)); // Modern red highlight
-        tblUser.setSelectionForeground(Color.WHITE);       // Text stays white when clicked
+        tblUser.setSelectionBackground(new Color(148, 148, 148)); 
+        tblUser.setSelectionForeground(Color.WHITE);  
         tblUser.setShowVerticalLines(false);
+        tblUser.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
         
-        jScrollPane1.getViewport().setBackground(new Color(36, 36, 36)); 
-        jScrollPane1.setBorder(javax.swing.BorderFactory.createEmptyBorder()); // Remove ugly borders
+        tblUser.addMouseMotionListener(new MouseAdapter() {
+            public void mouseMoved(MouseEvent e){
+                int row = tblUser.rowAtPoint(e.getPoint());
+                if (row != hoverIndex){
+                    hoverIndex = row;
+                    tblUser.repaint();
+                }
+            }
+        });
+        tblUser.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                hoverIndex = -1;
+                tblUser.repaint();
+            }
+        });
+
+        // 3. Paint the hover color on the standard columns
+        tblUser.setDefaultRenderer(Object.class, new javax.swing.table.DefaultTableCellRenderer() {
+            @Override
+            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+                Component com = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+                if (row == hoverIndex) {
+                    com.setBackground(new Color(160, 148, 148)); // Hover color
+                } else {
+                    com.setBackground(new Color(36, 36, 36));   // Normal color
+                }
+                com.setForeground(Color.WHITE);
+                return com;
+            }
+        });
+        roundedPanel.setBackgroundColor(new Color(28, 28, 30));
+    }
+    
+    public void getDataReceptionist(){
         
+        for (String file: fileCounselor){
+            try (BufferedReader reader = new BufferedReader(new FileReader(fileCounselor))){
+                
+            } catch (FileNotFoundException e){
+                System.out.println("File Not Found");
+            }
+        }
     }
     
     public void refreshTable(){
@@ -68,13 +124,18 @@ public class UserAccount extends javax.swing.JPanel {
                 JLabel label = new JLabel(value.toString());
 
                 label.setOpaque(true);
-
-                if (value.equals("ACTIVE")){
+                
+                if (row == hoverIndex){
+                    label.setBackground(new Color(60, 148, 148));
+                    label.setForeground(Color.WHITE);
+                } else {
+                    if (value.equals("ACTIVE")){
                     label.setBackground(new Color(205,231,202));
                     label.setForeground(Color.BLACK);
-                } else {
-                    label.setBackground(new Color(153,3,3));
-                    label.setForeground(Color.WHITE);
+                    } else {
+                        label.setBackground(new Color(191,90,90));
+                        label.setForeground(Color.WHITE);
+                    }
                 }
                 return label;
             }
@@ -87,40 +148,44 @@ public class UserAccount extends javax.swing.JPanel {
         
         tblUser.getColumnModel().getColumn(3).setCellRenderer(new TableCellRenderer () { // show image
             public Component getTableCellRendererComponent(JTable table, Object value, boolean selected, boolean focus, int row, int column){
-                
+                Component com;
                 if (value instanceof TablePanelAction){
-                    return (TablePanelAction) value;
+                    com = (TablePanelAction) value;
+                } else {
+                    com = new JLabel("");
                 }
-                return new JLabel("");
+                
+                if (row == hoverIndex) {
+                    com.setBackground(new Color(160, 148, 148)); // Hover color
+                } else {
+                    com.setBackground(new Color(36, 36, 36));   // Normal color
+                }
+                return com;
             }
         });
     }
-
-
+    
+    @Override
+    protected void paintComponent(Graphics g) {
+        // This is not needed for the panel itself, but keeps the background clean
+        super.paintComponent(g);
+    }
+    
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tblUser = new javax.swing.JTable();
         btnAddReceptionist = new javax.swing.JButton();
         btnAddCounselor = new javax.swing.JButton();
+        roundedPanel = new components.RoundedPanel();
+        jScrollPane = new javax.swing.JScrollPane();
+        tblUser = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        card1 = new components.Card();
 
         setBackground(new java.awt.Color(51, 51, 51));
         setForeground(new java.awt.Color(51, 51, 51));
-
-        tblUser.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        tblUser.setForeground(new java.awt.Color(51, 51, 51));
-        tblUser.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-
-            }
-        ));
-        tblUser.setRowHeight(40);
-        jScrollPane1.setViewportView(tblUser);
 
         btnAddReceptionist.setText("Add Receptionist");
         btnAddReceptionist.addActionListener(this::btnAddReceptionistActionPerformed);
@@ -128,30 +193,82 @@ public class UserAccount extends javax.swing.JPanel {
         btnAddCounselor.setText("Add Counselor");
         btnAddCounselor.addActionListener(this::btnAddCounselorActionPerformed);
 
+        roundedPanel.setBackground(new java.awt.Color(255, 255, 255));
+
+        tblUser.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane.setViewportView(tblUser);
+
+        jLabel1.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Public/profile.png"))); // NOI18N
+        jLabel1.setText("USER ACCOUNT:");
+
+        javax.swing.GroupLayout roundedPanelLayout = new javax.swing.GroupLayout(roundedPanel);
+        roundedPanel.setLayout(roundedPanelLayout);
+        roundedPanelLayout.setHorizontalGroup(
+            roundedPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(roundedPanelLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(roundedPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 638, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(18, Short.MAX_VALUE))
+        );
+        roundedPanelLayout.setVerticalGroup(
+            roundedPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(roundedPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 723, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(8, 8, 8)
-                .addComponent(btnAddReceptionist, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnAddCounselor, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(17, 17, 17)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(card1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(roundedPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnAddReceptionist, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnAddCounselor, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 15, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 143, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(0, 20, Short.MAX_VALUE)
+                .addComponent(card1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAddCounselor)
-                    .addComponent(btnAddReceptionist))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnAddReceptionist)
+                    .addComponent(btnAddCounselor))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(roundedPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(16, 16, 16))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -171,7 +288,10 @@ public class UserAccount extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddCounselor;
     private javax.swing.JButton btnAddReceptionist;
-    private javax.swing.JScrollPane jScrollPane1;
+    private components.Card card1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane;
+    private components.RoundedPanel roundedPanel;
     private javax.swing.JTable tblUser;
     // End of variables declaration//GEN-END:variables
 }

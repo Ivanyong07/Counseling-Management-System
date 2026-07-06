@@ -3,13 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/view/EditProfileDialog.java</file>
-            <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/view/admin/AdminDashboardFrame.java</file>
             <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/components/Menu.java</file>
-            <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/components/MenuItem.java</file>
-            <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/view/counselor/CounselorDashboardFrame.java</file>
-            <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/view/receptionist/ReceptionistDashboardFrame.java</file>
-            <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/view/student/StudentDashboardFrame.java</file>
+            <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/view/admin/AdminDashboardFrame.java</file>
+            <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/view/admin/UserAccount.java</file>
         </group>
     </open-files>
 </project-private>

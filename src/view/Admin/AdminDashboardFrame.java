@@ -29,6 +29,7 @@ public class AdminDashboardFrame extends javax.swing.JFrame {
             
 //            Animation.slideIn(, TOP_ALIGNMENT, TOP_ALIGNMENT, onFinish); // not done yet
             initComponents();
+            
             getContentPane().setBackground(new Color(51, 51, 51));
             setLocationRelativeTo(null);
             menu.setCurrentRole("Admin");
@@ -110,7 +111,7 @@ public class AdminDashboardFrame extends javax.swing.JFrame {
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 592, Short.MAX_VALUE)
+            .addGap(0, 611, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout notificationLayout = new javax.swing.GroupLayout(notification);

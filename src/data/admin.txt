@@ -1,1 +1,1 @@
-ADM001 | ivan | yong | admin1 | 12345678 | ivan@gmail.com | active | ROOM001 | 012345678
+ADM001 | ivan | yong | admin1 | 12345678 | ivan@gmail.com | ACTIVE | ROOM001 | 012345678
