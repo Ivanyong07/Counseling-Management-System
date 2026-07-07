@@ -71,12 +71,13 @@ public class Card extends javax.swing.JPanel {
         labelValue = new javax.swing.JLabel();
         labelDescription = new javax.swing.JLabel();
 
-        labelIcon.setText("labelIcon");
-
+        labelTitle.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         labelTitle.setText("jLabel2");
 
+        labelValue.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         labelValue.setText("jLabel3");
 
+        labelDescription.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         labelDescription.setText("jLabel4");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -95,13 +96,13 @@ public class Card extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(11, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(labelIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
                 .addComponent(labelTitle)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(labelValue)
                 .addGap(18, 18, 18)
+                .addComponent(labelValue)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(labelDescription)
                 .addGap(28, 28, 28))
         );

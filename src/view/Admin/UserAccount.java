@@ -18,12 +18,18 @@ import java.awt.Graphics;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
+import javax.swing.ImageIcon;
+import model.CardModel;
 
 public class UserAccount extends javax.swing.JPanel {
     
     private static String fileUser = System.getProperty("user.dir") + "/src/data/users.txt";
     private static String fileReceptionist = System.getProperty("user.dir") + "/src/data/receptionist.txt";
     private static String fileCounselor = System.getProperty("user.dir") + "/src/data/counselor.txt";
+    private ImageIcon userIcon = new ImageIcon(getClass().getResource("/Public/user.png"));
+//    java.net.URL testUrl = getClass().getResource("/Public/user.png"); debug
+   
     
     java.awt.Frame frame = (java.awt.Frame) javax.swing.SwingUtilities.getWindowAncestor(this);
     private int hoverIndex = -1;
@@ -92,19 +98,78 @@ public class UserAccount extends javax.swing.JPanel {
                 return com;
             }
         });
+//        System.out.println(testUrl); debug
         roundedPanel.setBackgroundColor(new Color(28, 28, 30));
+        loadDataCard();
     }
     
-    public void getDataReceptionist(){
-        
-        for (String file: fileCounselor){
-            try (BufferedReader reader = new BufferedReader(new FileReader(fileCounselor))){
-                
-            } catch (FileNotFoundException e){
-                System.out.println("File Not Found");
-            }
+    public void loadDataCard(){
+        try{
+            String countRep = getDataReceptionist();
+            String countCsl = getDataCounselor();
+            
+            CardModel modelCard1  = new CardModel(userIcon, "Currently Active", "Receptionist", countRep);
+            card1.setData(modelCard1);
+            
+            CardModel modelCard2 = new CardModel(userIcon, "Currently Active", "Counselor", countCsl);
+            card2.setData(modelCard2);
+            
+            
+        } catch (IOException e){
+            System.out.println("Error: " + e);
         }
     }
+    
+    public String getDataReceptionist() throws IOException{
+        int value = 0;
+        try (BufferedReader  userReader = new BufferedReader(new FileReader(fileReceptionist))){
+            String userLine;
+            
+            
+            while ((userLine = userReader.readLine()) != null){
+                String[] userData = userLine.split("\\|");
+                
+                for (int i = 0; i < userData.length; i++){
+                    userData[i] = userData[i].trim();
+                }
+                
+                if (userData[0].startsWith("REP")){
+                    value += 1;
+                }
+            }
+        } catch (FileNotFoundException e){
+            System.out.println("File Not Found");
+        } catch (IOException e){
+            System.out.println("Error: " + e);
+        }
+        return String.valueOf(value);
+    }
+    
+        public String getDataCounselor() throws IOException{
+        int value = 0;
+        try (BufferedReader  userReader = new BufferedReader(new FileReader(fileCounselor))){
+            String userLine;
+            
+            
+            while ((userLine = userReader.readLine()) != null){
+                String[] userData = userLine.split("\\|");
+                
+                for (int i = 0; i < userData.length; i++){
+                    userData[i] = userData[i].trim();
+                }
+                
+                if (userData[0].startsWith("CSL")){
+                    value += 1;
+                }
+            }
+        } catch (FileNotFoundException e){
+            System.out.println("File Not Found");
+        } catch (IOException e){
+            System.out.println("Error: " + e);
+        }
+        return String.valueOf(value);
+    }
+        
     
     public void refreshTable(){
         tblUser.setModel(FileHandling.loadTableInformation(
@@ -154,7 +219,6 @@ public class UserAccount extends javax.swing.JPanel {
                 } else {
                     com = new JLabel("");
                 }
-                
                 if (row == hoverIndex) {
                     com.setBackground(new Color(160, 148, 148)); // Hover color
                 } else {
@@ -183,6 +247,7 @@ public class UserAccount extends javax.swing.JPanel {
         tblUser = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         card1 = new components.Card();
+        card2 = new components.Card();
 
         setBackground(new java.awt.Color(51, 51, 51));
         setForeground(new java.awt.Color(51, 51, 51));
@@ -249,19 +314,27 @@ public class UserAccount extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(card1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(roundedPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnAddReceptionist, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnAddCounselor, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 15, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(roundedPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnAddReceptionist, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnAddCounselor, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 15, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(card1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(card2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(35, 35, 35))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(0, 20, Short.MAX_VALUE)
-                .addComponent(card1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(card1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(card2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAddReceptionist)
@@ -289,6 +362,7 @@ public class UserAccount extends javax.swing.JPanel {
     private javax.swing.JButton btnAddCounselor;
     private javax.swing.JButton btnAddReceptionist;
     private components.Card card1;
+    private components.Card card2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane;
     private components.RoundedPanel roundedPanel;
