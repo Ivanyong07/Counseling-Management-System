@@ -25,13 +25,13 @@ public class AdminDashboardFrame extends javax.swing.JFrame {
     private int delay = 3000;
     
     public AdminDashboardFrame(Admin currentAdmin) {
-            setUndecorated(true);
+//            setUndecorated(true);
             
 //            Animation.slideIn(, TOP_ALIGNMENT, TOP_ALIGNMENT, onFinish); // not done yet
             initComponents();
             
             getContentPane().setBackground(new Color(51, 51, 51));
-            setLocationRelativeTo(null);
+//            setLocationRelativeTo(null);
             menu.setCurrentRole("Admin");
             this.currentAdmin = currentAdmin; 
             menu.setTheme("#3D3D3D", "#4D4C4C");
@@ -112,7 +112,7 @@ public class AdminDashboardFrame extends javax.swing.JFrame {
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 623, Short.MAX_VALUE)
+            .addGap(0, 635, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout notificationLayout = new javax.swing.GroupLayout(notification);
@@ -141,7 +141,7 @@ public class AdminDashboardFrame extends javax.swing.JFrame {
                         .addGap(63, 63, 63)
                         .addComponent(notification, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(notificationBtn2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(notificationBtn2, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())))
         );
         layout.setVerticalGroup(
@@ -152,7 +152,7 @@ public class AdminDashboardFrame extends javax.swing.JFrame {
                     .addComponent(notification, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(notificationBtn2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(notificationBtn2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(mainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addComponent(menu, javax.swing.GroupLayout.DEFAULT_SIZE, 679, Short.MAX_VALUE)
