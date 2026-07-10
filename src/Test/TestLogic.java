@@ -276,7 +276,7 @@ public class TestLogic {
 //    }
 //    
     public static void main(String args[]) {
-        Roster roster = new Roster("ROS006", "ADM001", LocalDate.MAX, LocalTime.MIN, LocalTime.MIN, "Night");
+        Roster roster = new Roster("ROS006", "ADM001", "Ivan", LocalDate.MAX, LocalTime.MIN, LocalTime.MIN, "Night");
         RosterService.deleteRoster("ROS004");
 //        
 //        Appointment appointment = new Appointment("APM001", "CSL001", "Pending");

@@ -6,15 +6,16 @@ import java.time.LocalTime;
 
 public class Roster {
     
-    private String rosterID, userID;
+    private String rosterID, userID, username;
     private LocalDate date;
     private LocalTime startTime;
     private LocalTime endTime;
     private String shiftTime;
     
-    public Roster(String rosterID, String userID,LocalDate date, LocalTime startTime, LocalTime endTime, String shiftTime){
+    public Roster(String rosterID, String userID, String username, LocalDate date, LocalTime startTime, LocalTime endTime, String shiftTime){
         this.rosterID = rosterID;
         this.userID = userID;
+        this.username = username;
         this.date = date;
         this.startTime = startTime;
         this.endTime = endTime;
@@ -67,5 +68,13 @@ public class Roster {
     
     public String getShiftTime(){
         return shiftTime;
+    }
+    
+    public String getUsername(){
+        return username;
+    }
+    
+    public void setUsername(String username){
+        this.username = username;
     }
 }

@@ -48,6 +48,7 @@ public class RosterService {
             writer.write(
                     roster.getRosterID() + " | " +
                     roster.getUserID() + " | " +
+                    roster.getUsername() + " | " +
                     roster.getDate() + " | " +
                     roster.getEndTime() + " | " +
                     roster.getStartTime() + " | " +
@@ -114,10 +115,11 @@ public class RosterService {
                 Roster r = new Roster(
                         rosterData[0],
                         rosterData[1],
-                        LocalDate.parse(rosterData[2]),
-                        LocalTime.parse(rosterData[3]),
+                        rosterData[2],
+                        LocalDate.parse(rosterData[3]),
                         LocalTime.parse(rosterData[4]),
-                        rosterData[5]
+                        LocalTime.parse(rosterData[5]),
+                        rosterData[6]
                 );
                 
                 if (r.getRosterID().equals(roster.getRosterID())){
@@ -138,10 +140,11 @@ public class RosterService {
                 writer.write(
                         r.getRosterID()+ " | " +
                         r.getUserID()+ " | " +
+                        r.getUsername() + " | " +
                         r.getDate()+ " | " +
                         r.getStartTime()+ " | " +
                         r.getEndTime()+ " | " +
-                        r.getShiftTime()    
+                        r.getShiftTime()
                 );
                 writer.newLine();
             }
