@@ -1,17 +1,24 @@
 package model;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 
 public class Roster {
     
-    private String rosterID, userID, firstname, lastname,startTime, endTime;
+    private String rosterID, userID;
+    private LocalDate date;
+    private LocalTime startTime;
+    private LocalTime endTime;
+    private String shiftTime;
     
-    public Roster(String rosterID, String userID, String firstname, String lastname, String startTime, String endTime){
+    public Roster(String rosterID, String userID,LocalDate date, LocalTime startTime, LocalTime endTime, String shiftTime){
         this.rosterID = rosterID;
         this.userID = userID;
-        this.firstname = firstname;
-        this.lastname = lastname;
+        this.date = date;
         this.startTime = startTime;
         this.endTime = endTime;
+        this.shiftTime = shiftTime;
     }
     
     public String getRosterID(){
@@ -26,38 +33,39 @@ public class Roster {
         return userID;
     }
     
-    public void setUserID(){
+    public void setUserID(String userID){
         this.userID = userID;
     }
     
-    public String getFirstname(){
-        return firstname;
-    }
-    
-    public void setFirstname(String firstname){
-        this.firstname = firstname;
-    }
-    
-    public String getLastname(){
-        return lastname;
-    }
-    public void setLastname(String lastname){
-        this.lastname = lastname;
-    }
-    
     public String getStartTime(){
-        return startTime;
+        return String.valueOf(startTime);
     }
     
-    public void setStartTime(String startTime){
+    public void setStartTime(LocalTime startTime){
         this.startTime = startTime;
     }
     
     public String getEndTime(){
-        return endTime;
+        return String.valueOf(endTime);
     }
     
-    public void setEndTime(String endTime){
+    public void setEndTime(LocalTime endTime){
         this.endTime = endTime;
+    }
+    
+    public void setDate(LocalDate date){
+        this.date = date;
+    }
+    
+    public String getDate(){
+        return String.valueOf(date);
+    }
+    
+    public void setShiftTime(String shiftTime){
+        this.shiftTime = shiftTime;
+    }
+    
+    public String getShiftTime(){
+        return shiftTime;
     }
 }

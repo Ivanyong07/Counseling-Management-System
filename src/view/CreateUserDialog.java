@@ -1,4 +1,3 @@
-
 package view;
 
 import model.Counselor;
@@ -266,8 +265,6 @@ public class CreateUserDialog extends javax.swing.JDialog {
                             "Creation Failed", 
                             javax.swing.JOptionPane.ERROR_MESSAGE);
                 }
-            
-            
         } catch (Exception e){
             javax.swing.JOptionPane.showMessageDialog(this, 
                 "Error creating " + this.role + ": " + e.getMessage(), 

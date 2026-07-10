@@ -7,14 +7,19 @@ import java.io.FileWriter;
 import java.io.FileReader;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 
 import model.User;
 import model.Admin;
+import model.Appointment;
 import model.Counselor;
 import model.Receptionist;
+import model.Roster;
 import model.Student;
 import services.FileHandling;
+import services.RosterService;
 
 
 
@@ -26,12 +31,15 @@ public class TestLogic {
     private static final String  fileReceptionist = "src/data/receptionist.txt";
     private static final String  fileStudent = "src/data/student.txt";
     
+    private static final String  fileAppintment = "src/data/appointments.txt";
+    
     public static ArrayList<User> userList = new ArrayList<>();
     public static ArrayList<Admin> adminList = new ArrayList<>();
     public static ArrayList<Receptionist> receptionistList = new ArrayList<>();
     public static ArrayList<Counselor> counselorList = new ArrayList<>();
     public static ArrayList<Student> studentList = new ArrayList<>();
-    
+    private Appointment appointment;
+
 //    public static User LoadInformation(String userID){
 //        boolean found = false;
 //        try (BufferedReader readerUser = new BufferedReader(new FileReader(fileUser))){
@@ -194,8 +202,87 @@ public class TestLogic {
 //        System.out.println("ID Not Found");
 //        return null;
 //    }
-    
+//    public static String generateUserID(){
+//        String prefix = "APM";
+//
+//        int randomNum = 1000 + (int)(Math.random()*9000);
+//
+//        return prefix + randomNum;
+//    }
+//    
+//    public static Appointment createStudent(Appointment appointment){
+//        try (BufferedReader userLine = new BufferedReader(new FileReader(fileAppintment))){
+//            
+//            String dataLine;
+//            while ((dataLine = userLine.readLine()) != null){
+//                String[] data = dataLine.split("\\|");
+//                
+//                for (int i =0; i < data.length; i++){
+//                    data[i] = data[i].trim();
+//                }
+//                if (data[0].equals(appointment.getUserID())){
+//                    return null;
+//                }
+//            }
+//        } catch (FileNotFoundException e){
+//            System.out.println("File Not Found");
+//        } catch (IOException e){
+//            System.out.println("Error: " + e);
+//        }
+//        
+//        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileStudent, true))){
+//            writer.write(
+//                    appointment.getUserID() + " | " +
+//                    appointment.getFirstname() + " | " +
+//                    appointment.getLastname() + " | " +
+//                    appointment.getUsername() + " | " +
+//                    appointment.getPassword() + " | " +
+//                    appointment.getEmail() + " | " +
+//                    appointment.getStatus() + " | " +
+//                    appointment.getCourse()+ " | " +
+//                    appointment.getContactNumber()
+//            );
+//            writer.newLine();
+//            return appointment;
+//        } catch (FileNotFoundException e){
+//            System.out.println("File Not Found");
+//        } catch (IOException e){
+//            System.out.println("Error: " + e);
+//        }
+//        return null;
+//    }
+//    
+//    public static void deleteUser(String userID){
+//        ArrayList<String> oriUserData = new ArrayList<>(); // declare locally as it will duplicate data
+//        
+//        try (BufferedReader dltDataRead = new BufferedReader(new FileReader(fileUser))){
+//            String dltLine;
+//            while ((dltLine = dltDataRead.readLine()) != null){
+//                String[] dltData = dltLine.split("\\|");
+//                for (int i = 0; i < dltData.length; i++){
+//                    dltData[i]=dltData[i].trim();
+//                }
+//                
+//                if (dltData[0].equals(ADM001)){
+//                    continue;
+//                    
+//                } else {
+//                    oriUserData.add(dltLine);
+//                }
+//            } catch () {
+//                    
+//            } catch (){
+//                    
+//    }
+//    
     public static void main(String args[]) {
+        Roster roster = new Roster("ROS006", "ADM001", LocalDate.MAX, LocalTime.MIN, LocalTime.MIN, "Night");
+        RosterService.deleteRoster("ROS004");
+//        
+//        Appointment appointment = new Appointment("APM001", "CSL001", "Pending");
+//        createAppointment(appointment);
+//    }
+//        System.out.println(generateUserID());
 //        FileHandling.LoadInformation("STU001"); // testing 1 (done)
 //        System.out.println("");
 //        LoadInformation("REP001"); // testing 2 (done)

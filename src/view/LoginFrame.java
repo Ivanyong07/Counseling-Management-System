@@ -8,8 +8,11 @@ import services.AuthService;
 
 import model.User;
 import model.Admin;
+import model.Counselor;
+import model.Receptionist;
 import services.FileHandling;
 import view.admin.AdminDashboardFrame;
+import view.receptionist.ReceptionistDashboardFrame;
 
 
 public class LoginFrame extends javax.swing.JFrame {
@@ -149,7 +152,15 @@ public class LoginFrame extends javax.swing.JFrame {
                     AdminDashboardFrame admDashboard = new AdminDashboardFrame((Admin) currentUser);
                     admDashboard.setVisible(true);
                     dispose();
-                }
+                } else if (currentUser instanceof Receptionist){
+                    System.out.println(currentUser.getUserID());
+                    ReceptionistDashboardFrame repDashboard = new ReceptionistDashboardFrame((Receptionist) currentUser);
+                    repDashboard.setVisible(true);
+                    dispose();
+                } else if (currentUser instanceof Counselor){
+                    System.out.println(currentUser.getUserID());
+                    
+                } 
 
             } catch (IOException o){
                 o.printStackTrace();

@@ -1,5 +1,5 @@
 ADM001 | ivan | yong | admin1 | 12345678 | ivan@gmail.com | ACTIVE
 STU001 | le | wen | student001 | 12345678 | lewen@gmail.com | ACTIVE
 REP002 | tan | guang | reptionist2 | 12345678 | tanguang@gmail.com | INACTIVE
-CSL001 | tan | cheng | reptionist3 | 12345678 | tancheng@gmail.com | ACTIVE
+CSL001 | mun | chong | reptionist3 | 12345678 | tancheng@gmail.com | ACTIVE
 REP001 | yew | cheng | reptionist1 | 12345678 | yewcheng@gmail.com | ACTIVE
