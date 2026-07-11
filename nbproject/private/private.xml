@@ -3,8 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/view/admin/UserAccount.java</file>
+            <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/model/Roster.java</file>
             <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/services/AppointmentService.java</file>
-            <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/view/CreateUserDialog.java</file>
+            <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/services/RosterService.java</file>
+            <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/view/admin/StaffRosterSchedules.java</file>
+            <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/Test/TestLogic.java</file>
+            <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/data/rosters.txt</file>
+            <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/data/appointments.txt</file>
+            <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/view/admin/AdminDashboardFrame.java</file>
         </group>
     </open-files>
 </project-private>
