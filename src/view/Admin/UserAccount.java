@@ -177,7 +177,9 @@ public class UserAccount extends javax.swing.JPanel {
                 new String[]{"ID", "Email", "Status", "Action"},
                 new int[]{0, 5, 6},
                 fileUser,
-                "ADM"));
+                "ADM",
+                true,
+                true));
         setStatusColor();
         setImageIcon();
     }

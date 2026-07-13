@@ -15,7 +15,7 @@ public class RosterService {
     
     private static final String fileRosters = System.getProperty("user.dir") + "/src/data/rosters.txt";
 
-    public static String generateRosterID(Roster roster){
+    public static String generateRosterID(){
         String prefix = "ROS";
         
         int random = 1000 + (int)(Math.random() * 9000);
@@ -50,8 +50,9 @@ public class RosterService {
                     roster.getUserID() + " | " +
                     roster.getUsername() + " | " +
                     roster.getDate() + " | " +
-                    roster.getEndTime() + " | " +
                     roster.getStartTime() + " | " +
+                    roster.getEndTime() + " | " +
+                    roster.getHours() + " | " +
                     roster.getShiftTime()
             );
             writer.newLine();
@@ -64,7 +65,7 @@ public class RosterService {
         return null;
     }
     
-    public static void deleteRoster(String rosterID){
+    public static boolean deleteRoster(String rosterID){
         ArrayList<String> rosterList = new ArrayList<>();
         
         try (BufferedReader rosterReader = new BufferedReader(new FileReader(fileRosters))){
@@ -97,6 +98,7 @@ public class RosterService {
         } catch (IOException e){
             System.out.println("Error: " + e);
         }
+        return false;
     }
     
     public static void updateRoster(Roster roster){
@@ -119,7 +121,8 @@ public class RosterService {
                         LocalDate.parse(rosterData[3]),
                         LocalTime.parse(rosterData[4]),
                         LocalTime.parse(rosterData[5]),
-                        rosterData[6]
+                        Integer.valueOf(rosterData[6]),
+                        rosterData[7]
                 );
                 
                 if (r.getRosterID().equals(roster.getRosterID())){
@@ -144,6 +147,7 @@ public class RosterService {
                         r.getDate()+ " | " +
                         r.getStartTime()+ " | " +
                         r.getEndTime()+ " | " +
+                        r.getHours() + " | " +
                         r.getShiftTime()
                 );
                 writer.newLine();
@@ -155,7 +159,74 @@ public class RosterService {
         }
     }
     
-    public static Roster readRoster(Roster roster){
+    public static ArrayList<Roster> readRoster(String userID){
+        ArrayList<Roster> rosterList = new ArrayList<>();
+        try (BufferedReader rosterReader = new BufferedReader(new FileReader(fileRosters))){
+            String rosterLine;
+
+            while ((rosterLine = rosterReader.readLine()) != null){
+                String[] rosterData = rosterLine.split("\\|");
+                
+                for (int i = 0 ;i < rosterData.length; i++){
+                    rosterData[i] = rosterData[i].trim();
+                }
+                
+                if (rosterData[1].equals(userID)){
+                    Roster r = new Roster(
+                            rosterData[0], 
+                            rosterData[1], 
+                            rosterData[2], 
+                            LocalDate.parse(rosterData[3]), 
+                            LocalTime.parse(rosterData[4]), 
+                            LocalTime.parse(rosterData[5]), 
+                            Integer.parseInt(rosterData[6]), 
+                            rosterData[7]
+                    );
+                    rosterList.add(r);
+                }
+                
+            }
+        } catch (FileNotFoundException e){
+            System.out.println("File Not Found");
+        } catch (IOException e){
+            System.out.println("Error: " + e);
+        }
+        
+        return rosterList;
+    }
+    
+    public static Roster getRosterById(String rosterID){
+        try (BufferedReader rosterReader = new BufferedReader(new FileReader(fileRosters))){
+            String rosterLine;
+
+            while ((rosterLine = rosterReader.readLine()) != null){
+                String[] rosterData = rosterLine.split("\\|");
+                
+                for (int i = 0 ;i < rosterData.length; i++){
+                    rosterData[i] = rosterData[i].trim();
+                }
+                
+                if (rosterData[0].equals(rosterID)){
+                    Roster r = new Roster(
+                        rosterData[0], 
+                        rosterData[1], 
+                        rosterData[2], 
+                        LocalDate.parse(rosterData[3]), 
+                        LocalTime.parse(rosterData[4]), 
+                        LocalTime.parse(rosterData[5]), 
+                        Integer.parseInt(rosterData[6]), 
+                        rosterData[7]
+                    );
+                    
+                    return r;
+                }
+            }
+        } catch (FileNotFoundException e){
+            System.out.println("File Not Found");
+        } catch (IOException e){
+            System.out.println("Error: " + e);
+        }
+        
         return null;
     }
     

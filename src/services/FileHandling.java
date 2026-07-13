@@ -222,7 +222,7 @@ public class FileHandling {
         return null;
     }
     
-    public static DefaultTableModel loadTableInformation(Runnable onRun, String[] columns, int[] indexes, String filePath, String skipPrefix){
+    public static DefaultTableModel loadTableInformation(Runnable onRun, String[] columns, int[] indexes, String filePath, String skipPrefix, boolean showInactive, boolean roleFile){
         model = new DefaultTableModel(columns, 0);
 
         try (BufferedReader tblDataRead = new BufferedReader(new FileReader(filePath))){
@@ -234,16 +234,20 @@ public class FileHandling {
                 for (int i = 0; i < tblData.length; i++){
                     tblData[i] = tblData[i].trim();
                 }
-
                 
-                if (tblData.length < 7){
+                if (tblData.length == 0 || tblLine.isBlank()){
                     continue;
                 }
-
-                if (tblData[0].startsWith(skipPrefix)){
-                    continue; // skip
+                
+                if (roleFile){
+                    if (skipPrefix != null && tblData[0].startsWith(skipPrefix)){
+                        continue; // skip
+                    }
+                
+                    if (!showInactive && tblData[6].equals("INACTIVE")){
+                        continue;
+                    }
                 }
-
                 Object[] row = new Object[indexes.length + 1];
                 for (int i = 0; i < indexes.length; i++){
                     row[i] = tblData[indexes[i]];

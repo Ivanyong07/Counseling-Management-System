@@ -1,1 +1,4 @@
-
+ROS1001 | CSL001 | reptionist3 | 2026-07-13 | 09:00 | 8 | 17:00 | Morning
+ROS1002 | CSL001 | reptionist3 | 2026-07-13 | 13:00 | 8 | 21:00 | Afternoon
+ROS1003 | CSL001 | reptionist3 | 2026-07-14 | 09:00 | 8 | 17:00 | Morning
+ROS1005 | CSL001 | reptionist3 | 2026-07-15 | 09:00 | 8 | 17:00 | Morning

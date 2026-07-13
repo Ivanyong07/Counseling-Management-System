@@ -1,1 +1,3 @@
 REP001 | yew | cheng | reptionist1 | 12345678 | yewcheng@gmail.com | ACTIVE | COUNTER001 | 012345678
+REP002 | tan | guang | receptionist2 | 12345678 | tanguang@gmail.com | INACTIVE | COUNTER002 | 0123456784
+REP003 | daniel | koh | receptionist3 | 12345678 | danielkoh@gmail.com | ACTIVE | COUNTER003 | 0123456785

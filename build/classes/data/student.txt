@@ -1,1 +1,4 @@
 STU001 | le | wen | student001 | 12345678 | lewen@gmail.com | ACTIVE | engineering | 012345678
+STU002 | siti | aisyah | student002 | 12345678 | sitiaisyah@gmail.com | ACTIVE | computer science | 0123456781
+STU003 | wei | chen | student003 | 12345678 | weichen@gmail.com | ACTIVE | business | 0123456782
+STU004 | amira | hassan | student004 | 12345678 | amirahassan@gmail.com | INACTIVE | psychology | 0123456783

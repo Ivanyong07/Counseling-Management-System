@@ -1,1 +1,3 @@
 CSL001 | mun | chong | counselor1 | 12345678 | femboy@gmail.com | ACTIVE | c | 012345678
+CSL002 | jane | tan | counselor2 | 12345678 | janetan@gmail.com | ACTIVE | m | 0123456786
+CSL003 | mark | lee | counselor3 | 12345678 | marklee@gmail.com | INACTIVE | a | 0123456787

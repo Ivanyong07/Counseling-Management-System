@@ -10,15 +10,17 @@ public class Roster {
     private LocalDate date;
     private LocalTime startTime;
     private LocalTime endTime;
+    private int hours;
     private String shiftTime;
     
-    public Roster(String rosterID, String userID, String username, LocalDate date, LocalTime startTime, LocalTime endTime, String shiftTime){
+    public Roster(String rosterID, String userID, String username, LocalDate date, LocalTime startTime, LocalTime endTime, int hours, String shiftTime){
         this.rosterID = rosterID;
         this.userID = userID;
         this.username = username;
         this.date = date;
         this.startTime = startTime;
         this.endTime = endTime;
+        this.hours = hours;
         this.shiftTime = shiftTime;
     }
     
@@ -76,5 +78,13 @@ public class Roster {
     
     public void setUsername(String username){
         this.username = username;
+    }
+    
+    public int getHours(){
+        return hours;
+    }
+    
+    public void setHourse(int hours){
+        this.hours = hours;
     }
 }
