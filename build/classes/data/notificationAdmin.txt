@@ -1,3 +1,3 @@
-NOTIF001 | ADMIN | New receptionist account created | 2026-07-07 10:30 | UNREAD
-NOTIF002 | CSL001 | New appointment booked with you | 2026-07-07 11:00 | UNREAD
-NOTIF003 | REP001 | Student cancelled appointment | 2026-07-06 15:00 | READ
+NOTIF001 | ADMIN | New Account | New receptionist account created | 2026-07-07 | 10:30 | NEW
+NOTIF002 | ADMIN | New Appointment | New appointment booked with you | 2026-07-07 | 11:00 | NEW
+NOTIF003 | ADMIN | Appointment | Student cancelled appointment | 2026-07-06 | 15:00 | NEW

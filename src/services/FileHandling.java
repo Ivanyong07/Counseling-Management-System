@@ -222,7 +222,8 @@ public class FileHandling {
         return null;
     }
     
-    public static DefaultTableModel loadTableInformation(Runnable onRun, String[] columns, int[] indexes, String filePath, String skipPrefix, boolean showInactive, boolean roleFile){
+    public static DefaultTableModel loadTableInformation(Runnable onRun, String[] columns, int[] indexes, 
+            String filePath, String skipPrefix, boolean showInactive, boolean roleFile, String filter){
         model = new DefaultTableModel(columns, 0);
 
         try (BufferedReader tblDataRead = new BufferedReader(new FileReader(filePath))){
@@ -248,6 +249,33 @@ public class FileHandling {
                         continue;
                     }
                 }
+                
+                if (filter != null && !filter.isBlank()){
+                    boolean matchFound = false;
+                    for (String field : tblData){
+                        if (field.toLowerCase().contains(filter.toLowerCase())){
+                            matchFound = true;
+                            break;
+                        }
+                    }
+                    
+                    if (!matchFound){
+                        continue;
+                    }
+                }
+                
+                boolean validRow = true;
+                for (int idx :indexes){
+                    if (idx >= tblData.length){
+                        validRow = false;
+                        break;
+                    }
+                }
+                
+                if (!validRow) {
+                    continue;
+                }
+                
                 Object[] row = new Object[indexes.length + 1];
                 for (int i = 0; i < indexes.length; i++){
                     row[i] = tblData[indexes[i]];

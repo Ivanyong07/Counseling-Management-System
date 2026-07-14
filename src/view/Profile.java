@@ -160,6 +160,7 @@ public class Profile extends javax.swing.JPanel {
         jLabel1.setText("(Read Only)");
 
         btnChangePassword.setText("Edit Password");
+        btnChangePassword.addActionListener(this::btnChangePasswordActionPerformed);
 
         btnChangeProfile.setText("Edit Profile");
         btnChangeProfile.addActionListener(this::btnChangeProfileActionPerformed);
@@ -311,6 +312,15 @@ public class Profile extends javax.swing.JPanel {
         
         dialog.setVisible(true);
     }//GEN-LAST:event_btnChangeProfileActionPerformed
+
+    private void btnChangePasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangePasswordActionPerformed
+        java.awt.Window window = javax.swing.SwingUtilities.getWindowAncestor(this);
+        ChangePasswordDialog dialog = new ChangePasswordDialog((java.awt.Frame) window, true, currentUser);
+        
+        dialog.setLocationRelativeTo(window);
+        
+        dialog.setVisible(true);
+    }//GEN-LAST:event_btnChangePasswordActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

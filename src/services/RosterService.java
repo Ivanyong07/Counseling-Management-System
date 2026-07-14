@@ -66,6 +66,7 @@ public class RosterService {
     }
     
     public static boolean deleteRoster(String rosterID){
+        boolean found = false;
         ArrayList<String> rosterList = new ArrayList<>();
         
         try (BufferedReader rosterReader = new BufferedReader(new FileReader(fileRosters))){
@@ -79,6 +80,7 @@ public class RosterService {
                 }
                 
                 if (rosterData[0].equals(rosterID)){
+                    found = true;
                     continue;
                 } else {
                     rosterList.add(rosterLine);
@@ -98,7 +100,7 @@ public class RosterService {
         } catch (IOException e){
             System.out.println("Error: " + e);
         }
-        return false;
+        return found;
     }
     
     public static void updateRoster(Roster roster){
@@ -229,5 +231,4 @@ public class RosterService {
         
         return null;
     }
-    
 }

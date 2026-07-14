@@ -38,8 +38,10 @@ public class CurrentTime extends javax.swing.JPanel {
         labelTime = new javax.swing.JLabel();
         labelDate = new javax.swing.JLabel();
 
+        labelTime.setForeground(new java.awt.Color(255, 255, 255));
         labelTime.setText("jLabel1");
 
+        labelDate.setForeground(new java.awt.Color(255, 255, 255));
         labelDate.setText("jLabel3");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

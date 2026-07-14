@@ -158,7 +158,8 @@ public class CreateRosterDialog extends javax.swing.JDialog {
                 fileCounselor, 
                 null,
                 false,
-                true));
+                true,
+                null));
         labelWorkerID.setText("Counselor ID:");
         labelWorkerName.setText("Counselor:");
     }
@@ -171,7 +172,8 @@ public class CreateRosterDialog extends javax.swing.JDialog {
                 fileReceptionist, 
                 null,
                 false,
-                true));
+                true,
+                null));
         labelWorkerID.setText("Receptionist ID:");
         labelWorkerName.setText("Receptionist:");
     }

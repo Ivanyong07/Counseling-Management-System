@@ -10,6 +10,7 @@ import java.io.BufferedWriter;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import javax.swing.JButton;
 
 import model.User;
 import model.Admin;
@@ -276,8 +277,11 @@ public class TestLogic {
 //    }
 //    
     public static void main(String args[]) {
-        Roster roster = new Roster("ROS006", "ADM001", "Ivan", LocalDate.MAX, LocalTime.MIN, LocalTime.MIN, "Night");
-        RosterService.deleteRoster("ROS004");
+//        Roster roster = new Roster("ROS006", "ADM001", "Ivan", LocalDate.MAX, LocalTime.MIN, LocalTime.MIN, "Night");
+//        RosterService.deleteRoster("ROS004");
+//          JButton button = new JButton();
+//          button.addEvenLis
+                  
 //        
 //        Appointment appointment = new Appointment("APM001", "CSL001", "Pending");
 //        createAppointment(appointment);

@@ -11,12 +11,12 @@ public class AuthService {
     
     public static User login(String username, String password) throws IOException{
         
+        
         String fullPath = System.getProperty("user.dir");
         String[] files = {fullPath + "/src/data/users.txt"};
         
         if (loginAttempt == 0){
-            System.out.println("System Locked Please try again later");
-            return null;
+            throw new IllegalStateException("LOCKED");
         }
         
         for( String file: files){
@@ -27,15 +27,16 @@ public class AuthService {
                 String line;
                 while ((line = br.readLine())!=null){
                     String[] data = line.split("\\|");
-                    
+                        
+                    if (data.length < 5){
+                        continue;
+    }
                     
                         for (int i = 0; i < data.length; i++){
                             data[i] = data[i].trim();
                         }
                         String fileUsername = data[3];
                         String filePassword = data[4];
-
-                      
                         
                         if (username.equals(fileUsername) && password.equals(filePassword)){
                             String userID = data[0];
@@ -45,7 +46,7 @@ public class AuthService {
                             
                             return FileHandling.LoadInformation(userID);
 //                            System.out.println("Run Load Information done"); /// debug
-                        }
+                        } 
                 }  
             }catch (java.io.FileNotFoundException e){
                 System.out.println("File not found: " + file);
