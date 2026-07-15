@@ -7,6 +7,17 @@
             <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/components/Notification.java</file>
             <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/components/NotificationBtn.java</file>
             <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/components/NotificationPanel.java</file>
+            <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/services/AuthService.java</file>
+            <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/data/users.txt</file>
+            <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/view/LoginFrame.java</file>
+            <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/view/EditProfileDialog.java</file>
+            <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/view/ChangePasswordDialog.java</file>
+            <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/view/Profile.java</file>
+            <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/view/admin/StaffRosterSchedules.java</file>
+            <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/view/admin/UserAccount.java</file>
+            <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/view/admin/AdminDashboardFrame.java</file>
+            <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/services/FileHandling.java</file>
+            <file>file:/C:/NetBeansProjects/Counseling-Management-System/src/data/rosters.txt</file>
         </group>
     </open-files>
 </project-private>

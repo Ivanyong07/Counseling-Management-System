@@ -21,6 +21,14 @@ public class AppointmentService {
         return prefix + randomNum;
     }
     
+    public static String generateReceiptID(){
+        String prefix = "RCP";
+
+        int randomNum = 1000 + (int)(Math.random()*9000);
+
+        return prefix + randomNum;
+    }
+    
     public static Appointment createAppointment(Appointment appointment){
         try (BufferedReader userLine = new BufferedReader(new FileReader(fileAppointment))){           
             String dataLine;

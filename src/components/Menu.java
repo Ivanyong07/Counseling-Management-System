@@ -81,12 +81,12 @@ public class Menu extends javax.swing.JPanel {
             
             labelWelcomeRole.setText("Welcome back, Receptionist");
             listMenu.addItem(new MenuModel("Manage Student Accounts", "user", MenuModel.MenuType.MENU));
-            listMenu.addItem(new MenuModel("Manage Appointments", "UI Elements", MenuModel.MenuType.MENU));
-            listMenu.addItem(new MenuModel("Assign Appointments", "Appointment Statistics", MenuModel.MenuType.MENU));
+            listMenu.addItem(new MenuModel("Manage Appointments", "statistics", MenuModel.MenuType.MENU));
+            listMenu.addItem(new MenuModel("Assign Appointments", "report", MenuModel.MenuType.MENU));
             
             listMenu.addItem(new MenuModel("", " ", MenuModel.MenuType.EMPTY));
             
-            listMenu.addItem(new MenuModel("Profile", "Date Table", MenuModel.MenuType.MENU));
+            listMenu.addItem(new MenuModel("Profile", "profile", MenuModel.MenuType.MENU));
             listMenu.addItem(new MenuModel("Settings", "setting", MenuModel.MenuType.MENU));
             
         } else if (this.currentRole.equals("Student")){

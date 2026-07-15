@@ -14,9 +14,13 @@ import model.User;
 import model.Admin;
 import model.Counselor;
 import model.Receptionist;
+import model.Student;
+
 import services.FileHandling;
 import view.admin.AdminDashboardFrame;
+import view.counselor.CounselorDashboardFrame;
 import view.receptionist.ReceptionistDashboardFrame;
+import view.student.StudentDashboardFrame;
 
 
 public class LoginFrame extends javax.swing.JFrame {
@@ -248,8 +252,15 @@ public class LoginFrame extends javax.swing.JFrame {
                     dispose();
                 } else if (currentUser instanceof Counselor){
                     System.out.println(currentUser.getUserID());
-                    
-                } 
+                    CounselorDashboardFrame counselorDashboardFrame = new CounselorDashboardFrame((Counselor) currentUser);
+                    counselorDashboardFrame.setVisible(true);
+                    dispose();
+                } else if (currentUser instanceof Student){
+                    System.out.println(currentUser.getUserID());
+                    StudentDashboardFrame studentDashboardFrame = new StudentDashboardFrame((Student) currentUser);
+                    studentDashboardFrame.setVisible(true);
+                    dispose();
+                }
 
             } catch (IllegalStateException e){
                 notification1.setTitle("Account Locked");
