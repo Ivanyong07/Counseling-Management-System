@@ -49,7 +49,7 @@ public class TablePanelAction extends javax.swing.JPanel {
 
         User user = FileHandling.LoadInformation(userID);
         
-        EditProfileDialog dialog = new EditProfileDialog(frame, true, user);
+        EditProfileDialog dialog = new EditProfileDialog(frame, true, user, null, null);
         dialog.setEditable(false);
         dialog.setVerification(false);
         dialog.setEditButton(false);
@@ -69,7 +69,7 @@ public class TablePanelAction extends javax.swing.JPanel {
         
         User user = FileHandling.LoadInformation(userID);
         
-        EditProfileDialog dialog = new EditProfileDialog(frame, true, user);
+        EditProfileDialog dialog = new EditProfileDialog(frame, true, user, null, null);
         dialog.setEditable(true);
         dialog.setVerification(false);
         dialog.setEditButton(true);

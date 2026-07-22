@@ -19,6 +19,7 @@ public class CounselorDashboardFrame extends javax.swing.JFrame {
     private StudentConsultationRecords studentConsultationRecords;
     private Profile profile;
     private Settings settings;
+    private static String fileCounselor = System.getProperty("user.dir") + "/src/data/notificationCounselor.txt";
     
     private Counselor currentCounselor;
     
@@ -34,7 +35,7 @@ public class CounselorDashboardFrame extends javax.swing.JFrame {
         consultationNotesRecommendations = new ConsultationNotesRecommendations();
         personalRoster = new PersonalRoster();
         studentConsultationRecords = new StudentConsultationRecords();
-        profile = new Profile(currentCounselor);
+        profile = new Profile(currentCounselor, fileCounselor, "Counselor");
         settings = new Settings();
         
         setPanel(personalRoster);

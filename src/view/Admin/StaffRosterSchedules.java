@@ -1,6 +1,11 @@
 package view.admin;
 
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import model.Roster;
 import services.FileHandling;
 import services.RosterService;
@@ -9,12 +14,43 @@ public class StaffRosterSchedules extends javax.swing.JPanel {
     
     private static String fileRoster = System.getProperty("user.dir") + "/src/data/rosters.txt";
     private int row = -1;
+    private int hoverIndex = 1;
 
 
 
     public StaffRosterSchedules() {
         initComponents();
         refreshTable();
+        tblRoster.addMouseMotionListener(new MouseAdapter() {
+            public void mouseMoved(MouseEvent e){
+                int row = tblRoster.rowAtPoint(e.getPoint());
+                if (row != hoverIndex){
+                    hoverIndex = row;
+                    tblRoster.repaint();
+                }
+            }
+        });
+        tblRoster.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                hoverIndex = -1;
+                tblRoster.repaint();
+            }
+        });
+
+        // 3. Paint the hover color on the standard columns
+        tblRoster.setDefaultRenderer(Object.class, new javax.swing.table.DefaultTableCellRenderer() {
+            @Override
+            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+                Component com = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+                if (row == hoverIndex) {
+                    com.setBackground(new Color(160, 148, 148)); // Hover color
+                } else {
+                    com.setBackground(new Color(36, 36, 36));   // Normal color
+                }
+                com.setForeground(Color.WHITE);
+                return com;
+            }
+        });
     }
     
     public void refreshTable(){
@@ -49,6 +85,8 @@ public class StaffRosterSchedules extends javax.swing.JPanel {
         card1 = new components.Card();
         barChart1 = new components.BarChart();
 
+        roundedPanel1.setBackground(new java.awt.Color(102, 102, 102));
+
         tblRoster.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -60,6 +98,7 @@ public class StaffRosterSchedules extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblRoster.setRowHeight(40);
         jScrollPane1.setViewportView(tblRoster);
 
         btnAdd.setText("Add Counselor");
@@ -133,12 +172,12 @@ public class StaffRosterSchedules extends javax.swing.JPanel {
                         .addGap(14, 14, 14)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundedPanel1Layout.createSequentialGroup()
+                    .addGroup(roundedPanel1Layout.createSequentialGroup()
                         .addContainerGap(23, Short.MAX_VALUE)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)))
+                        .addGap(12, 12, 12)))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(roundedPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnDelete)
                     .addComponent(btnEdit)
@@ -154,7 +193,7 @@ public class StaffRosterSchedules extends javax.swing.JPanel {
         barChart1.setLayout(barChart1Layout);
         barChart1Layout.setHorizontalGroup(
             barChart1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 399, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         barChart1Layout.setVerticalGroup(
             barChart1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -171,18 +210,18 @@ public class StaffRosterSchedules extends javax.swing.JPanel {
                     .addComponent(roundedPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(card1, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(barChart1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(30, 30, 30)
+                        .addComponent(barChart1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(39, 39, 39))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(30, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(card1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(barChart1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(42, 42, 42)
+                    .addComponent(card1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(barChart1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addComponent(roundedPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
         );

@@ -12,11 +12,15 @@ import view.EditProfileDialog;
 public class Profile extends javax.swing.JPanel {
     
     private User currentUser;
+    private String file;
+    private String role;
     
 
-    public Profile(User currentUser) {
+    public Profile(User currentUser, String file, String role) {
         initComponents();
         this.currentUser = currentUser;
+        this.file = file;
+        this.role = role;
         
         // load information
         refresh();
@@ -301,7 +305,7 @@ public class Profile extends javax.swing.JPanel {
     private void btnChangeProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangeProfileActionPerformed
         
         java.awt.Window window = javax.swing.SwingUtilities.getWindowAncestor(this);
-        EditProfileDialog dialog = new EditProfileDialog((java.awt.Frame) window, true, currentUser);
+        EditProfileDialog dialog = new EditProfileDialog((java.awt.Frame) window, true, currentUser, null, null);
         
         dialog.setLocationRelativeTo(window);
         

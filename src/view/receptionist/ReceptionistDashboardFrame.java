@@ -20,6 +20,7 @@ public class ReceptionistDashboardFrame extends javax.swing.JFrame {
     private Profile profile;
     private Settings settings;
     private Receptionist currentReceptionist;
+    private static String fileReceptionist = System.getProperty("user.dir") + "/src/data/notificationReceptionist.txt";
     
     private int delay = 3000;
 
@@ -32,7 +33,7 @@ public class ReceptionistDashboardFrame extends javax.swing.JFrame {
         assignAppointment = new AssignAppointment();
         manageAppointment = new ManageAppointment();
         studentAccount = new StudentAccount();
-        profile = new Profile(currentReceptionist);
+        profile = new Profile(currentReceptionist, fileReceptionist, "Receptionist");
         settings = new Settings();
         
         setPanel(assignAppointment);

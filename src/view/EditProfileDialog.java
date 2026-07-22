@@ -21,11 +21,15 @@ public class EditProfileDialog extends javax.swing.JDialog {
     private final int delay = 2000;
     private boolean needVerification = true;
     private Color color;
+    private String role;
+    private String file;
     
-    public EditProfileDialog(java.awt.Frame parent, boolean modal, User currentUser) {
+    public EditProfileDialog(java.awt.Frame parent, boolean modal, User currentUser, String role, String file) {
         super(parent, modal);
         initComponents();
         this.currentUser = currentUser;
+        this.role = role;
+        this.file = file;
         loadInfo();
     }
     
@@ -116,7 +120,7 @@ public class EditProfileDialog extends javax.swing.JDialog {
         String password = new String(textFieldPasswordCheck.getPassword());
         
         if (!password.equals(currentUser.getPassword())){
-            notification = new Notification("Failed", "Incorrect Password", "failed", false, null);
+            notification = new Notification("Failed", "Incorrect Password", "failed", true, file, role);
             Animation.fadeIn(notification, null);
             Timer timer = new Timer(delay, null); // set after 3 seconds the notification box fadeout
             // 3000 -> 3s
@@ -135,7 +139,7 @@ public class EditProfileDialog extends javax.swing.JDialog {
         String otpNumber = textFieldOTP.getText();
         
         if (!otpNumber.equals("123")){ // need to change
-            notification = new Notification("Failed", "Incorrect OTP number", "failed", false, null);
+            notification = new Notification("Failed", "Incorrect OTP number", "failed", true, file, role);
             Animation.fadeIn(notification, null);
             Timer timer = new Timer(delay, null); // set after 3 seconds the notification box fadeout
             // 3000 -> 3s
@@ -491,7 +495,7 @@ public class EditProfileDialog extends javax.swing.JDialog {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                EditProfileDialog dialog = new EditProfileDialog(new javax.swing.JFrame(), true, null);
+                EditProfileDialog dialog = new EditProfileDialog(new javax.swing.JFrame(), true, null, null, null);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

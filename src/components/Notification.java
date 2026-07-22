@@ -13,6 +13,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import javax.swing.ImageIcon;
 
 public class Notification extends javax.swing.JPanel {
@@ -28,26 +29,24 @@ public class Notification extends javax.swing.JPanel {
     
     float alpha = 0f;
     private String title, message, status;
+    private Boolean saveMssg;
+    private String role = "Admin";
     
     public Notification() {
         initComponents();
         setOpaque(false);
     }
     
-    public Notification(String title, String message, String status, boolean saveMssg, String file) {
+    public Notification(String title, String message, String status, boolean saveMssg, String file, String role) {
         initComponents();
         setOpaque(false);
         this.title = title;
         this.message = message;
         this.status = status;
         this.file = file;
-        this.date = LocalDate.now();
-        this.time = LocalTime.now();
-        
-        if (saveMssg){
-            generateNotificationID();
-            saveMeesage();
-        }
+        this.role = role;
+
+        this.saveMssg = saveMssg;
     }
     
     public void setTitle(String title){
@@ -75,6 +74,23 @@ public class Notification extends javax.swing.JPanel {
     
     public String getStatus(){
         return status;
+    }
+    
+    public void setSaveMssg(Boolean saveMssg){
+        if (saveMssg != null && saveMssg && file != null){
+            this.date = LocalDate.now();
+            this.time = LocalTime.now().withSecond(0).withNano(0);
+            generateNotificationID();
+            saveMeesage();
+        }
+    }
+    
+    public void setFile(String file){
+        this.file = file;
+    }
+    
+    public void setRole(String role){
+        this.role = role;
     }
     
     public static String generateNotificationID(){
@@ -106,7 +122,8 @@ public class Notification extends javax.swing.JPanel {
         }
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(file, true))){
-            writer.write(id + " | " + "Admin" + " | "+ title + " | " + message + " | " + date + " | " + time + " | " + status);
+            String formattedTime = time.format(DateTimeFormatter.ofPattern("HH:mm"));
+            writer.write(id + " | " + role + " | " + title + " | " + message + " | " + date + " | " + formattedTime + " | " + status);
             writer.newLine();
         } catch (IOException e){
             System.out.println("Error: " + e);

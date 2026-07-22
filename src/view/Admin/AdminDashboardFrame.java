@@ -21,6 +21,7 @@ public class AdminDashboardFrame extends javax.swing.JFrame {
     private Profile profile;
     private Settings settings;
     private Admin currentAdmin;
+    private static String fileAdmin = System.getProperty("user.dir") + "/src/data/notificationAdmin.txt";
 
     private int delay = 3000;
     
@@ -40,7 +41,7 @@ public class AdminDashboardFrame extends javax.swing.JFrame {
             appointmentStatistics = new AppointmentStatistics();
             generateReports = new GenerateReports();
             staffRosterSchedules = new StaffRosterSchedules();
-            profile = new Profile(currentAdmin);
+            profile = new Profile(currentAdmin, fileAdmin, "Admin");
             settings = new Settings();
 
             setPanel(userAccountPanel); // initial panel
@@ -50,6 +51,8 @@ public class AdminDashboardFrame extends javax.swing.JFrame {
             notification.setTitle("Success");
             notification.setMessage("Login Successful");
             notification.setVisible(true);
+            notification.setFile(System.getProperty("user.dir") + "/src/data/notificationAdmin.txt");
+            notification.setSaveMssg(true);
             Animation.fadeIn(notification, null);
             Timer timer = new Timer(delay, null); // set after 3 seconds the notification box fadeout
             // 3000 -> 3s
